@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Ads Strategy — Kunkun Visual · Custompedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1929;--cyan:#0999cd;--yellow:#f8bd17;
+  --white:#FFFFFF;--off:#F0F4FF;--gray:#8A9BC0;--gray-l:#C8D4F0;
+  --surf:#0F2040;--surf2:#162B50;--bdr:rgba(255,255,255,.08);
+  --green:#06D6A0;--pink:#FF6B9D;--red:#E24B4A;--amber:#F59E0B;--rust:#cf7a4e;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);font-size:14px;}
+
+.bg-deco{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 10%,rgba(9,153,205,.15) 0%,transparent 60%),
+             radial-gradient(ellipse 40% 40% at 10% 80%,rgba(248,189,23,.08) 0%,transparent 60%);}
+
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--yellow));z-index:10000;width:0;transition:width .25s ease;}
+
+/* NAV */
+.slide-nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(11,25,41,.92);backdrop-filter:blur(16px);border-bottom:.5px solid var(--bdr);padding:0 40px;height:60px;display:flex;align-items:center;gap:14px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo svg{width:32px;height:27px;flex-shrink:0;}
+.nav-wordmark{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.2px;color:var(--white);}
+.nav-divider{width:1px;height:20px;background:var(--bdr);}
+.nav-doc{font-family:'Syne',sans-serif;font-size:12px;color:var(--gray);font-weight:500;}
+.nav-spacer{flex:1;}
+.slide-counter{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;color:var(--gray);letter-spacing:.06em;}
+.slide-counter span{color:var(--cyan);}
+.nav-cta{display:flex;align-items:center;gap:7px;background:var(--yellow);color:#0B1929;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;padding:8px 18px;border-radius:8px;text-decoration:none;transition:opacity .18s;white-space:nowrap;margin-left:8px;}
+.nav-cta:hover{opacity:.88;}
+.nav-cta svg{width:14px;height:14px;flex-shrink:0;}
+
+/* DECK */
+.deck{position:fixed;top:60px;left:0;right:0;bottom:0;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+.deck::-webkit-scrollbar{width:0;}
+
+/* DOTS */
+.dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:600;display:flex;flex-direction:column;gap:8px;}
+.dots button{width:8px;height:8px;border-radius:50%;border:.5px solid rgba(9,153,205,.5);background:transparent;cursor:pointer;padding:0;transition:.25s;}
+.dots button.active{background:var(--cyan);border-color:var(--cyan);transform:scale(1.3);box-shadow:0 0 10px rgba(9,153,205,.6);}
+.dots button:hover{border-color:var(--cyan);}
+
+.hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:600;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);animation:bob 2.4s ease-in-out infinite;transition:opacity .3s;}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,5px)}}
+
+/* SLIDES */
+.slide{min-height:calc(100vh - 60px);scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:48px 7vw;border-bottom:.5px solid var(--bdr);overflow:hidden;z-index:1;}
+.inner{width:100%;max-width:1100px;margin:0 auto;position:relative;z-index:2;}
+.slide-num{position:absolute;right:28px;bottom:20px;font-family:'Syne',sans-serif;font-size:10px;font-weight:600;color:rgba(255,255,255,.18);letter-spacing:.12em;}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.2,.7,.2,1),transform .65s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+
+/* SHARED */
+.eyebrow{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.slide-title{font-family:'Syne',sans-serif;font-size:clamp(26px,3.8vw,44px);font-weight:800;line-height:1.05;letter-spacing:-1px;color:var(--white);margin-bottom:12px;}
+.slide-sub{font-size:13px;color:var(--gray);line-height:1.65;max-width:660px;margin-bottom:20px;}
+.accent-bar{position:absolute;left:0;top:0;bottom:0;width:3px;}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+
+.card{background:var(--surf);border:.5px solid var(--bdr);border-radius:14px;padding:18px;position:relative;overflow:hidden;transition:transform .2s;}
+.card:hover{transform:translateY(-3px);}
+.card-top{position:absolute;top:0;left:0;right:0;height:2px;}
+.card-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:7px;}
+.card-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:6px;color:var(--white);}
+.card-body{font-size:12px;color:var(--gray);line-height:1.6;}
+.card ul{list-style:none;margin-top:8px;}
+.card li{font-size:12px;color:var(--gray);padding:4px 0 4px 12px;position:relative;line-height:1.4;border-bottom:.5px solid rgba(255,255,255,.04);}
+.card li:last-child{border-bottom:none;}
+.card li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:var(--cyan);}
+
+.info-box{padding:11px 15px;border-radius:10px;font-size:12px;line-height:1.6;margin-bottom:14px;}
+.ib-blue{background:rgba(9,153,205,.12);border:.5px solid rgba(9,153,205,.25);color:#B0DEFF;}
+.ib-gold{background:rgba(248,189,23,.1);border:.5px solid rgba(248,189,23,.25);color:#FFE8A0;}
+.ib-green{background:rgba(6,214,160,.1);border:.5px solid rgba(6,214,160,.25);color:#a0ffdc;}
+.ib-red{background:rgba(226,75,74,.1);border:.5px solid rgba(226,75,74,.25);color:#ffb0af;}
+
+.alert{padding:12px 16px;border-radius:10px;font-size:12px;line-height:1.6;border-left:2px solid var(--yellow);background:rgba(248,189,23,.06);color:var(--gray-l);margin-top:14px;}
+.alert b{color:var(--white);}
+
+/* VS CARDS */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.vs-card{border-radius:14px;padding:20px;border:.5px solid var(--bdr);}
+.vs-bad{background:linear-gradient(145deg,rgba(207,122,78,.07),var(--surf));border-color:rgba(207,122,78,.3);}
+.vs-good{background:linear-gradient(145deg,rgba(6,214,160,.07),var(--surf));border-color:rgba(6,214,160,.3);}
+.vs-label{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;}
+.vs-bad .vs-label{color:var(--rust);}
+.vs-good .vs-label{color:var(--green);}
+.vs-mark{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+.vs-bad .vs-mark{background:rgba(207,122,78,.15);color:var(--rust);}
+.vs-good .vs-mark{background:rgba(6,214,160,.15);color:var(--green);}
+.vs-card h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:7px;color:var(--white);}
+.vs-card p{font-size:12px;color:var(--gray);line-height:1.6;}
+.vs-card p b{color:var(--white);}
+
+/* LAYERS */
+.layer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.layer{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:16px;}
+.layer-n{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--cyan);opacity:.7;margin-bottom:4px;}
+.layer h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:10px;}
+.layer-sub{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin:8px 0 5px;}
+.layer ul{list-style:none;}
+.layer li{font-size:11px;color:var(--gray-l);padding:3px 0 3px 11px;position:relative;line-height:1.4;}
+.layer li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:rgba(9,153,205,.4);}
+
+/* CAMPAIGN CARDS */
+.camp-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:18px;padding:22px;position:relative;overflow:hidden;transition:transform .2s;}
+.camp-card:hover{transform:translateY(-3px);}
+.camp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+.camp-num{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;}
+.camp-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;letter-spacing:-.2px;color:var(--white);margin-bottom:7px;}
+.camp-role{font-size:12px;color:var(--gray);line-height:1.55;margin-bottom:14px;}
+.camp-kpi{display:flex;align-items:baseline;gap:7px;padding:12px 0;border-top:.5px solid var(--bdr);border-bottom:.5px solid var(--bdr);margin-bottom:12px;}
+.kpi-amt{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--cyan);line-height:1;}
+.kpi-per{font-size:11px;color:var(--gray);}
+.kpi-metric{margin-left:auto;text-align:right;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray);}
+.camp-detail{font-size:11px;color:var(--gray);line-height:1.55;}
+.camp-detail b{color:var(--white);}
+
+/* MEASUREMENT TABLE */
+.mtable{border:.5px solid var(--bdr);border-radius:12px;overflow:hidden;margin-top:4px;}
+.mrow{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:.5px solid var(--bdr);}
+.mrow:last-child{border-bottom:none;}
+.mrow>div{padding:10px 14px;font-size:12px;}
+.mrow .c1{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--white);display:flex;align-items:center;}
+.mrow .c2,.mrow .c3{color:var(--gray);line-height:1.4;border-left:.5px solid var(--bdr);}
+.mrow .c3 b{color:var(--yellow);font-weight:700;}
+.mhead{background:var(--surf2);}
+.mhead>div{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-l);}
+
+/* FUNNEL */
+.funnel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.fstage{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:18px;position:relative;overflow:hidden;}
+.fstage::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--cyan),transparent);}
+.fstage-label{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--cyan);line-height:1;margin-bottom:2px;}
+.fstage-name{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;display:block;}
+.frow{padding:7px 0;border-top:.5px solid var(--bdr);font-size:12px;color:var(--gray);line-height:1.4;}
+.frow .fk{display:block;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(9,153,205,.6);margin-bottom:2px;}
+.frow b{color:var(--white);}
+
+/* BRIEF CARDS */
+.briefs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.brief{background:var(--surf);border:.5px solid var(--bdr);border-radius:10px;padding:14px;transition:transform .2s;}
+.brief:hover{transform:translateY(-3px);}
+.brief-code{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;margin-bottom:5px;}
+.brief.tofu .brief-code{color:var(--cyan);}
+.brief.mofu .brief-code{color:var(--green);}
+.brief.bofu .brief-code{color:var(--amber);}
+.brief h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);margin-bottom:3px;line-height:1.25;}
+.brief .meta{font-size:10px;color:var(--gray);margin-bottom:6px;}
+.brief p{font-size:11px;color:var(--gray);line-height:1.45;}
+
+/* SEG */
+.seg{background:var(--surf);border:.5px solid var(--bdr);border-left:2px solid var(--cyan);border-radius:10px;padding:14px 16px;}
+.seg .seg-tag{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px;}
+.seg h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.seg p{font-size:12px;color:var(--gray);line-height:1.5;}
+.seg p b{color:var(--white);}
+
+/* TOPUP */
+.topup-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative;}
+.tstep{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:16px;position:relative;}
+.tstep .tn{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:#0B1929;background:linear-gradient(135deg,var(--yellow),#e0a800);margin-bottom:10px;}
+.tstep h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);margin-bottom:5px;line-height:1.2;}
+.tstep p{font-size:11px;color:var(--gray);line-height:1.45;}
+.tstep .arr{position:absolute;right:-9px;top:24px;color:var(--gray);font-size:16px;z-index:2;}
+.tstep:last-child .arr{display:none;}
+.topup-example{margin-top:14px;background:rgba(248,189,23,.05);border:.5px solid rgba(248,189,23,.25);border-radius:12px;padding:14px 18px;}
+.topup-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin-bottom:10px;}
+.topup-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--white);}
+.chip{background:var(--surf);border:.5px solid var(--bdr);border-radius:20px;padding:5px 12px;font-weight:500;font-size:11px;}
+.chip b{color:var(--yellow);}
+.flow-arr{color:var(--gray);font-size:14px;}
+.trust-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;}
+.trust{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--gray);}
+.trust .ck{color:var(--green);font-weight:700;}
+.trust b{color:var(--white);}
+
+/* ROADMAP */
+.road-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.road-phase{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:16px;transition:transform .2s;}
+.road-phase:hover{transform:translateY(-3px);}
+.road-wk{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--cyan);line-height:1;margin-bottom:3px;}
+.road-name{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray);margin-bottom:10px;display:block;}
+.road-phase ul{list-style:none;}
+.road-phase li{font-size:11px;color:var(--gray-l);padding:3px 0 3px 11px;position:relative;line-height:1.4;}
+.road-phase li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:rgba(9,153,205,.4);}
+
+/* OBJ ROW */
+.obj-row{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;}
+.obj-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:18px;}
+.obj-l{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:7px;}
+.obj-card p{font-size:12px;color:var(--gray);line-height:1.55;}
+.obj-card p b{color:var(--white);}
+.obj-arrow{font-family:'Syne',sans-serif;font-size:26px;color:var(--cyan);opacity:.4;}
+
+/* BUDGET BARS */
+.bar-wrap{margin-bottom:10px;}
+.bar-label-row{display:flex;justify-content:space-between;font-size:11px;color:var(--gray);margin-bottom:5px;}
+.bar-label-row b{color:var(--white);}
+.bar-track{height:9px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,rgba(9,153,205,.6),var(--cyan));}
+
+/* REF ITEMS */
+.ref-block{margin-top:12px;}
+.ref-head{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.ref-head::after{content:'';flex:1;height:.5px;background:var(--bdr);}
+.ref-list-vid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ref-list-ads{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+.ref-item{display:flex;align-items:center;gap:10px;background:var(--surf);border:.5px solid var(--bdr);border-radius:9px;padding:10px 12px;text-decoration:none;transition:.2s;}
+.ref-item:hover{border-color:rgba(9,153,205,.3);transform:translateY(-2px);}
+.ref-ico{width:28px;height:28px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.ref-ico svg{width:14px;height:14px;}
+.ico-yt{background:rgba(207,122,78,.14);}
+.ico-yt svg{fill:var(--rust);}
+.ico-fb{background:rgba(9,153,205,.12);}
+.ico-fb svg{fill:var(--cyan);}
+.ref-t{font-size:12px;color:var(--white);font-weight:500;line-height:1.2;}
+.ref-s{font-size:10px;color:var(--gray);margin-top:1px;}
+.ref-list-ads .ref-item{flex-direction:column;align-items:flex-start;gap:6px;}
+.ref-list-ads .ref-t{font-size:11px;}
+
+/* STAT CARD */
+.stat-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:20px 14px;text-align:center;transition:transform .2s;}
+.stat-card:hover{transform:translateY(-4px);}
+.stat-num{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;display:block;margin-bottom:5px;}
+.stat-label{font-size:11px;color:var(--gray);}
+
+/* PILL */
+.pill{padding:4px 11px;border-radius:20px;font-size:11px;border:.5px solid var(--bdr);color:var(--gray-l);background:rgba(255,255,255,.04);}
+
+/* COVER */
+.cover-glow{position:absolute;top:-20%;right:-10%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(9,153,205,.12) 0%,transparent 70%);pointer-events:none;}
+.cover-glow2{position:absolute;bottom:-20%;left:20%;width:40vw;height:40vw;border-radius:50%;background:radial-gradient(circle,rgba(248,189,23,.07) 0%,transparent 70%);pointer-events:none;}
+.cover-title{font-family:'Syne',sans-serif;font-size:clamp(40px,8vw,72px);font-weight:800;line-height:.95;letter-spacing:-2px;background:linear-gradient(135deg,#fff 40%,#0999cd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px;}
+.cover-client{font-family:'Syne',sans-serif;font-size:clamp(16px,2.5vw,24px);color:var(--cyan);font-weight:500;margin-bottom:12px;-webkit-text-fill-color:var(--cyan);}
+.cover-desc{max-width:520px;font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:24px;}
+.cover-foot{margin-top:28px;font-family:'Syne',sans-serif;font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.1em;border-top:.5px solid var(--bdr);padding-top:14px;}
+
+/* CTA SLIDE */
+.cta-inner-slide{text-align:center;max-width:660px;margin:0 auto;}
+.cta-badge{display:inline-block;background:rgba(37,211,102,.15);border:.5px solid rgba(37,211,102,.3);color:#4eda87;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:18px;}
+.cta-title{font-family:'Syne',sans-serif;font-size:clamp(26px,3.8vw,42px);font-weight:800;letter-spacing:-1px;line-height:1.05;margin-bottom:12px;}
+.cta-sub{font-size:13px;color:var(--gray);max-width:460px;margin:0 auto 24px;line-height:1.65;}
+.cta-buttons{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;}
+.cta-btn-primary{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;text-decoration:none;padding:13px 26px;border-radius:50px;transition:all .2s;box-shadow:0 8px 24px rgba(37,211,102,.3);}
+.cta-btn-primary:hover{background:#20bf5a;transform:translateY(-2px);}
+.cta-btn-secondary{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--gray-l);font-size:12px;font-weight:500;text-decoration:none;padding:12px 20px;border-radius:50px;border:.5px solid rgba(255,255,255,.15);transition:all .2s;}
+.cta-btn-secondary:hover{border-color:rgba(255,255,255,.35);color:var(--white);transform:translateY(-1px);}
+.cta-note{margin-top:12px;font-size:11px;color:var(--gray);}
+.cta-also{margin-top:18px;padding-top:16px;border-top:.5px solid var(--bdr);font-size:11px;color:var(--gray);}
+.cta-also a{color:var(--cyan);text-decoration:none;font-weight:600;}
+
+/* FOOTER */
+.slide-footer{margin-top:24px;padding-top:18px;border-top:.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
+.slide-footer svg{width:20px;height:20px;}
+.footer-brand-txt{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);}
+.footer-links{display:flex;gap:14px;margin-left:12px;}
+.footer-links a{color:var(--gray);text-decoration:none;font-size:11px;}
+.footer-links a:hover{color:var(--white);}
+</style>
+</head>
+<body>
+<div class="bg-deco"></div>
+<div class="progress" id="progress"></div>
+<div class="dots" id="dots"></div>
+<div class="hint" id="hint">Scroll / ↓</div>
+
+<!-- STICKY NAV -->
+<nav class="slide-nav">
+  <a class="nav-logo" href="#">
+    <svg viewBox="260 260 490 420" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+      <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+      <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+    </svg>
+    <span class="nav-wordmark">CUSTOMPEDIA</span>
+  </a>
+  <div class="nav-divider"></div>
+  <span class="nav-doc">Meta Ads Strategy · Kunkun Visual</span>
+  <div class="nav-spacer"></div>
+  <span class="slide-counter" id="counter"><span id="curSlide">1</span> / <span id="totSlide">12</span></span>
+  <a class="nav-cta" href="https://wa.me/6282226171071?text=Hi%20Custompedia!%20Saya%20mau%20diskusi%20Meta%20Ads%20Strategy%20untuk%20Kunkun%20Visual." target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Diskusi Sekarang
+  </a>
+</nav>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: COVER -->
+  <section class="slide" id="s1">
+    <div class="cover-glow"></div><div class="cover-glow2"></div>
+    <div class="accent-bar" style="background:linear-gradient(var(--cyan),var(--yellow));"></div>
+    <div class="inner">
+      <div class="eyebrow reveal">Strategy Deck · Confidential · Mei 2026</div>
+      <div class="cover-title reveal d1">Meta Ads<br>Strategy</div>
+      <div class="cover-client reveal d2">Disusun khusus untuk — KUN KUN VISUAL</div>
+      <p class="cover-desc reveal d3">Performance framework untuk menjangkau <strong>kantor developer properti</strong> di seluruh Indonesia — bukan warga perumahan — melalui dua campaign terukur & strategi konten video berbasis funnel.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;" class="reveal d4">
+        <span class="pill">2 Campaign Paralel</span>
+        <span class="pill">9 Video Brief</span>
+        <span class="pill">B2B Lead Generation</span>
+        <span class="pill">8-Week Roadmap</span>
+      </div>
+      <div class="cover-foot reveal d5">Strategy By CUSTOMPEDIA · Confidential · © 2026</div>
+    </div>
+    <div class="slide-num">01 / 12</div>
+  </section>
+
+  <!-- SLIDE 2: OBJECTIVE -->
+  <section class="slide" id="s2">
+    <div class="accent-bar" style="background:var(--cyan);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal">01 · Strategic Objective</div>
+      <h2 class="slide-title reveal d1">Goal Bisnis →<br>Objektif Teknis Meta</h2>
+      <p class="slide-sub reveal d2">Kunkun adalah Award-Winning CGI & Architectural Visualization Studio. Goal campaign: lead berkualitas dari decision-maker B2B, bukan volume kontak murah dari audiens irelevan.</p>
+      <div class="obj-row reveal d3">
+        <div class="obj-card"><div class="obj-l">Goal Bisnis</div><p><b>B2B Lead Generation</b> + Authority Building untuk jasa visualisasi high-ticket (proyek properti &gt; Rp1 Miliar).</p></div>
+        <div class="obj-arrow">→</div>
+        <div class="obj-card"><div class="obj-l">Objektif Teknis Meta</div><p><b>Traffic</b> (Cost per Landing Page View) + <b>CTWA</b> (Cost per Conversation) — dua campaign yang berjalan paralel sejak Minggu 1.</p></div>
+      </div>
+      <div class="alert reveal d4">Prinsip utama: <b>presisi audiens di atas volume</b>. Satu lead developer yang tepat bernilai jauh lebih besar daripada puluhan chat dari audiens yang tidak pernah membeli jasa rendering.</div>
+    </div>
+    <div class="slide-num">02 / 12</div>
+  </section>
+
+  <!-- SLIDE 3: TARGETING PROBLEM -->
+  <section class="slide" id="s3">
+    <div class="accent-bar" style="background:var(--rust);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal" style="color:var(--rust);">02 · Audience Strategy · Inti Perbaikan</div>
+      <h2 class="slide-title reveal d1">Menyasar Kantor Developer —<br>Bukan Penghuni Perumahan</h2>
+      <p class="slide-sub reveal d2">Risiko terbesar penargetan properti: iklan justru menjangkau orang yang tinggal di kawasan elit, bukan orang yang membeli jasa visualisasi. Keduanya berbeda total.</p>
+      <div class="vs-grid reveal d3">
+        <div class="vs-card vs-bad"><div class="vs-label"><span class="vs-mark">✕</span>Yang Dihindari</div><h3>Geo-targeting kawasan hunian</h3><p>Menarget radius perumahan mewah → menjaring <b>warga/penghuni</b> yang tidak punya proyek properti untuk divisualisasikan. Menghasilkan chat ramai tapi <b>junk leads</b> yang membebani tim sales.</p></div>
+        <div class="vs-card vs-good"><div class="vs-label"><span class="vs-mark">✓</span>Yang Dikejar</div><h3>Decision-maker di kantor developer</h3><p>Menarget <b>profil & peran</b> — pemilik, direktur, marketing developer — di mana pun kantornya di Indonesia, lewat sinyal pekerjaan & bisnis. Inilah yang benar-benar membeli rendering high-ticket.</p></div>
+      </div>
+    </div>
+    <div class="slide-num">03 / 12</div>
+  </section>
+
+  <!-- SLIDE 4: TARGETING LAYERS -->
+  <section class="slide" id="s4">
+    <div class="accent-bar" style="background:var(--cyan);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal">03 · Audience Strategy</div>
+      <h2 class="slide-title reveal d1">Targeting Stack — Developer Properti Nasional</h2>
+      <div class="info-box ib-blue reveal d2">Karena Meta tak bisa "pin kantor" secara akurat, kita kunci audiens lewat tiga lapisan yang saling memperkuat — fokus pada developer dengan proyek &gt; Rp1 Miliar.</div>
+      <div class="layer-grid reveal d3">
+        <div class="layer"><div class="layer-n">Layer 1</div><h4>Profil & Peran</h4><div class="layer-sub">Job Title</div><ul><li>Property / Real Estate Developer</li><li>Owner · Director · Komisaris</li><li>Marketing / Sales Director properti</li><li>Project / Business Development Manager</li></ul><div class="layer-sub">Employer / Industry</div><ul><li>Real estate, property development, construction</li></ul></div>
+        <div class="layer"><div class="layer-n">Layer 2</div><h4>Interest & Behavior</h4><div class="layer-sub">Interest B2B</div><ul><li>Commercial / luxury real estate</li><li>Property investment · masterplan</li><li>ArchDaily · Dezeen · property expo</li></ul><div class="layer-sub">Behavior</div><ul><li>Business page admin · Facebook business owner</li><li>High-value purchase · frequent business traveler</li></ul></div>
+        <div class="layer"><div class="layer-n">Layer 3</div><h4>Geo & Lookalike</h4><div class="layer-sub">Geo — Distrik Bisnis</div><ul><li>CBD/HQ: SCBD & Sudirman (Jakarta), CBD Surabaya, Bandung, Semarang</li><li>Nasional — bukan radius hunian</li></ul><div class="layer-sub">Lookalike</div><ul><li>LAL 1% dari klien existing (CRM upload)</li><li>LAL 2–3% dari engager video TOFU</li></ul></div>
+      </div>
+      <div class="alert reveal d4">Aturan intersection: minimal match <b>2 dari 3 layer</b> (mis. Job Title AND Interest). Selalu <b>exclude</b> students, 3D hobbyist, & existing client agar lead quality terjaga sejak hulu.</div>
+    </div>
+    <div class="slide-num">04 / 12</div>
+  </section>
+
+  <!-- SLIDE 5: CAMPAIGN ARCHITECTURE -->
+  <section class="slide" id="s5">
+    <div class="accent-bar" style="background:var(--cyan);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal">04 · Campaign Architecture · KPI</div>
+      <h2 class="slide-title reveal d1">Dua Campaign, Dua Target Biaya</h2>
+      <p class="slide-sub reveal d2">Berjalan paralel sejak Minggu 1. Traffic membangun aset audiens & bukti portofolio; CTWA menangkap percakapan langsung dari decision-maker.</p>
+      <div class="grid-2 reveal d3">
+        <div class="camp-card"><div class="camp-num">Campaign 01</div><div class="camp-title">Traffic — Website / LP</div><p class="camp-role">Mengirim audiens developer ke landing page portofolio. Membangun ViewContent & audiens retargeting, sekaligus menyaring minat nyata.</p><div class="camp-kpi"><span class="kpi-amt">Rp1.000</span><span class="kpi-per">/ visit LP</span><span class="kpi-metric">Cost per<br>Landing Page View</span></div><p class="camp-detail">Objektif Meta: <b>Traffic — Landing Page Views</b>. Indikator pendukung: bounce rate, time-on-site, ViewContent rate.</p></div>
+        <div class="camp-card" style="border-color:rgba(6,214,160,.25);"><div class="camp-num" style="color:var(--green);">Campaign 02</div><div class="camp-title">CTWA — Chat WhatsApp</div><p class="camp-role">Click-to-WhatsApp dengan tombol "Tanya Biaya Proyek". Menangkap percakapan langsung dari decision-maker untuk diteruskan ke kualifikasi.</p><div class="camp-kpi"><span class="kpi-amt" style="color:var(--green);">Rp10.000</span><span class="kpi-per">/ chat</span><span class="kpi-metric" style="color:var(--green);">Cost per<br>Conversation</span></div><p class="camp-detail">Objektif Meta: <b>Engagement / Leads — Conversations</b>. Indikator pendukung: qualified-chat rate, reply rate, response time.</p></div>
+      </div>
+    </div>
+    <div class="slide-num">05 / 12</div>
+  </section>
+
+  <!-- SLIDE 6: MEASUREMENT -->
+  <section class="slide" id="s6">
+    <div class="accent-bar" style="background:var(--yellow);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal" style="color:var(--yellow);">05 · KPI & Measurement</div>
+      <h2 class="slide-title reveal d1">Metrik Kesuksesan —<br>Diagnostik vs Keputusan</h2>
+      <div class="info-box ib-blue reveal d2">CTR, CPM, & CPC adalah diagnostik (untuk monitoring). Keputusan scaling/kill diambil dari metrik biaya-per-hasil & kualitas lead.</div>
+      <div class="mtable reveal d3">
+        <div class="mrow mhead"><div class="c1">Campaign</div><div class="c2">Diagnostic (monitoring)</div><div class="c3">Decision Metric (action)</div></div>
+        <div class="mrow"><div class="c1">Traffic / LP</div><div class="c2">CPM · CTR-link · bounce rate</div><div class="c3"><b>Cost per LP View ≤ Rp1.000</b> · ViewContent rate</div></div>
+        <div class="mrow"><div class="c1">CTWA</div><div class="c2">CPM · CTR · reply rate</div><div class="c3"><b>Cost per Chat ≤ Rp10.000</b> · qualified-chat rate</div></div>
+        <div class="mrow"><div class="c1">Lead Quality</div><div class="c2">Volume chat masuk</div><div class="c3"><b>CPQL</b> · Lead Quality Score (proyek, budget, peran)</div></div>
+        <div class="mrow"><div class="c1">Post-Campaign</div><div class="c2">—</div><div class="c3"><b>Pipeline value</b> · konsultasi terjadwal</div></div>
+      </div>
+      <div class="alert reveal d4">Karena sales cycle B2B panjang, lead di-tag & di-track sampai konsultasi. <b>Qualifier wajib di chat/form</b>: jenis proyek, budget range, peran — agar junk lead tersaring sebelum membebani sales.</div>
+    </div>
+    <div class="slide-num">06 / 12</div>
+  </section>
+
+  <!-- SLIDE 7: FUNNEL -->
+  <section class="slide" id="s7">
+    <div class="accent-bar" style="background:var(--cyan);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal">06 · Funnel Architecture</div>
+      <h2 class="slide-title reveal d1">Conversation-Led Funnel</h2>
+      <p class="slide-sub reveal d2">CTWA & Traffic jalan sejak hari pertama. Funnel adalah lapisan retargeting yang menebal seiring data terkumpul — bukan tahap yang menahan lead.</p>
+      <div class="funnel-grid reveal d3">
+        <div class="fstage"><div class="fstage-label">COLD</div><span class="fstage-name">Prospecting · Minggu 1+</span><div class="frow"><span class="fk">Audiens</span>Developer (targeting stack Layer 1–3)</div><div class="frow"><span class="fk">Campaign</span><b>Traffic + CTWA</b> paralel</div><div class="frow"><span class="fk">Creative</span>TOFU video — pattern interrupt & showcase</div><div class="frow"><span class="fk">Tujuan</span>Visit LP & chat masuk</div></div>
+        <div class="fstage" style="border-color:rgba(248,189,23,.2);"><div class="fstage-label" style="color:var(--yellow);">WARM</div><span class="fstage-name">Retargeting · paralel</span><div class="frow"><span class="fk">Audiens</span>Video engager, LP visitor, belum chat</div><div class="frow"><span class="fk">Campaign</span><b>Traffic + CTWA</b> retarget</div><div class="frow"><span class="fk">Creative</span>MOFU video — founder story, BTS, testimonial</div><div class="frow"><span class="fk">Tujuan</span>Bangun trust → re-engage chat</div></div>
+        <div class="fstage" style="border-color:rgba(6,214,160,.2);"><div class="fstage-label" style="color:var(--green);">HOT</div><span class="fstage-name">Conversion · closing</span><div class="frow"><span class="fk">Audiens</span>Engager berulang + LAL 1% klien</div><div class="frow"><span class="fk">Campaign</span><b>CTWA</b> terkualifikasi</div><div class="frow"><span class="fk">Creative</span>BOFU video — direct response, urgency, FAQ</div><div class="frow"><span class="fk">Tujuan</span>Konsultasi terjadwal</div></div>
+      </div>
+    </div>
+    <div class="slide-num">07 / 12</div>
+  </section>
+
+  <!-- SLIDE 8: VIDEO BRIEFS -->
+  <section class="slide" id="s8">
+    <div class="accent-bar" style="background:var(--cyan);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal">07 · Creative · Video Content Strategy</div>
+      <h2 class="slide-title reveal d1">9 Video Brief — Dipetakan ke Funnel</h2>
+      <div class="info-box ib-blue reveal d2"><b>Silent-viewing first</b> (paham tanpa audio), warm cinematic grade, text overlay per klaim. Video adalah materi iklan untuk kedua campaign — bukan objektif terpisah.</div>
+      <div class="briefs-grid reveal d3">
+        <div class="brief tofu"><div class="brief-code">TOFU-01</div><h4>"Ini Bukan Foto. Ini Masa Depan Proyek Anda."</h4><div class="meta">Cinematic Reel · 30 dtk · recut footage lama</div><p>Pattern interrupt + brand recall. Render terindah → reveal "ini bukan foto" → authority statement.</p></div>
+        <div class="brief tofu"><div class="brief-code">TOFU-02</div><h4>2D vs Render 3D — Bedanya di Mata Investor</h4><div class="meta">Before/After · 15–20 dtk</div><p>Split-screen denah konvensional vs render sinematik. Menyentuh pain point presentasi yang lemah.</p></div>
+        <div class="brief tofu"><div class="brief-code">TOFU-03</div><h4>Era AI Promotional Video</h4><div class="meta">AI Promo Teaser · 20–25 dtk · corporate</div><p>USP unik untuk segmen korporat/BUMN — perluasan market di luar developer.</p></div>
+        <div class="brief mofu"><div class="brief-code">MOFU-01</div><h4>Dari Gang Sempit Ciumbuleuit ke Istana Negara</h4><div class="meta">Founder Story · 60–90 dtk · recut</div><p>Origin story Rheza Kun + B-roll proyek. Membangun kepercayaan lewat narasi proven.</p></div>
+        <div class="brief mofu"><div class="brief-code">MOFU-02</div><h4>Di Balik Render — Proses Sebenarnya</h4><div class="meta">Behind The Scenes · 45–60 dtk · new shoot</div><p>Transparansi proses: tim nyata, teknologi nyata. Counter "ini pasti template murah".</p></div>
+        <div class="brief mofu"><div class="brief-code">MOFU-03</div><h4>Kata Klien Kami — Bukan Kata Kami</h4><div class="meta">Testimonial · 30–45 dtk · prioritas tertinggi</div><p>Social proof pihak ketiga. ROI tertinggi di MOFU — prioritaskan jika budget shoot terbatas.</p></div>
+        <div class="brief bofu"><div class="brief-code">BOFU-01</div><h4>Proyek Anda Terlalu Bagus untuk Presentasi Biasa</h4><div class="meta">Direct Response · 15–20 dtk</div><p>Social proof konkret (50+ proyek, Istana Negara, 7 tahun) → satu CTA.</p></div>
+        <div class="brief bofu"><div class="brief-code">BOFU-02</div><h4>Slot Proyek Terbatas per Bulan</h4><div class="meta">Scarcity / Urgency · 20 dtk</div><p>Scarcity otentik dari posisi kuat. Dorongan terakhir untuk action.</p></div>
+        <div class="brief bofu"><div class="brief-code">BOFU-03</div><h4>Berapa Harga & Kapan Bisa Mulai?</h4><div class="meta">FAQ / Objection Killer · 30 dtk</div><p>Jawab dua objeksi utama: harga & waktu. Transparansi = trust accelerator B2B.</p></div>
+      </div>
+    </div>
+    <div class="slide-num">08 / 12</div>
+  </section>
+
+  <!-- SLIDE 9: SEGMENTS + PIXEL -->
+  <section class="slide" id="s9">
+    <div class="accent-bar" style="background:var(--green);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal" style="color:var(--green);">08 · Segment Mapping & Pixel</div>
+      <h2 class="slide-title reveal d1">Pesan per Segmen &<br>Tracking Setup</h2>
+      <div class="grid-3 reveal d2" style="margin-bottom:14px;">
+        <div class="seg"><div class="seg-tag">Primary · BOFU focus</div><h4>Developer Properti</h4><p>Owner, direktur, marketing developer dengan proyek &gt; Rp1M. Angle: visual yang membuat investor yakin & buyer jatuh cinta sebelum dibangun. <b>Target sales utama.</b></p></div>
+        <div class="seg" style="border-left-color:var(--green);"><div class="seg-tag" style="color:var(--green);">Secondary · MOFU</div><h4>Arsitek & Interior Designer</h4><p>Lebih mudah di-engage tapi budget lebih kecil. Gunakan untuk awareness & referral — bukan direct sales.</p></div>
+        <div class="seg" style="border-left-color:var(--yellow);"><div class="seg-tag" style="color:var(--yellow);">Corporate · AI Video</div><h4>Korporat & C-Level</h4><p>BUMN, konstruksi besar. Angle formal: ROI & brand elevation lewat AI Promotional Video. Potensi ekspansi regional.</p></div>
+      </div>
+      <div class="info-box ib-red reveal d3">Website belum memiliki Pixel. Ini fondasi wajib sebelum scaling — tanpa Pixel, KPI Cost per LP View tak bisa diukur akurat & retargeting mustahil.</div>
+      <div class="grid-2 reveal d4">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="grid-3"><div class="card" style="padding:14px;"><div class="card-label" style="font-size:10px;color:var(--cyan);">01</div><div class="card-title" style="font-size:13px;">Install Meta Pixel</div></div><div class="card" style="padding:14px;"><div class="card-label" style="font-size:10px;color:var(--cyan);">02</div><div class="card-title" style="font-size:13px;">Setup Event Tracking</div></div><div class="card" style="padding:14px;"><div class="card-label" style="font-size:10px;color:var(--cyan);">03</div><div class="card-title" style="font-size:13px;">Connect CAPI</div></div></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="pill" style="background:rgba(9,153,205,.08);border-color:rgba(9,153,205,.3);color:#B0DEFF;">PageView</span><span class="pill" style="background:rgba(9,153,205,.08);border-color:rgba(9,153,205,.3);color:#B0DEFF;">ViewContent</span><span class="pill" style="background:rgba(9,153,205,.08);border-color:rgba(9,153,205,.3);color:#B0DEFF;">Contact</span><span class="pill" style="background:rgba(9,153,205,.08);border-color:rgba(9,153,205,.3);color:#B0DEFF;">Lead</span></div>
+          <div class="alert" style="margin-top:0;">Semakin lama Pixel berjalan, biaya per hasil <b>makin efisien</b> — Meta belajar mengenali developer yang benar-benar inquiry.</div>
+        </div>
+        <div class="card"><div class="card-top" style="background:linear-gradient(90deg,transparent,var(--yellow),transparent);"></div><div class="card-label">Pre-Launch Checklist</div><div class="card-title">Wajib sebelum spend</div><ul><li>Pixel + CAPI aktif, UTM di semua link</li><li>Custom Audience klien existing di-upload</li><li>LP & chat punya qualifier (proyek, budget, peran)</li><li>WhatsApp Business siap, admin respon &lt; 1 jam</li></ul></div>
+      </div>
+    </div>
+    <div class="slide-num">09 / 12</div>
+  </section>
+
+  <!-- SLIDE 10: BUDGET & TOPUP -->
+  <section class="slide" id="s10">
+    <div class="accent-bar" style="background:var(--yellow);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal" style="color:var(--yellow);">09 · Budget, Testing & Topup</div>
+      <h2 class="slide-title reveal d1">Alokasi Budget, A/B Testing<br>& Sistem Topup Transparan</h2>
+      <div class="grid-2 reveal d2" style="margin-bottom:14px;">
+        <div class="card"><div class="card-top" style="background:linear-gradient(90deg,transparent,var(--cyan),transparent);"></div><div class="card-label">Budget Allocation</div><div style="margin-top:10px;"><div class="bar-wrap"><div class="bar-label-row"><span>Cold — Prospecting (Traffic + CTWA)</span><b>50%</b></div><div class="bar-track"><div class="bar-fill" style="width:50%;"></div></div></div><div class="bar-wrap"><div class="bar-label-row"><span>Warm — Retargeting L1</span><b>30%</b></div><div class="bar-track"><div class="bar-fill" style="width:30%;background:linear-gradient(90deg,rgba(6,214,160,.5),var(--green));"></div></div></div><div class="bar-wrap"><div class="bar-label-row"><span>Hot — Retargeting L2</span><b>15%</b></div><div class="bar-track"><div class="bar-fill" style="width:15%;background:linear-gradient(90deg,rgba(207,122,78,.6),var(--rust));"></div></div></div><div class="bar-wrap"><div class="bar-label-row"><span>Testing</span><b>5%</b></div><div class="bar-track"><div class="bar-fill" style="width:5%;background:linear-gradient(90deg,rgba(138,155,192,.5),var(--gray));"></div></div></div></div></div>
+        <div class="card"><div class="card-top" style="background:linear-gradient(90deg,transparent,var(--yellow),transparent);"></div><div class="card-label">Testing Priority Queue</div><ul><li><b style="color:var(--white)">P1</b> · Hook TOFU-01: aspiration vs curiosity → 3s hold rate</li><li><b style="color:var(--white)">P2</b> · Durasi: 30 dtk vs 15 dtk → ThruPlay + CTR</li><li><b style="color:var(--white)">P3</b> · CTA CTWA: "Konsultasi Gratis" vs "Cek Portofolio"</li><li><b style="color:var(--white)">P4</b> · Audiens: interest vs broad → cost per hasil + SQL rate</li></ul></div>
+      </div>
+      <div class="topup-grid reveal d3">
+        <div class="tstep"><span class="arr">→</span><div class="tn">1</div><h4>Setup Anggaran</h4><p>Custompedia membuatkan tagihan di sistem Meta Ads sesuai nominal yang disepakati.</p></div>
+        <div class="tstep"><span class="arr">→</span><div class="tn">2</div><h4>Virtual Account</h4><p>Sistem Meta otomatis menghasilkan kode VA resmi sesuai bank pilihan (BCA, Mandiri, BNI, dll.).</p></div>
+        <div class="tstep"><span class="arr">→</span><div class="tn">3</div><h4>Transfer Langsung</h4><p>Kunkun transfer via kode VA ke rekening resmi Meta — <strong>tidak melewati Custompedia</strong>.</p></div>
+        <div class="tstep"><div class="tn">4</div><h4>Saldo Aktif</h4><p>Dana otomatis masuk sebagai saldo prabayar & campaign siap dijalankan.</p></div>
+      </div>
+      <div class="topup-example reveal d4">
+        <div class="topup-label">Contoh · Juni 2026</div>
+        <div class="topup-flow"><span class="chip">Tagihan <b>Rp1.000.000</b></span><span class="flow-arr">→</span><span class="chip">Kode VA Meta</span><span class="flow-arr">→</span><span class="chip">Transfer <b>BCA</b></span><span class="flow-arr">→</span><span class="chip">Saldo aktif otomatis</span></div>
+        <div class="trust-row"><div class="trust"><span class="ck">✓</span> <b>Tanpa perantara</b> — dana langsung ke Meta</div><div class="trust"><span class="ck">✓</span> Saldo <b>prabayar</b>, bukan pascabayar</div><div class="trust"><span class="ck">✓</span> Batas waktu pembayaran tertera di sistem</div></div>
+      </div>
+    </div>
+    <div class="slide-num">10 / 12</div>
+  </section>
+
+  <!-- SLIDE 11: ROADMAP -->
+  <section class="slide" id="s11">
+    <div class="accent-bar" style="background:var(--cyan);"></div>
+    <div class="inner">
+      <div class="eyebrow reveal">10 · Execution Timeline</div>
+      <h2 class="slide-title reveal d1">Roadmap 8 Minggu</h2>
+      <p class="slide-sub reveal d2">Dari setup & launch hingga scale — setiap minggu ada deliverable yang jelas dan terukur.</p>
+      <div class="road-grid reveal d3">
+        <div class="road-phase" style="border-top:2px solid var(--cyan);"><div class="road-wk">1–2</div><span class="road-name">Setup & Launch</span><ul><li>Pasang Pixel + CAPI, UTM, upload CRM</li><li>Recut TOFU-01 dari footage lama</li><li>Launch Traffic + CTWA (cold)</li></ul></div>
+        <div class="road-phase" style="border-top:2px solid var(--green);"><div class="road-wk" style="color:var(--green);">3–4</div><span class="road-name">Build & Test</span><ul><li>Shoot & edit TOFU-02, MOFU-03 (testimonial)</li><li>Aktifkan retargeting warm</li><li>A/B test P1–P2</li></ul></div>
+        <div class="road-phase" style="border-top:2px solid var(--yellow);"><div class="road-wk" style="color:var(--yellow);">5–6</div><span class="road-name">Optimize</span><ul><li>Launch MOFU + BOFU video</li><li>LAL 1% dari engager & klien</li><li>Audit Cost/LP View & Cost/Chat</li></ul></div>
+        <div class="road-phase" style="border-top:2px solid var(--pink);"><div class="road-wk" style="color:var(--pink);">7–8</div><span class="road-name">Scale</span><ul><li>Scale winning ads & audiens</li><li>Aktifkan segmen korporat (AI video)</li><li>Review CPQL & pipeline</li></ul></div>
+      </div>
+      <div class="alert reveal d4">Prioritas produksi: jika budget shoot terbatas, dahulukan <b>MOFU-03 (testimonial klien)</b> — social proof punya ROI tertinggi. TOFU-01 bisa jalan dari recut footage existing tanpa shoot baru.</div>
+    </div>
+    <div class="slide-num">11 / 12</div>
+  </section>
+
+  <!-- SLIDE 12: CLOSING / CTA -->
+  <section class="slide" id="s12" style="background:linear-gradient(150deg,#0F2040 0%,#0B1929 60%,#0A1F10 100%);">
+    <div class="cover-glow"></div>
+    <div class="accent-bar" style="background:linear-gradient(var(--cyan),var(--yellow));"></div>
+    <div class="inner">
+      <div class="grid-4 reveal" style="margin-bottom:28px;">
+        <div class="stat-card" style="border-top:2px solid var(--cyan);"><span class="stat-num" style="color:var(--cyan);">2</span><span class="stat-label">Campaign Paralel</span></div>
+        <div class="stat-card" style="border-top:2px solid var(--green);"><span class="stat-num" style="color:var(--green);">9</span><span class="stat-label">Video Brief</span></div>
+        <div class="stat-card" style="border-top:2px solid var(--yellow);"><span class="stat-num" style="color:var(--yellow);">8</span><span class="stat-label">Minggu Roadmap</span></div>
+        <div class="stat-card" style="border-top:2px solid var(--pink);"><span class="stat-num" style="color:var(--pink);">∞</span><span class="stat-label">Potensi Pipeline</span></div>
+      </div>
+      <div class="cta-inner-slide reveal d2">
+        <div class="cta-badge">Ready to launch?</div>
+        <div class="cta-title">Siap jalankan Meta Ads<br>untuk Kunkun Visual?</div>
+        <p class="cta-sub">Strategy sudah siap. Langkah selanjutnya: approval budget, akses Meta Business, dan kita bisa launch dalam 1–2 minggu. No fluff, langsung eksekusi.</p>
+        <div class="grid-3" style="margin-bottom:20px;text-align:left;"><div class="card" style="padding:14px 16px;"><div class="card-label">01</div><div class="card-title" style="font-size:13px;">Approval scope & budget</div></div><div class="card" style="padding:14px 16px;"><div class="card-label">02</div><div class="card-title" style="font-size:13px;">Akses Meta Business & pasang Pixel</div></div><div class="card" style="padding:14px 16px;"><div class="card-label">03</div><div class="card-title" style="font-size:13px;">Recut TOFU-01 & shoot testimonial</div></div></div>
+        <div class="cta-buttons">
+          <a class="cta-btn-primary" href="https://wa.me/6282226171071?text=Hi%20Custompedia!%20Saya%20mau%20approve%20Meta%20Ads%20Strategy%20untuk%20Kunkun%20Visual%20dan%20diskusi%20next%20steps." target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat via WhatsApp
+          </a>
+          <a class="cta-btn-secondary" href="mailto:hello@custompedia.agency?subject=Inquiry — Meta Ads Strategy Kunkun Visual" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            hello@custompedia.agency
+          </a>
+        </div>
+        <div class="cta-note">+62 822-2617-1071 · Typically replies within 1 hour</div>
+        <div class="cta-also">Juga tersedia: <a href="#">SEO Strategy Deck</a> · <a href="#">SMM Pricing 2026</a></div>
+      </div>
+      <div class="slide-footer reveal d5">
+        <svg viewBox="260 260 490 420" xmlns="http://www.w3.org/2000/svg"><path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/><path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/><path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/></svg>
+        <span class="footer-brand-txt">CUSTOMPEDIA Creative Group</span>
+        <div class="footer-links">
+          <a href="https://wa.me/6282226171071" target="_blank">+62 822-2617-1071</a>
+          <a href="mailto:hello@custompedia.agency" target="_blank">hello@custompedia.agency</a>
+          <a href="https://instagram.com/custompedia" target="_blank">@custompedia</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">12 / 12</div>
+  </section>
+
+</div><!-- /deck -->
+
+<script>
+  const deck=document.getElementById('deck');
+  const slides=[...document.querySelectorAll('.slide')];
+  const progress=document.getElementById('progress');
+  const dots=document.getElementById('dots');
+  const hint=document.getElementById('hint');
+  const curSlide=document.getElementById('curSlide');
+  const totSlide=document.getElementById('totSlide');
+  totSlide.textContent=slides.length;
+
+  slides.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.setAttribute('aria-label','Slide '+(i+1));
+    b.addEventListener('click',()=>s.scrollIntoView({behavior:'smooth'}));
+    dots.appendChild(b);
+  });
+  const dotBtns=[...dots.children];
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'));
+        const idx=slides.indexOf(e.target);
+        dotBtns.forEach((d,i)=>d.classList.toggle('active',i===idx));
+        curSlide.textContent=idx+1;
+      }
+    });
+  },{threshold:.55,root:deck});
+  slides.forEach(s=>io.observe(s));
+
+  deck.addEventListener('scroll',()=>{
+    const max=deck.scrollHeight-deck.clientHeight;
+    progress.style.width=(deck.scrollTop/max*100)+'%';
+    hint.style.opacity=deck.scrollTop>60?'0':'1';
+  });
+
+  let idx=0;
+  function go(i){idx=Math.max(0,Math.min(slides.length-1,i));slides[idx].scrollIntoView({behavior:'smooth'});}
+  window.addEventListener('keydown',e=>{
+    const cur=slides.findIndex(s=>{const r=s.getBoundingClientRect();return r.top>=-50&&r.top<window.innerHeight/2;});
+    if(cur>-1)idx=cur;
+    if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(idx+1);}
+    if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(idx-1);}
+  });
+</script>
+</body>
+</html>
