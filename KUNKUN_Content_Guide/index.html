@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Guide — Kunkun Visual · Custompedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1929;--cyan:#0999cd;--yellow:#f8bd17;--white:#FFF;--gray:#8A9BC0;--gl:#C8D4F0;--surf:#0F2040;--surf2:#162B50;--bdr:rgba(255,255,255,.08);--green:#06D6A0;--amber:#F59E0B;--rust:#cf7a4e;--red:#E24B4A}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);font-size:13px;-webkit-font-smoothing:antialiased}
+.app{display:flex;height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:230px;flex-shrink:0;background:var(--surf2);border-right:.5px solid var(--bdr);display:flex;flex-direction:column;height:100vh}
+.sb-logo{padding:16px 16px 12px;border-bottom:.5px solid var(--bdr);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.sb-logo svg{width:24px;height:20px;flex-shrink:0}
+.sb-wm{font-family:'Syne',sans-serif;font-weight:800;font-size:12px}
+.sb-doc{padding:9px 16px 10px;border-bottom:.5px solid var(--bdr);flex-shrink:0}
+.sb-dl{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:2px}
+.sb-dt{font-size:10px;color:var(--gl);line-height:1.3}
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0;scrollbar-width:thin;scrollbar-color:rgba(9,153,205,.2) transparent}
+.sb-nav::-webkit-scrollbar{width:3px}.sb-nav::-webkit-scrollbar-thumb{background:rgba(9,153,205,.2);border-radius:3px}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 16px;cursor:pointer;transition:.15s;border-left:2px solid transparent}
+.ni:hover{background:rgba(9,153,205,.06)}.ni.active{background:rgba(9,153,205,.1);border-left-color:var(--cyan)}
+.ni.active .nin{color:var(--cyan)}.ni.active .nil{color:var(--white)}
+.nin{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:var(--gray);width:18px;flex-shrink:0}
+.nil{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;color:var(--gray);line-height:1.2}
+.nis{font-size:10px;color:rgba(138,155,192,.5);display:block;margin-top:1px;font-weight:300}
+.sb-foot{padding:10px 16px;border-top:.5px solid var(--bdr);flex-shrink:0}
+.sb-counter{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--cyan);margin-bottom:3px}
+.sb-conf{font-size:10px;color:rgba(138,155,192,.4)}
+
+/* CONTENT */
+.content{flex:1;height:100vh;overflow:hidden;position:relative}
+.panel{position:absolute;inset:0;overflow-y:auto;padding:40px 48px 56px;opacity:0;pointer-events:none;transition:opacity .28s ease,transform .28s ease;transform:translateX(16px)}
+.panel.active{opacity:1;pointer-events:all;transform:translateX(0)}
+.panel::-webkit-scrollbar{width:4px}.panel::-webkit-scrollbar-thumb{background:rgba(9,153,205,.15);border-radius:4px}
+.pi{max-width:860px;margin:0 auto}
+.pew{display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.pe-line{height:1px;width:28px;background:var(--cyan)}
+.pe-txt{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+.ptitle{font-family:'Syne',sans-serif;font-size:clamp(20px,2.8vw,32px);font-weight:800;letter-spacing:-.4px;line-height:1.06;margin-bottom:7px}
+.ptitle em{color:var(--cyan);font-style:normal}
+.psub{font-size:13px;color:var(--gray);line-height:1.7;max-width:600px;margin-bottom:22px}
+.psub b{color:var(--white)}
+
+/* SHARED */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mt{margin-top:14px}
+.card{background:var(--surf);border:.5px solid var(--bdr);border-radius:11px;padding:14px;position:relative;overflow:hidden}
+.card-top{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.card .cl{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px}
+.card h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px}
+.card p,.card li{font-size:12px;color:var(--gray);line-height:1.6}
+.card ul{list-style:none;margin-top:5px}.card li{padding:3px 0 3px 10px;position:relative;border-bottom:.5px solid rgba(255,255,255,.03)}
+.card li:last-child{border-bottom:none}.card li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:var(--cyan)}
+.card li b,.card p b{color:var(--white)}
+
+.alert{padding:10px 14px;border-radius:8px;font-size:12px;line-height:1.65;border-left:2px solid var(--yellow);background:rgba(248,189,23,.06);color:var(--gl);margin-top:12px}.alert b{color:var(--white)}
+.ib-b{padding:10px 14px;border-radius:8px;font-size:12px;line-height:1.65;background:rgba(9,153,205,.08);border:.5px solid rgba(9,153,205,.2);color:#B0DEFF;margin-top:10px}.ib-b b{color:var(--white)}
+.ib-r{padding:10px 14px;border-radius:8px;font-size:12px;line-height:1.65;background:rgba(226,75,74,.08);border:.5px solid rgba(226,75,74,.2);color:#ffb0af;margin-top:10px}.ib-r b{color:var(--white)}
+.ib-g{padding:10px 14px;border-radius:8px;font-size:12px;line-height:1.65;background:rgba(6,214,160,.07);border:.5px solid rgba(6,214,160,.2);color:#a0ffdc;margin-top:10px}.ib-g b{color:var(--white)}
+
+/* RULES */
+.rules{display:flex;flex-direction:column;gap:7px}
+.rule{display:flex;gap:11px;background:var(--surf);border:.5px solid var(--bdr);border-radius:10px;padding:12px 14px}
+.rule .rn{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:rgba(9,153,205,.35);flex-shrink:0;width:22px;line-height:1}
+.rule h5{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);margin-bottom:2px}
+.rule p{font-size:12px;color:var(--gray);line-height:1.6}.rule p b{color:var(--white)}
+
+/* SEGMENTS */
+.seg{background:var(--surf);border:.5px solid var(--bdr);border-radius:9px;padding:12px 14px;border-left:2px solid var(--cyan)}
+.seg .st{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.seg h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);margin-bottom:3px}
+.seg p{font-size:12px;color:var(--gray);line-height:1.6}.seg p b{color:var(--white)}
+
+/* FUNNEL MAP */
+.fmap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.fmap-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:16px;position:relative;overflow:hidden}
+.fmap-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.fmap-card.f1::before{background:var(--cyan)}.fmap-card.f2::before{background:var(--green)}.fmap-card.f3::before{background:var(--amber)}
+.fmap-card .fn{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-bottom:3px}
+.fmap-card.f1 .fn{color:var(--cyan)}.fmap-card.f2 .fn{color:var(--green)}.fmap-card.f3 .fn{color:var(--amber)}
+.fmap-card h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px}
+.fmap-card p{font-size:12px;color:var(--gray);line-height:1.6}.fmap-card p b{color:var(--white)}
+.fmap-card .vid-list{margin-top:10px;list-style:none}
+.fmap-card .vid-list li{font-size:11px;color:var(--gl);padding:5px 0;border-top:.5px solid var(--bdr);display:flex;gap:6px}
+.fmap-card .vid-list li span{font-family:'Syne',sans-serif;font-weight:700;flex-shrink:0;width:58px}
+.fmap-card.f1 .vid-list li span{color:var(--cyan)}.fmap-card.f2 .vid-list li span{color:var(--green)}.fmap-card.f3 .vid-list li span{color:var(--amber)}
+
+/* BRIEF */
+.brief{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.brief-hd{display:grid;grid-template-columns:100px 1fr;border-bottom:.5px solid var(--bdr)}
+.brief-cc{padding:14px 12px;border-right:.5px solid var(--bdr);display:flex;flex-direction:column;gap:4px;justify-content:center}
+.brief-code{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;line-height:1}
+.brief.t .brief-code{color:var(--cyan)}.brief.m .brief-code{color:var(--green)}.brief.b .brief-code{color:var(--amber)}
+.brief-type{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gray)}
+.brief-tc{padding:12px 14px;display:flex;flex-direction:column;gap:5px}
+.brief-tc h3{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);line-height:1.2}
+.tags{display:flex;gap:4px;flex-wrap:wrap}
+.tag{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:20px;padding:2px 8px;border:.5px solid var(--bdr)}
+.tag.t{background:rgba(9,153,205,.1);color:var(--cyan);border-color:rgba(9,153,205,.3)}
+.tag.m{background:rgba(6,214,160,.08);color:var(--green);border-color:rgba(6,214,160,.25)}
+.tag.b{background:rgba(245,158,11,.08);color:var(--amber);border-color:rgba(245,158,11,.25)}
+.tag.i{background:rgba(255,255,255,.05);color:var(--gray)}
+.tag.n{background:rgba(226,75,74,.08);color:#ffb0af;border-color:rgba(226,75,74,.2)}
+.tag.p{background:rgba(248,189,23,.1);color:var(--yellow);border-color:rgba(248,189,23,.25)}
+.bsec{padding:12px 14px;border-bottom:.5px solid rgba(255,255,255,.04)}.bsec:last-child{border-bottom:none}
+.blab{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(9,153,205,.5);margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.blab::after{content:"";flex:1;height:.5px;background:var(--bdr)}
+
+/* SHOTS */
+.shots{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.shot{display:grid;grid-template-columns:88px 1fr;border:.5px solid var(--bdr);border-radius:7px;overflow:hidden}
+.shot-t{padding:9px 10px;background:var(--surf2)}.shot-tc{font-family:'Syne',sans-serif;font-size:9px;color:var(--cyan);font-weight:700;line-height:1.2}
+.shot-d{font-size:9px;color:var(--gray)}.shot-b{padding:9px 12px}
+.shot-b h5{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gl);margin-bottom:3px}
+.shot-b p{font-size:12px;color:var(--gray);line-height:1.5}.shot-b p b{color:var(--white)}
+
+/* COPY & SCRIPT */
+.copy-block{background:var(--surf2);border-radius:7px;padding:11px 13px;margin-top:4px}
+.copy-lbl{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:5px}
+.copy-hl{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);margin-bottom:7px;padding-bottom:7px;border-bottom:.5px solid var(--bdr)}
+.copy-txt{font-size:12px;color:var(--gl);line-height:1.7;white-space:pre-line}
+.script{background:rgba(9,153,205,.04);border:.5px solid rgba(9,153,205,.12);border-radius:8px;padding:12px 14px;margin-top:4px}
+.sc-lbl{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+.sc-line{display:grid;grid-template-columns:80px 1fr;gap:5px 10px;margin-bottom:6px;padding-bottom:6px;border-bottom:.5px solid rgba(255,255,255,.04)}
+.sc-line:last-child{border-bottom:none;margin:0;padding:0}
+.sc-tc{font-family:'Syne',sans-serif;font-size:9px;color:var(--cyan);font-weight:700;padding-top:2px;line-height:1.3}
+.sc-txt{font-size:12px;color:var(--gl);line-height:1.5}.sc-txt b{color:var(--white)}.sc-txt em{color:var(--cyan);font-style:normal}
+
+/* AWARD */
+.award-row{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.award-item{display:flex;align-items:center;gap:12px;background:var(--surf2);border:.5px solid rgba(248,189,23,.15);border-radius:9px;padding:10px 14px}
+.award-ico{width:32px;height:32px;border-radius:8px;background:rgba(248,189,23,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.award-info .at{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--white)}.award-info .ay{font-size:10px;color:var(--yellow)}.award-info .ac{font-size:10px;color:var(--gray)}
+
+/* PRODUCTION */
+.spec{background:var(--surf);border:.5px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.spec h4{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+.spec ul{list-style:none}.spec li{font-size:12px;color:var(--gray);padding:2px 0 2px 10px;position:relative;line-height:1.5}
+.spec li::before{content:"-";position:absolute;left:0;color:rgba(9,153,205,.35)}.spec li b,.spec p b{color:var(--white)}
+.spec p{font-size:12px;color:var(--gray);line-height:1.6}
+.mono{font-family:'Syne',sans-serif;color:var(--cyan);font-size:10px;font-weight:700}
+.pace-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:7px}
+.pace-item{background:var(--surf2);border-radius:5px;padding:7px 9px;display:flex;justify-content:space-between}.pace-item .pt{font-size:11px;color:var(--gl)}.pace-item .pv{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--cyan)}
+.exp-table{width:100%;border-collapse:collapse;margin-top:7px}
+.exp-table th{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);text-align:left;padding:6px 9px;background:var(--surf2);border-bottom:.5px solid var(--bdr)}
+.exp-table td{padding:7px 9px;border-bottom:.5px solid rgba(255,255,255,.04);font-size:11px;color:var(--gray)}.exp-table td:first-child{color:var(--white);font-weight:500}.exp-table tr:last-child td{border-bottom:none}
+
+/* CALENDAR */
+.cal{border:.5px solid var(--bdr);border-radius:10px;overflow:hidden;margin-top:12px}
+.cal-hr{display:grid;grid-template-columns:72px repeat(4,1fr);background:var(--surf2)}
+.cal-hc{padding:8px 10px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gl);border-right:.5px solid var(--bdr)}.cal-hc:last-child{border-right:none}
+.cal-row{display:grid;grid-template-columns:72px repeat(4,1fr);border-top:.5px solid var(--bdr)}
+.cal-lbl{padding:9px;background:rgba(255,255,255,.02);border-right:.5px solid var(--bdr);display:flex;align-items:center}
+.cal-lbl span{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);display:flex;align-items:center;gap:4px}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}.dt{background:var(--cyan)}.dm{background:var(--green)}.db{background:var(--amber)}.ds{background:var(--gray)}
+.cal-cell{padding:8px 10px;border-right:.5px solid var(--bdr);background:var(--surf)}.cal-cell:last-child{border-right:none}
+.cal-cell b{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--white);display:block;margin-bottom:2px}.cal-cell p{font-size:10px;color:var(--gray);line-height:1.35}
+
+/* KPI */
+.ck-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.ck-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:16px;position:relative;overflow:hidden}
+.ck-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.ck-card .cn{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px}
+.ck-card h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:8px}
+.kpi-row{display:flex;align-items:baseline;gap:6px;padding:9px 0;border-top:.5px solid var(--bdr);border-bottom:.5px solid var(--bdr);margin-bottom:8px}
+.kpi-amt{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--cyan);line-height:1}
+.kpi-per{font-size:11px;color:var(--gray)}.kpi-metric{margin-left:auto;text-align:right;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray)}
+.ck-card .note{font-size:12px;color:var(--gray);line-height:1.6}.ck-card .note b{color:var(--white)}
+
+/* REFERENCE */
+.ref-sect{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin:20px 0 10px;display:flex;align-items:center;gap:9px}.ref-sect::after{content:"";flex:1;height:.5px;background:var(--bdr)}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ig-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}.ig-card:hover{transform:translateY(-3px);border-color:rgba(9,153,205,.25)}
+.ig-top{padding:12px 14px;border-bottom:.5px solid var(--bdr);display:flex;align-items:center;gap:9px}
+.ig-av{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:var(--navy)}
+.ig-handle{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--white)}.ig-country{font-size:10px;color:var(--gray)}
+.ig-stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:.5px solid var(--bdr)}
+.ig-stat{padding:8px 10px;text-align:center;border-right:.5px solid var(--bdr)}.ig-stat:last-child{border-right:none}
+.ig-stat .sv{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--white);display:block;line-height:1.1}.ig-stat .sl{font-size:9px;color:var(--gray);text-transform:uppercase;margin-top:2px}
+.ig-er{padding:9px 12px;border-bottom:.5px solid var(--bdr)}
+.er-lr{display:flex;justify-content:space-between;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--gray);margin-bottom:5px}
+.er-track{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}.er-fill{height:100%;border-radius:3px}
+.ig-formula{padding:11px 12px;flex:1}.fl{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+.frow{display:flex;gap:6px;margin-bottom:4px}.fk{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--cyan);flex-shrink:0;width:38px;text-transform:uppercase}.fv{font-size:11px;color:var(--gl);line-height:1.35}
+.ig-link{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-top:.5px solid var(--bdr);text-decoration:none;color:var(--gray);font-size:10px;transition:.15s}.ig-link:hover{color:var(--cyan)}
+.ig-link svg{width:11px;height:11px;opacity:.5}
+.yt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.yt-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:.2s}.yt-card:hover{transform:translateY(-3px);border-color:rgba(207,122,78,.3)}
+.yt-thumb{height:110px;background:linear-gradient(135deg,#1a0808,#2d1212);display:flex;align-items:center;justify-content:center;position:relative}.yt-thumb::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.55))}
+.yt-play{width:40px;height:40px;background:rgba(207,122,78,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}.yt-play svg{width:14px;height:14px;fill:var(--white);margin-left:3px}
+.yt-body{padding:11px 13px;flex:1;display:flex;flex-direction:column;gap:5px}
+.yt-badge{background:var(--rust);color:var(--white);font-family:'Syne',sans-serif;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;display:inline-block}
+.yt-body .ytitle{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white)}.yt-body .ysub{font-size:11px;color:var(--gray);line-height:1.4}.yt-body .yurl{font-size:10px;color:rgba(9,153,205,.6);margin-top:auto}
+.ads-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.ad-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:11px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:.2s}.ad-card:hover{transform:translateY(-3px);border-color:rgba(9,153,205,.25)}
+.ad-prev{height:80px;display:flex;align-items:center;justify-content:center;background:var(--surf2);position:relative}
+.ad-prev .ap-ico{width:32px;height:32px;border-radius:8px;background:rgba(9,153,205,.12);display:flex;align-items:center;justify-content:center}.ad-prev .ap-ico svg{width:16px;height:16px;fill:var(--cyan)}
+.ad-num{position:absolute;top:7px;right:7px;background:rgba(9,153,205,.18);color:var(--cyan);font-family:'Syne',sans-serif;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px}
+.ad-body{padding:9px 10px}.ad-body .al{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--cyan);margin-bottom:2px}.ad-body .at{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--white)}.ad-body .as{font-size:10px;color:var(--gray)}
+.ad-foot{padding:7px 10px;border-top:.5px solid var(--bdr);font-size:10px;color:rgba(9,153,205,.6);display:flex;align-items:center;gap:4px}.ad-foot svg{width:10px;height:10px;fill:currentColor;opacity:.6}
+.kbd-hint{position:fixed;bottom:14px;right:14px;display:flex;gap:5px;opacity:.35;z-index:20;pointer-events:none}
+.kbd{background:var(--surf2);border:.5px solid var(--bdr);border-radius:4px;padding:3px 7px;font-family:'Syne',sans-serif;font-size:10px;color:var(--gray)}
+.ig-svg{width:12px;height:12px;fill:white}
+.ig-plat{width:24px;height:24px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.fb-svg{width:16px;height:16px;fill:var(--cyan)}
+</style>
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="sb-logo">
+    <svg viewBox="260 260 490 420" xmlns="http://www.w3.org/2000/svg"><path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/><path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/><path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/></svg>
+    <span class="sb-wm">CUSTOMPEDIA</span>
+  </div>
+  <div class="sb-doc"><div class="sb-dl">Content Guide</div><div class="sb-dt">Kunkun Visual &middot; Mei 2026</div></div>
+  <nav class="sb-nav" id="sbnav">
+    <div class="ni active" data-p="p0"><span class="nin">01</span><div><span class="nil">Siapa Target &amp; Alur Video<span class="nis">3 segmen &middot; 3 tahap video</span></span></div></div>
+    <div class="ni" data-p="p1"><span class="nin">02</span><div><span class="nil">Aturan Dasar<span class="nis">6 prinsip wajib</span></span></div></div>
+    <div class="ni" data-p="p2"><span class="nin">03</span><div><span class="nil">Tahap 1: Bikin Kenal<span class="nis">3 video &middot; orang baru</span></span></div></div>
+    <div class="ni" data-p="p3"><span class="nin">04</span><div><span class="nil">Tahap 2: Bikin Percaya<span class="nis">3 video &middot; sudah pernah lihat</span></span></div></div>
+    <div class="ni" data-p="p4"><span class="nin">05</span><div><span class="nil">Tahap 3: Bikin Hubungi<span class="nis">3 video &middot; tinggal dorong</span></span></div></div>
+    <div class="ni" data-p="p5"><span class="nin">06</span><div><span class="nil">Standar Produksi<span class="nis">Kamera &middot; warna &middot; audio &middot; export</span></span></div></div>
+    <div class="ni" data-p="p6"><span class="nin">07</span><div><span class="nil">Jadwal &amp; Testing<span class="nis">8 minggu &middot; apa dites duluan</span></span></div></div>
+    <div class="ni" data-p="p7"><span class="nin">08</span><div><span class="nil">Target Hasil<span class="nis">Biaya per klik &amp; per chat</span></span></div></div>
+    <div class="ni" data-p="p8"><span class="nin">09</span><div><span class="nil">Referensi Konten<span class="nis">IG &middot; YouTube &middot; iklan acuan</span></span></div></div>
+  </nav>
+  <div class="sb-foot"><div class="sb-counter" id="ctr">1 / 9</div><div class="sb-conf">Confidential &copy; Custompedia 2026</div></div>
+</aside>
+
+<main class="content">
+
+<!-- P0: SIAPA TARGET & ALUR VIDEO -->
+<div class="panel active" id="p0"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Target &amp; Alur Video</span></div>
+  <h2 class="ptitle">Siapa yang Kita Kejar &amp; <em>Alur 9 Video</em></h2>
+  <p class="psub">Kita punya <b>3 tipe orang</b> yang mau dijangkau, dan <b>3 tahap video</b> untuk menggerakkan mereka dari "belum kenal" sampai "hubungi Kunkun". Ini peta besarnya.</p>
+
+  <div class="g3">
+    <div class="seg"><div class="st" style="color:var(--cyan)">Target Utama</div><h4>Developer Properti</h4><p>Pemilik, direktur, atau tim marketing perusahaan properti yang punya proyek <b>di atas Rp1 Miliar</b>. Ini orang yang kita ingin langsung hubungi Kunkun. Semua video Tahap 3 dibuat untuk mereka.</p></div>
+    <div class="seg" style="border-left-color:var(--green)"><div class="st" style="color:var(--green)">Target Kedua</div><h4>Arsitek &amp; Desainer Interior</h4><p>Lebih gampang dijangkau, tapi budgetnya biasanya lebih kecil. Kita pakai mereka untuk <b>membangun awareness dan referral</b> &mdash; biar mereka rekomendasiin Kunkun ke klien mereka.</p></div>
+    <div class="seg" style="border-left-color:var(--amber)"><div class="st" style="color:var(--amber)">Target Korporat</div><h4>Perusahaan Besar &amp; BUMN</h4><p>Perusahaan konstruksi besar, BUMN, C-level. Kita jual layanan <b>AI Promotional Video</b> yang belum banyak studio lain punya. Video TOFU-03 khusus untuk segmen ini.</p></div>
+  </div>
+
+  <div class="fmap">
+    <div class="fmap-card f1">
+      <div class="fn">Tahap 1 &mdash; Bikin Orang Kenal</div>
+      <h4>Video untuk orang yang belum pernah dengar Kunkun</h4>
+      <p>Tujuan: <b>bikin mereka berhenti scroll dan ingat nama kita</b>. Belum jualan &mdash; cukup bikin kagum dulu.</p>
+      <ul class="vid-list">
+        <li><span>TOFU-01</span> Reel sinematik &mdash; "Ini bukan foto"</li>
+        <li><span>TOFU-02</span> Perbandingan gambar 2D vs render 3D</li>
+        <li><span>TOFU-03</span> AI Promotional Video (untuk korporat)</li>
+      </ul>
+    </div>
+    <div class="fmap-card f2">
+      <div class="fn">Tahap 2 &mdash; Bikin Orang Percaya</div>
+      <h4>Video untuk orang yang sudah pernah lihat Tahap 1</h4>
+      <p>Tujuan: <b>bangun kepercayaan lewat bukti nyata</b> &mdash; cerita pendiri, penghargaan internasional, dan testimoni klien.</p>
+      <ul class="vid-list">
+        <li><span>MOFU-01</span> Cerita pendiri &mdash; dari gang kecil ke Istana Negara</li>
+        <li><span>MOFU-02</span> 3 penghargaan internasional dalam 1 tahun</li>
+        <li><span>MOFU-03</span> Testimoni klien (prioritas produksi #1)</li>
+      </ul>
+    </div>
+    <div class="fmap-card f3">
+      <div class="fn">Tahap 3 &mdash; Bikin Orang Hubungi</div>
+      <h4>Video untuk orang yang sudah kenal dan percaya</h4>
+      <p>Tujuan: <b>dorong mereka untuk chat WhatsApp atau kunjungi website</b>. Video sangat pendek, langsung ke inti.</p>
+      <ul class="vid-list">
+        <li><span>BOFU-01</span> Ajakan langsung + bukti singkat</li>
+        <li><span>BOFU-02</span> Slot proyek terbatas (dorongan waktu)</li>
+        <li><span>BOFU-03</span> Jawab 2 pertanyaan: harga &amp; waktu</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ib-b">Catatan: istilah <b>TOFU / MOFU / BOFU</b> yang muncul di kode video adalah singkatan standar di dunia iklan. TOFU = Tahap 1 (Kenal). MOFU = Tahap 2 (Percaya). BOFU = Tahap 3 (Hubungi). Fungsinya sama, cuma singkatan teknis.</div>
+</div></div>
+
+<!-- P1: ATURAN DASAR -->
+<div class="panel" id="p1"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Aturan Dasar</span></div>
+  <h2 class="ptitle">6 Aturan Wajib <em>untuk Semua Video</em></h2>
+  <p class="psub">Ini aturan yang harus dipegang seluruh tim. Kalau ragu, balik ke 6 poin ini.</p>
+  <div class="rules">
+    <div class="rule"><span class="rn">1</span><div><h5>Video harus bisa dimengerti tanpa suara</h5><p>Kebanyakan orang nonton video sambil mute. Jadi <b>semua pesan penting harus muncul sebagai teks di layar</b>. Kalau videonya masih bisa dipahami tanpa nyalain suara, berarti sudah benar.</p></div></div>
+    <div class="rule"><span class="rn">2</span><div><h5>Video = bahan iklan, bukan iklan terpisah</h5><p>Video ini dipasang sebagai materi di 2 iklan kita (Iklan Website &amp; Iklan Chat WhatsApp) sejak Minggu 1. <b>Kita tidak menjalankan iklan khusus untuk ngejar views.</b> Tujuan akhirnya: orang buka website atau chat WhatsApp.</p></div></div>
+    <div class="rule"><span class="rn">3</span><div><h5>Jual hasilnya, bukan jasa renderingnya</h5><p>Jangan bilang "kami bikin render yang bagus." Bilang <b>"visual yang bikin investor langsung bilang iya."</b> Orang beli hasil bisnis, bukan proses teknis. Hindari kata-kata seperti "stunning" atau "breathtaking" &mdash; terlalu umum.</p></div></div>
+    <div class="rule"><span class="rn">4</span><div><h5>Warna video: hangat dan sinematik</h5><p>Semua video harus punya warna yang konsisten: <b>hangat, keemasan, kontras sedang-tinggi</b>. Referensi: iklan properti mewah Singapura atau film "The Grand Budapest Hotel". Bukan tone "natural" yang flat.</p></div></div>
+    <div class="rule"><span class="rn">5</span><div><h5>3 detik pertama menentukan segalanya</h5><p>Kalau orang tidak berhenti scroll dalam 3 detik, mereka tidak akan lihat sisanya. <b>Buka dengan visual terbaik atau kalimat paling kuat</b> &mdash; jangan buka dengan logo atau intro panjang.</p></div></div>
+    <div class="rule"><span class="rn">6</span><div><h5>Satu ajakan per video</h5><p>Jangan kasih banyak pilihan. Pilih satu: DM, website, atau WhatsApp. <b>Satu video, satu ajakan yang jelas.</b> Terutama untuk video Tahap 3.</p></div></div>
+  </div>
+  <div class="alert">Kalau budget cuma cukup untuk <b>1 kali syuting baru</b>, prioritaskan <b>MOFU-03 (Testimoni Klien)</b>. Bukti dari mulut klien itu jauh lebih kuat dari klaim kita sendiri. Video Tahap 1 dan MOFU-01 bisa dibuat dari footage yang sudah ada tanpa syuting baru.</div>
+</div></div>
+
+<!-- P2: TAHAP 1 -->
+<div class="panel" id="p2"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Tahap 1 &middot; Bikin Orang Kenal</span></div>
+  <h2 class="ptitle">3 Video untuk <em>Orang yang Belum Kenal Kunkun</em></h2>
+  <p class="psub">Tujuannya sederhana: <b>bikin orang berhenti scroll, lihat karya Kunkun, dan ingat nama kita</b>. Belum perlu jualan &mdash; cukup bikin kagum dulu.</p>
+
+  <div class="brief t">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">TOFU-01</span><span class="brief-type">Reel Sinematik</span></div>
+      <div class="brief-tc"><h3>"This Isn't a Photo. This Is Your Project's Future."</h3><div class="tags"><span class="tag t">Tahap 1</span><span class="tag i">30 detik</span><span class="tag i">9:16 + 4:5</span><span class="tag" style="background:rgba(6,214,160,.08);color:var(--green);border-color:rgba(6,214,160,.2)">Pakai footage lama</span></div></div></div>
+    <div class="bsec"><div class="blab">Apa yang mau dicapai</div>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65;margin-bottom:8px">Bikin orang yang belum pernah dengar Kunkun berhenti scroll dan ingat kita sebagai <b>"studio rendering kelas dunia dari Indonesia."</b> Buka dengan render paling indah, baru reveal: "ini bukan foto."</p>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65"><b>Audio:</b> Musik orkestra pelan &mdash; bukan voiceover, bukan EDM. Biarkan visualnya yang bicara.</p>
+    </div>
+    <div class="bsec"><div class="blab">Urutan visual (Shot List)</div>
+      <div class="shots">
+        <div class="shot"><div class="shot-t"><span class="shot-tc">00:00-00:03</span><span class="shot-d">3 dtk</span></div><div class="shot-b"><h5>Pembuka &mdash; Render Terbaik</h5><p>Buka dengan aerial shot render paling indah. <b>Jangan tampilkan logo atau teks selama 1,5 detik pertama</b> &mdash; biarkan gambarnya yang bikin orang berhenti scroll. Di detik 1,5: teks muncul.</p></div></div>
+        <div class="shot"><div class="shot-t"><span class="shot-tc">00:03-00:10</span><span class="shot-d">7 dtk</span></div><div class="shot-b"><h5>Showcase &mdash; 3 Proyek Terbaik</h5><p>Montase cepat 3 proyek: villa &rarr; interior mewah &rarr; kawasan komersial. 2 detik per gambar. Label kecil di pojok: "Villa Resort, Bali" dll.</p></div></div>
+        <div class="shot"><div class="shot-t"><span class="shot-tc">00:10-00:18</span><span class="shot-d">8 dtk</span></div><div class="shot-b"><h5>Pernyataan Kredibilitas</h5><p>B-roll tim kerja di depan layar software 3D. Teks overlay: <b>"Award-Winning Studio. Indonesia to the World."</b> Subteks: "Dipercaya untuk Istana Negara sampai resort internasional."</p></div></div>
+        <div class="shot"><div class="shot-t"><span class="shot-tc">00:18-00:24</span><span class="shot-d">6 dtk</span></div><div class="shot-b"><h5>Fakta Cepat</h5><p>3 klaim cepat bergantian: <b>"50+ Projects"</b> / "3 International Awards" / "Since 2016." Tampilkan di atas footage render, bukan background polos.</p></div></div>
+        <div class="shot"><div class="shot-t"><span class="shot-tc">00:24-00:30</span><span class="shot-d">6 dtk</span></div><div class="shot-b"><h5>Logo + Ajakan</h5><p>Logo Kunkun Visual di tengah. <b>"Free consultation. kunkunvisual.com"</b> Background: render terbaik + overlay gelap.</p></div></div>
+      </div>
+    </div>
+    <div class="bsec"><div class="blab">Teks iklan (Ad Copy) &mdash; English</div>
+      <div class="copy-block"><div class="copy-lbl">Headline</div><div class="copy-hl">This Isn't a Photo. This Is What Your Project Could Look Like.</div>
+      <div class="copy-lbl">Primary Text</div>
+      <div class="copy-txt">This isn't a photograph.
+
+It's a 3D visualization — created by Kunkun Visual, Indonesia's award-winning architectural visualization studio.
+
+We don't just render buildings.
+We render conviction. The kind that makes investors say yes before the ground is broken.
+
+&bull; 50+ completed projects across Southeast Asia
+&bull; 3 international awards — CGarchitect, CAD'oro, Muse Creative Platinum
+&bull; Still images &middot; 3D Film &middot; VR/AR &middot; AI Video
+
+Free consultation. kunkunvisual.com</div></div>
+    </div>
+  </div>
+
+  <div class="brief t">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">TOFU-02</span><span class="brief-type">Perbandingan</span></div>
+      <div class="brief-tc"><h3>"2D Plan vs. 3D Render — This Is What Your Investor Actually Sees"</h3><div class="tags"><span class="tag t">Tahap 1</span><span class="tag i">15-20 detik</span><span class="tag i">9:16</span></div></div></div>
+    <div class="bsec"><div class="blab">Konsep</div>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65;margin-bottom:8px">Video ini membandingkan <b>gambar denah biasa vs render 3D dari proyek yang sama</b>. Kontras visualnya kuat &mdash; tidak perlu banyak kata. Target: developer yang masih pakai presentasi konvensional.</p>
+    </div>
+    <div class="bsec"><div class="blab">Urutan visual</div>
+      <div class="shots">
+        <div class="shot"><div class="shot-t"><span class="shot-tc">00:00-00:04</span><span class="shot-d">4 dtk</span></div><div class="shot-b"><h5>Sisi kiri &mdash; Gambar biasa</h5><p>Denah 2D atau foto maket. Teks: "What most developers present." <b>Warna sengaja dibuat pudar dan membosankan.</b></p></div></div>
+        <div class="shot"><div class="shot-t"><span class="shot-tc">00:04-00:12</span><span class="shot-d">8 dtk</span></div><div class="shot-b"><h5>Transisi &mdash; Render 3D muncul</h5><p>Efek wipe dramatis dari kiri ke kanan. Slow motion. Warna penuh, pencahayaan sinematik. <b>Musik naik di momen ini.</b> Teks: "What moves investors."</p></div></div>
+        <div class="shot"><div class="shot-t"><span class="shot-tc">00:12-00:18</span><span class="shot-d">6 dtk</span></div><div class="shot-b"><h5>Logo + Ajakan</h5><p><b>"Upgrade your project presentation. Free consultation."</b> kunkunvisual.com</p></div></div>
+      </div>
+    </div>
+    <div class="bsec"><div class="blab">Teks iklan &mdash; English</div>
+      <div class="copy-block"><div class="copy-lbl">Primary Text</div>
+      <div class="copy-txt">Same project. Two completely different reactions.
+
+One shows a building.
+The other makes people feel what it's like to live, invest, and believe in it.
+
+Kunkun Visual transforms your blueprints into cinematic 3D visuals that close the gap between your vision and your investor's imagination.
+
+Free consultation. kunkunvisual.com</div></div>
+    </div>
+  </div>
+
+  <div class="brief t">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">TOFU-03</span><span class="brief-type">AI Video</span></div>
+      <div class="brief-tc"><h3>"Beyond Rendering — This Is the Era of AI Promotional Video"</h3><div class="tags"><span class="tag t">Tahap 1</span><span class="tag i">20-25 detik</span><span class="tag" style="background:rgba(245,158,11,.08);color:var(--amber);border-color:rgba(245,158,11,.2)">Khusus korporat</span></div></div></div>
+    <div class="bsec"><div class="blab">Konsep</div>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65;margin-bottom:8px">Video ini <b>khusus untuk perusahaan besar dan BUMN</b> &mdash; bukan developer properti. Jual layanan AI Promotional Video yang belum banyak studio lain punya. Visual: futuristik, bersih, canggih.</p>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65"><b>Pembuka:</b> "This isn't science fiction. This is how your next corporate presentation looks."</p>
+    </div>
+    <div class="bsec"><div class="blab">Teks iklan &mdash; English</div>
+      <div class="copy-block"><div class="copy-lbl">Primary Text</div>
+      <div class="copy-txt">Your competitors are still using slides.
+
+Kunkun Visual creates AI Promotional Videos — cinematic, data-driven, and built to make your brand unforgettable.
+
+We've done it for national institutions. Now we're bringing it to companies that want to lead, not follow.
+
+Let's talk. kunkunvisual.com</div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- P3: TAHAP 2 -->
+<div class="panel" id="p3"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Tahap 2 &middot; Bikin Orang Percaya</span></div>
+  <h2 class="ptitle">3 Video untuk <em>Orang yang Sudah Pernah Lihat Kunkun</em></h2>
+  <p class="psub">Orang-orang ini sudah pernah nonton video Tahap 1 atau kunjungi website. Sekarang tugas kita: <b>bikin mereka percaya lewat bukti nyata, bukan klaim.</b></p>
+
+  <div class="brief m">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">MOFU-01</span><span class="brief-type">Cerita Pendiri</span></div>
+      <div class="brief-tc"><h3>"From a Narrow Alley in Bandung to the Presidential Palace of Indonesia"</h3><div class="tags"><span class="tag m">Tahap 2</span><span class="tag i">60-90 detik</span><span class="tag" style="background:rgba(6,214,160,.08);color:var(--green);border-color:rgba(6,214,160,.2)">Pakai footage lama</span></div></div></div>
+    <div class="bsec"><div class="blab">Arahan editing</div>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65;margin-bottom:8px">Ini video recut dari <b>footage Rheza Kun yang sudah ada</b> &mdash; tidak perlu syuting baru. Kuncinya: pindahkan momen paling kuat ke depan, sisipkan banyak visual proyek, dan pangkas durasinya sekitar 60%.</p>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65"><b>Aturan subtitle:</b> kata-kata penting (Istana Negara, 15 orang, penghargaan internasional) di-highlight warna emas <span class="mono">#C8922A</span>.</p>
+    </div>
+    <div class="bsec"><div class="blab">Script &mdash; English</div>
+      <div class="script"><div class="sc-lbl">Arahan Script untuk Editing</div>
+        <div class="sc-line"><span class="sc-tc">00:00-00:05</span><span class="sc-txt"><b>"Yesterday, we wrapped a project for the Presidential Palace of Indonesia."</b></span></div>
+        <div class="sc-line"><span class="sc-tc">00:05-00:08</span><span class="sc-txt">Layar hitam 0,5 detik. Muncul teks: <em>"It didn't start there."</em> Fade ke Rheza.</span></div>
+        <div class="sc-line"><span class="sc-tc">00:08-00:25</span><span class="sc-txt">"It started in a narrow alley in Bandung. Two people. One laptop. One obsession with making things look real." [visual kantor awal yang sederhana]</span></div>
+        <div class="sc-line"><span class="sc-tc">00:25-00:50</span><span class="sc-txt">"Now, 15 people. Projects across Southeast Asia. A short film that just won three international awards." [sisipkan visual render villa, cuplikan film, visual award]</span></div>
+        <div class="sc-line"><span class="sc-tc">00:50-01:15</span><span class="sc-txt">"We didn't build this studio to make images. We built it to make your project feel inevitable." &rarr; <b>"If your project deserves this level of craft — let's build something together."</b> Logo + kunkunvisual.com</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brief m">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">MOFU-02</span><span class="brief-type">Cerita Award</span></div>
+      <div class="brief-tc"><h3>"Three International Awards. One Year. One Studio From Indonesia."</h3><div class="tags"><span class="tag m">Tahap 2</span><span class="tag i">45-60 detik</span><span class="tag p">Award Focus</span><span class="tag n">Perlu Syuting Baru</span></div></div></div>
+    <div class="bsec"><div class="blab">Kenapa video ini penting</div>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65;margin-bottom:8px">Penghargaan dari lembaga internasional itu <b>bukti dari pihak ketiga</b> yang tidak bisa digantikan oleh promosi sendiri. Video ini sangat efektif untuk orang yang sudah kenal Kunkun tapi belum yakin untuk hubungi.</p>
+      <div class="award-row">
+        <div class="award-item"><div class="award-ico">&#127942;</div><div class="award-info"><div class="at">CGarchitect 3D Awards 2025</div><div class="ay">Pemenang &mdash; Kategori Non-Commissioned Film</div><div class="ac">Diumumkan di Warsaw, Polandia</div></div></div>
+        <div class="award-item"><div class="award-ico">&#127942;</div><div class="award-info"><div class="at">CAD'oro Architectural Animation Film Festival 2025</div><div class="ay">Nominasi Internasional</div><div class="ac">Festival film arsitektur internasional</div></div></div>
+        <div class="award-item"><div class="award-ico">&#127942;</div><div class="award-info"><div class="at">Muse Creative Awards 2026</div><div class="ay">Platinum Award &mdash; Kategori Short Film</div><div class="ac">Penghargaan platinum tertinggi</div></div></div>
+      </div>
+    </div>
+    <div class="bsec"><div class="blab">Script &mdash; English</div>
+      <div class="script"><div class="sc-lbl">Arahan Script</div>
+        <div class="sc-line"><span class="sc-tc">00:00-00:06</span><span class="sc-txt"><b>"Most studios dream of winning one international award. This year, we won three."</b> [teks di atas visual award]</span></div>
+        <div class="sc-line"><span class="sc-tc">00:06-00:22</span><span class="sc-txt">Tampilkan tiap award: sertifikat/trofi + nama event. <em>[CGarchitect Warsaw &rarr; CAD'oro &rarr; Muse Creative Platinum]</em> Musik naik perlahan. Teks: "Silent Recall — a film about space, memory, and light."</span></div>
+        <div class="sc-line"><span class="sc-tc">00:22-00:38</span><span class="sc-txt">"Silent Recall competed against studios from Europe, the US, and Japan. It won because the story was real — and the craft was honest." [sisipkan cuplikan film]</span></div>
+        <div class="sc-line"><span class="sc-tc">00:38-00:52</span><span class="sc-txt">"We've also been invited to speak on the international stage — representing Indonesian creative talent to a global audience." <em>[perbarui dengan detail event kalau sudah ada]</em></span></div>
+        <div class="sc-line"><span class="sc-tc">00:52-01:00</span><span class="sc-txt"><b>"When your project deserves this level of craft — let's talk."</b> Logo Kunkun. kunkunvisual.com</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brief m">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">MOFU-03</span><span class="brief-type">Testimoni Klien</span></div>
+      <div class="brief-tc"><h3>"Don't Take Our Word For It. Take Theirs."</h3><div class="tags"><span class="tag m">Tahap 2</span><span class="tag i">30-45 detik</span><span class="tag p">&#11088; Prioritas Syuting #1</span></div></div></div>
+    <div class="bsec"><div class="blab">Arahan syuting</div>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65;margin-bottom:8px">Satu klien bicara langsung ke kamera selama 20-30 detik, diselingi visual proyek mereka. <b>Yang penting autentik, bukan sempurna.</b> Rekam pakai smartphone pun boleh kalau isinya kuat.</p>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65"><b>Klien ideal:</b> developer atau arsitek yang proyeknya sudah ada hasilnya (unit terjual, investor deal, menang tender). Ada angka yang bisa disebutkan.</p>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65"><b>Wajib tampilkan nama lengkap, jabatan, dan nama perusahaan/proyek</b> &mdash; ini yang bikin testimoni dipercaya.</p>
+      <div class="ib-b"><b>3 pertanyaan untuk ditanyakan saat syuting:</b><br>(1) Apa tantangan terbesar soal visualisasi sebelum kerja sama dengan Kunkun?<br>(2) Apa yang paling berkesan dari hasilnya?<br>(3) Apa dampaknya ke proyek atau bisnis Anda?</div>
+    </div>
+    <div class="bsec"><div class="blab">Contoh alur jawaban ideal &mdash; English</div>
+      <div class="script"><div class="sc-lbl">Arahan (bukan script kaku &mdash; biarkan natural)</div>
+        <div class="sc-line"><span class="sc-tc">Pembuka</span><span class="sc-txt">"Before Kunkun, our investor presentations never quite landed the way I wanted them to..."</span></div>
+        <div class="sc-line"><span class="sc-tc">Visual</span><span class="sc-txt"><em>[Render proyek mereka muncul di layar]</em></span></div>
+        <div class="sc-line"><span class="sc-tc">Solusi</span><span class="sc-txt">"The moment we showed the 3D visuals, investors could actually picture themselves there. That changed the conversation completely."</span></div>
+        <div class="sc-line"><span class="sc-tc">Ajakan</span><span class="sc-txt"><b>"If you have a project that deserves to be seen this way — Kunkun is who I'd call."</b></span></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- P4: TAHAP 3 -->
+<div class="panel" id="p4"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Tahap 3 &middot; Bikin Orang Hubungi</span></div>
+  <h2 class="ptitle">3 Video untuk <em>Orang yang Tinggal Didorong</em></h2>
+  <p class="psub">Orang-orang ini sudah kenal dan percaya Kunkun. Mereka cuma butuh <b>satu dorongan terakhir</b> untuk chat WhatsApp atau buka website. Video harus sangat pendek dan langsung ke inti.</p>
+  <div class="ib-r"><b>Aturan Tahap 3:</b> Durasi 15-30 detik. Pakai bukti nyata (angka, nama klien). <b>Satu ajakan saja per video</b> &mdash; jangan kasih banyak pilihan. Orang ini sudah tahu siapa Kunkun.</div>
+
+  <div class="brief b" style="margin-top:14px">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">BOFU-01</span><span class="brief-type">Ajakan Langsung</span></div>
+      <div class="brief-tc"><h3>"Your Project Is Too Good for an Average Presentation"</h3><div class="tags"><span class="tag b">Tahap 3</span><span class="tag i">15-20 detik</span></div></div></div>
+    <div class="bsec"><div class="blab">Script &mdash; English</div>
+      <div class="script"><div class="sc-lbl">Script BOFU-01</div>
+        <div class="sc-line"><span class="sc-tc">00:00-00:03</span><span class="sc-txt"><b>"You've been looking for a visualization studio that actually matches your standard."</b> [teks di atas render terbaik]</span></div>
+        <div class="sc-line"><span class="sc-tc">00:03-00:12</span><span class="sc-txt">Montase 3 render terbaik (2 detik each). Teks: <b>"50+ Projects &middot; Presidential Palace &middot; 3 International Awards."</b></span></div>
+        <div class="sc-line"><span class="sc-tc">00:12-00:18</span><span class="sc-txt">Layar gelap, bersih. Teks besar: <b>"Free consultation. No pressure."</b> kunkunvisual.com atau nomor WA. Satu ajakan saja.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brief b">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">BOFU-02</span><span class="brief-type">Dorongan Waktu</span></div>
+      <div class="brief-tc"><h3>"We Limit the Projects We Take — Here's Why"</h3><div class="tags"><span class="tag b">Tahap 3</span><span class="tag i">20 detik</span></div></div></div>
+    <div class="bsec"><div class="blab">Arahan</div>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65;margin-bottom:8px"><b>Rheza Kun bicara langsung ke kamera, 20 detik.</b> Tone: percaya diri dari posisi kuat &mdash; bukan memohon. Setting: di depan vertical garden yang sudah familiar buat orang yang sering lihat konten Kunkun. Tidak perlu B-roll baru.</p>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65"><b>Inti pesan (English):</b> "We limit the number of projects we take each month — not because we can't handle more, but because every project we commit to, we commit to fully. If you have something coming up, reach out now. Don't wait until the queue fills."</p>
+    </div>
+    <div class="bsec"><div class="blab">Teks iklan &mdash; English</div>
+      <div class="copy-block"><div class="copy-lbl">Primary Text</div>
+      <div class="copy-txt">We don't take every project that comes in.
+
+Not because we're picky — because every project we take, we own completely. That takes time, attention, and craft.
+
+If you have a property or corporate project in the pipeline, reach out now — before the slot goes to someone else.
+
+Free consultation. No commitment. kunkunvisual.com</div></div>
+    </div>
+  </div>
+
+  <div class="brief b">
+    <div class="brief-hd"><div class="brief-cc"><span class="brief-code">BOFU-03</span><span class="brief-type">Jawab Keraguan</span></div>
+      <div class="brief-tc"><h3>"How Much Does It Cost? And How Long Does It Take? Answered."</h3><div class="tags"><span class="tag b">Tahap 3</span><span class="tag i">30 detik</span></div></div></div>
+    <div class="bsec"><div class="blab">Konsep</div>
+      <p style="font-size:12px;color:var(--gray);line-height:1.65">Orang yang sudah sering lihat konten Kunkun tapi belum hubungi biasanya ragu soal 2 hal: <b>berapa harganya</b> dan <b>berapa lama prosesnya</b>. Video ini jawab keduanya langsung &mdash; tanpa basa-basi.</p>
+    </div>
+    <div class="bsec"><div class="blab">Script &mdash; English</div>
+      <div class="script"><div class="sc-lbl">Script BOFU-03 &middot; Rheza bicara ke kamera</div>
+        <div class="sc-line"><span class="sc-tc">Pembuka</span><span class="sc-txt"><b>"Two questions I get asked the most: How much does it cost? And how long does it take? Let me answer both right now."</b></span></div>
+        <div class="sc-line"><span class="sc-tc">Harga</span><span class="sc-txt">"For a standard exterior render, we start from <em>[masukkan harga aktual]</em>. For commercial projects or full masterplans, we scope it together based on your needs."</span></div>
+        <div class="sc-line"><span class="sc-tc">Waktu</span><span class="sc-txt">"The process: consultation &rarr; brief &rarr; <b>7 to 14 days production</b> &rarr; revision &rarr; delivery. Straightforward. No surprises."</span></div>
+        <div class="sc-line"><span class="sc-tc">Ajakan</span><span class="sc-txt"><b>"First consultation is free. No commitment. Just a conversation."</b> kunkunvisual.com</span></div>
+      </div>
+      <div class="alert"><b>Penting:</b> Ganti [masukkan harga aktual] dengan harga yang benar dari Kunkun. Menyebut range harga secara terbuka itu justru membangun kepercayaan &mdash; jangan disembunyikan.</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- P5: STANDAR PRODUKSI -->
+<div class="panel" id="p5"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Standar Produksi</span></div>
+  <h2 class="ptitle">Aturan Teknis <em>untuk Semua 9 Video</em></h2>
+  <p class="psub">Panduan ini memastikan <b>semua video terlihat dan terdengar konsisten</b> &mdash; seperti satu brand yang sama.</p>
+  <div class="g2">
+    <div class="spec"><h4>Kamera &amp; Peralatan</h4><ul><li>Kamera: Sony A7 series / Canon R series atau setara</li><li>Lensa 24-70mm untuk scene bicara ke kamera</li><li>Lensa 85mm untuk close-up tangan dan layar</li><li>Gimbal untuk footage bergerak</li><li>Ring light / softbox untuk scene bicara</li></ul></div>
+    <div class="spec"><h4>Warna Video</h4><p>Semua footage harus punya warna yang sama: <b>hangat, keemasan, kontras sedang-tinggi</b>. Jangan ada highlight yang terlalu terang/putih pucat.</p><p style="margin-top:7px;font-style:italic;color:rgba(138,155,192,.4)">Referensi: iklan properti mewah Singapura atau film "The Grand Budapest Hotel".</p></div>
+    <div class="spec"><h4>Audio</h4><ul><li>Pakai mic lavalier atau shotgun untuk scene bicara</li><li>Tidak boleh ada suara background (AC, motor, dll.)</li><li>Musik latar: <span class="mono">-15 dB</span> di bawah suara orang bicara</li><li>Normalize output ke <span class="mono">-14 LUFS</span> (standar Meta)</li></ul></div>
+    <div class="spec"><h4>Teks di Layar (Subtitle)</h4><ul><li>Font: Montserrat Bold atau Plus Jakarta Sans</li><li>Ukuran: <span class="mono">32-36px</span> di layar HP</li><li>Kata-kata kunci warna emas: <span class="mono">#C8922A</span></li><li>Posisi: <span class="mono">20%</span> dari bawah layar</li><li>Background: kotak semi-transparan hitam</li></ul></div>
+  </div>
+  <div class="spec mt"><h4>Kecepatan Pergantian Gambar (sesuai tipe video)</h4>
+    <div class="pace-grid">
+      <div class="pace-item"><span class="pt">Tahap 1 &mdash; Reel sinematik</span><span class="pv">Maks 1 ganti / 2,5 dtk</span></div>
+      <div class="pace-item"><span class="pt">Tahap 1 &mdash; Perbandingan</span><span class="pv">1 ganti / 1,5 dtk (cepat)</span></div>
+      <div class="pace-item"><span class="pt">Tahap 2 &mdash; Cerita/BTS/Award</span><span class="pv">1 ganti / 3-4 dtk (pelan)</span></div>
+      <div class="pace-item"><span class="pt">Tahap 3 &mdash; Ajakan langsung</span><span class="pv">Maks 2-3 ganti total</span></div>
+    </div>
+  </div>
+  <div class="spec mt"><h4>Spesifikasi Export (ukuran file video)</h4>
+    <table class="exp-table">
+      <thead><tr><th>Format</th><th>Resolusi</th><th>Codec</th><th>Bitrate</th><th>FPS</th><th>Maks</th></tr></thead>
+      <tbody>
+        <tr><td>9:16 (Reels/Story)</td><td class="mono">1080x1920</td><td>H.264 MP4</td><td>8-15 Mbps</td><td>25/30</td><td>1 GB</td></tr>
+        <tr><td>4:5 (Feed tegak)</td><td class="mono">1080x1350</td><td>H.264 MP4</td><td>8-15 Mbps</td><td>25/30</td><td>1 GB</td></tr>
+        <tr><td>1:1 (Feed kotak)</td><td class="mono">1080x1080</td><td>H.264 MP4</td><td>8-15 Mbps</td><td>25/30</td><td>1 GB</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></div>
+
+<!-- P6: JADWAL & TESTING -->
+<div class="panel" id="p6"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Jadwal &amp; Testing</span></div>
+  <h2 class="ptitle">Jadwal 8 Minggu &amp; <em>Apa yang Dites Duluan</em></h2>
+  <p class="psub">Ini rencana kapan tiap video diproduksi, diluncurkan, dan dievaluasi.</p>
+  <div class="cal">
+    <div class="cal-hr"><div class="cal-hc"></div><div class="cal-hc">Minggu 1-2</div><div class="cal-hc">Minggu 3-4</div><div class="cal-hc">Minggu 5-6</div><div class="cal-hc">Minggu 7-8</div></div>
+    <div class="cal-row"><div class="cal-lbl"><span><span class="dot dt"></span>Tahap 1</span></div><div class="cal-cell"><b>Edit &amp; launch TOFU-01</b><p>Recut 30 dtk dari footage lama.</p></div><div class="cal-cell"><b>Syuting &amp; launch TOFU-02</b><p>Video perbandingan.</p></div><div class="cal-cell"><b>Syuting TOFU-03</b><p>AI Video untuk korporat.</p></div><div class="cal-cell"><b>Evaluasi</b><p>Scale yang hasilnya bagus.</p></div></div>
+    <div class="cal-row"><div class="cal-lbl"><span><span class="dot dm"></span>Tahap 2</span></div><div class="cal-cell"><b>Edit MOFU-01</b><p>Recut cerita pendiri.</p></div><div class="cal-cell"><b>Syuting MOFU-02+03</b><p>Award story + testimoni klien.</p></div><div class="cal-cell"><b>Launch MOFU-02+03</b><p>Iklankan ke yang sudah pernah lihat.</p></div><div class="cal-cell"><b>Optimasi</b><p>Mana yang paling efisien.</p></div></div>
+    <div class="cal-row"><div class="cal-lbl"><span><span class="dot db"></span>Tahap 3</span></div><div class="cal-cell"><b>Edit BOFU-01</b><p>Dari footage yang ada.</p></div><div class="cal-cell"><b>Launch BOFU-01</b><p>Pantau kualitas chat masuk.</p></div><div class="cal-cell"><b>BOFU-02+03</b><p>Rekam, edit, launch.</p></div><div class="cal-cell"><b>Review total</b><p>Biaya per lead berkualitas.</p></div></div>
+    <div class="cal-row"><div class="cal-lbl"><span><span class="dot ds"></span>Setup</span></div><div class="cal-cell"><b>Fondasi</b><p>Pasang Pixel, siapkan tracking, upload data klien.</p></div><div class="cal-cell"><b>Test 1-2</b><p>Tes pembuka + durasi.</p></div><div class="cal-cell"><b>Analisis</b><p>Cek biaya per klik &amp; per chat.</p></div><div class="cal-cell"><b>Scale</b><p>Perbesar iklan yang menang.</p></div></div>
+  </div>
+
+  <div class="alert" style="margin-top:16px"><b>Soal Pixel:</b> Saat ini website Kunkun <b>belum punya Pixel</b> (kode pelacak dari Meta). Ini wajib dipasang sebelum iklan jalan &mdash; tanpa Pixel, kita tidak bisa tahu siapa yang kunjungi website, dan iklan Tahap 2 &amp; 3 (yang menarget ulang pengunjung) tidak bisa dibuat.</div>
+</div></div>
+
+<!-- P7: TARGET HASIL -->
+<div class="panel" id="p7"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Target Hasil</span></div>
+  <h2 class="ptitle">Berapa Biaya <em>yang Kita Kejar per Hasil</em></h2>
+  <p class="psub">Kita jalankan <b>2 iklan sekaligus</b>. Ini target biaya yang jadi patokan &mdash; kalau melewati angka ini, kita evaluasi dan perbaiki.</p>
+
+  <div class="ck-grid">
+    <div class="ck-card"><div class="cn">Iklan 1 &middot; Website</div><h4>Setiap orang yang klik dan buka website</h4>
+      <div class="kpi-row"><span class="kpi-amt">Rp1.000</span><span class="kpi-per">per pengunjung website</span><span class="kpi-metric">Biaya per<br>kunjungan</span></div>
+      <p class="note">Kita ukur berapa biaya setiap orang yang <b>benar-benar membuka halaman website</b>, bukan cuma klik iklan. Yang dipantau: apakah mereka betah di website, atau langsung keluar.</p>
+    </div>
+    <div class="ck-card"><div class="cn">Iklan 2 &middot; Chat WhatsApp</div><h4>Setiap orang yang mulai chat WhatsApp</h4>
+      <div class="kpi-row"><span class="kpi-amt">Rp10.000</span><span class="kpi-per">per chat masuk</span><span class="kpi-metric">Biaya per<br>chat</span></div>
+      <p class="note">Kita ukur berapa biaya setiap orang yang <b>benar-benar mulai percakapan WhatsApp</b>. Yang dipantau: apakah orang yang chat itu beneran calon klien, atau cuma tanya-tanya tanpa niat.</p>
+    </div>
+  </div>
+
+  <div class="alert"><b>Catatan penting:</b> Chat yang paling murah belum tentu yang paling bagus. Yang kita kejar bukan sekadar banyak chat murah, tapi <b>chat dari orang yang benar-benar punya proyek dan budget</b>. Kalau biaya per chat Rp10.000 tapi 4 dari 10 orang jadi klien, itu jauh lebih baik dari biaya Rp3.000 tapi cuma 1 dari 50 yang serius.</div>
+
+  <div class="ib-b" style="margin-top:14px"><b>Angka-angka lain</b> (seperti berapa orang yang lihat iklan, berapa yang klik, dll) kita pantau juga untuk cek apakah iklan sehat. Tapi yang menentukan sukses-gagal kampanye ini bukan angka-angka itu &mdash; <b>yang menentukan adalah biaya per pengunjung website dan biaya per chat berkualitas.</b></div>
+</div></div>
+
+<!-- P8: REFERENSI KONTEN -->
+<div class="panel" id="p8"><div class="pi">
+  <div class="pew"><span class="pe-line"></span><span class="pe-txt">Referensi Konten</span></div>
+  <h2 class="ptitle">Contoh Konten yang <em>Bisa Jadi Acuan</em></h2>
+  <p class="psub">Ini kumpulan contoh dari studio lain dan iklan yang sedang jalan. <b>Pelajari 3 hal</b> dari setiap contoh: (1) bagaimana 3 detik pertamanya, (2) kecepatan dan formatnya, (3) cara mereka mengajak orang bertindak.</p>
+
+  <div class="ref-sect" style="margin-top:0">Akun Instagram &middot; Studio Sejenis di Luar Negeri</div>
+  <div class="ig-grid">
+    <div class="ig-card">
+      <div class="ig-top"><div class="ig-av" style="background:linear-gradient(135deg,#c89b50,#e7c887)">WC</div><div class="ig-info"><div class="ig-handle">WHY CGI</div><div class="ig-country">Denmark &middot; Studio CGI</div></div><div class="ig-plat" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)"><svg class="ig-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg></div></div>
+      <div class="ig-stats"><div class="ig-stat"><span class="sv">400K</span><span class="sl">Followers</span></div><div class="ig-stat"><span class="sv">232</span><span class="sl">Interaksi</span></div><div class="ig-stat"><span class="sv">0.06%</span><span class="sl">Interaksi %</span></div></div>
+      <div class="ig-er"><div class="er-lr"><span>Tingkat Interaksi</span><span style="color:var(--gray)">0.06% &mdash; Rendah</span></div><div class="er-track"><div class="er-fill" style="width:2%;background:var(--gray)"></div></div></div>
+      <div class="ig-formula"><div class="fl">Formula Konten &middot; Video 30 detik</div>
+        <div class="frow"><span class="fk">Buka</span><span class="fv">Pertanyaan yang nyentuh masalah audiens</span></div>
+        <div class="frow"><span class="fk">Isi</span><span class="fv">Tunjukkan solusi lewat portofolio</span></div>
+        <div class="frow"><span class="fk">Ajakan</span><span class="fv">Minta audiens komen untuk info lanjut</span></div>
+        <div class="frow"><span class="fk">Visual</span><span class="fv">Portofolio &middot; Proses &middot; Hasil akhir</span></div>
+      </div>
+      <a class="ig-link" href="https://www.instagram.com/whycgi/" target="_blank" rel="noopener">Lihat profil WHY CGI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="ig-card">
+      <div class="ig-top"><div class="ig-av" style="background:linear-gradient(135deg,#0999cd,#06D6A0)">ME</div><div class="ig-info"><div class="ig-handle">Mobile Editing Club</div><div class="ig-country">Swiss &middot; Agency Kreatif</div></div><div class="ig-plat" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)"><svg class="ig-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg></div></div>
+      <div class="ig-stats"><div class="ig-stat"><span class="sv">235K</span><span class="sl">Followers</span></div><div class="ig-stat"><span class="sv">732K</span><span class="sl">Views</span></div><div class="ig-stat"><span class="sv" style="color:var(--green)">17.84%</span><span class="sl">Interaksi % &#11088;</span></div></div>
+      <div class="ig-er"><div class="er-lr"><span>Tingkat Interaksi</span><span style="color:var(--green)">17.84% &mdash; Tertinggi</span></div><div class="er-track"><div class="er-fill" style="width:100%;background:linear-gradient(90deg,var(--green),#4eda87)"></div></div></div>
+      <div class="ig-formula"><div class="fl">Formula Konten &middot; Video 30 detik</div>
+        <div class="frow"><span class="fk">Buka</span><span class="fv">Pertanyaan yang bikin audiens berpikir</span></div>
+        <div class="frow"><span class="fk">Isi</span><span class="fv">Tunjukkan manfaat jasa mereka</span></div>
+        <div class="frow"><span class="fk">Ajakan</span><span class="fv">"Why don't you build... that works for you"</span></div>
+        <div class="frow"><span class="fk">Visual</span><span class="fv">Visual yang cocok sama isi pesannya</span></div>
+      </div>
+      <a class="ig-link" href="https://www.instagram.com/mobileeditingclub/" target="_blank" rel="noopener">Lihat profil Mobile Editing Club <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="ig-card">
+      <div class="ig-top"><div class="ig-av" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">D5</div><div class="ig-info"><div class="ig-handle">Day Five</div><div class="ig-country">Australia &middot; Studio Kreatif</div></div><div class="ig-plat" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)"><svg class="ig-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg></div></div>
+      <div class="ig-stats"><div class="ig-stat"><span class="sv">10.8K</span><span class="sl">Followers</span></div><div class="ig-stat"><span class="sv">3.724</span><span class="sl">Views</span></div><div class="ig-stat"><span class="sv">0.07%</span><span class="sl">Interaksi %</span></div></div>
+      <div class="ig-er"><div class="er-lr"><span>Tingkat Interaksi</span><span style="color:var(--gray)">0.07% &mdash; Rendah</span></div><div class="er-track"><div class="er-fill" style="width:2%;background:var(--gray)"></div></div></div>
+      <div class="ig-formula"><div class="fl">Formula Konten &middot; Video 30 detik</div>
+        <div class="frow"><span class="fk">Buka</span><span class="fv">Langsung bilang siapa mereka</span></div>
+        <div class="frow"><span class="fk">Isi</span><span class="fv">Langsung jualan (hard-sell)</span></div>
+        <div class="frow"><span class="fk">Ajakan</span><span class="fv">Terang-terangan di sepanjang video</span></div>
+        <div class="frow"><span class="fk">Visual</span><span class="fv">Portofolio + pencapaian langsung</span></div>
+      </div>
+      <a class="ig-link" href="https://www.instagram.com/dayfivecreative/" target="_blank" rel="noopener">Lihat profil Day Five <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+
+  <div class="ib-b" style="margin-top:10px"><b>Kenapa Mobile Editing Club jauh lebih tinggi interaksinya?</b> Bukan karena follower lebih banyak, tapi karena pembukaannya bikin orang berpikir dan ajakannya terasa seperti saran personal &mdash; bukan perintah. <b>Untuk Kunkun:</b> pakai gaya Mobile Editing Club di Tahap 2, gaya WHY CGI di Tahap 1 (portofolio), dan gaya Day Five di Tahap 3 (jualan langsung).</div>
+
+  <div class="ref-sect">Video Referensi &middot; YouTube</div>
+  <div class="yt-grid">
+    <a class="yt-card" href="https://youtu.be/fW2m-xBijVQ?si=wWpBYiu2bCOi8jz6" target="_blank" rel="noopener">
+      <div class="yt-thumb"><div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      <div class="yt-body"><span class="yt-badge">YOUTUBE</span><div class="ytitle">Video Referensi 01</div><div class="ysub">Pelajari: 3 detik pertamanya, bagaimana ceritanya dibangun, dan cara menampilkan kemampuan studio tanpa harus bilang langsung.</div><div class="yurl">youtu.be/fW2m-xBijVQ &rarr;</div></div>
+    </a>
+    <a class="yt-card" href="https://youtu.be/r52aiWzF7Eo?si=F4tZqz3yNN8Z-KUj" target="_blank" rel="noopener">
+      <div class="yt-thumb"><div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      <div class="yt-body"><span class="yt-badge">YOUTUBE</span><div class="ytitle">Video Referensi 02</div><div class="ysub">Pelajari: ritme pergantian gambar, cara menulis teks iklan yang kena, dan bagaimana ajakan dibangun pelan-pelan (bukan dilempar di akhir).</div><div class="yurl">youtu.be/r52aiWzF7Eo &rarr;</div></div>
+    </a>
+  </div>
+
+  <div class="ref-sect">Iklan yang Sedang Jalan &middot; Meta Ad Library</div>
+  <p style="font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:10px">Ini 5 iklan dari brand lain yang bisa dipelajari. Klik untuk lihat langsung di browser. Perhatikan: apakah pakai video atau gambar, berapa panjang teks iklannya, dan bagaimana ajakan di akhir.</p>
+  <div class="ads-grid">
+    <a class="ad-card" href="https://www.facebook.com/ads/library/?id=1341152167365478" target="_blank" rel="noopener"><div class="ad-prev"><div class="ap-ico"><svg class="fb-svg" viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.4 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></div><span class="ad-num">#1</span></div><div class="ad-body"><div class="al">Ad Library</div><div class="at">Iklan Acuan #1</div></div><div class="ad-foot"><svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>Lihat iklan</div></a>
+    <a class="ad-card" href="https://www.facebook.com/ads/library/?id=982760094291082" target="_blank" rel="noopener"><div class="ad-prev"><div class="ap-ico"><svg class="fb-svg" viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.4 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></div><span class="ad-num">#2</span></div><div class="ad-body"><div class="al">Ad Library</div><div class="at">Iklan Acuan #2</div></div><div class="ad-foot"><svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>Lihat iklan</div></a>
+    <a class="ad-card" href="https://www.facebook.com/ads/library/?id=1590184242088828" target="_blank" rel="noopener"><div class="ad-prev"><div class="ap-ico"><svg class="fb-svg" viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.4 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></div><span class="ad-num">#3</span></div><div class="ad-body"><div class="al">Ad Library</div><div class="at">Iklan Acuan #3</div></div><div class="ad-foot"><svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>Lihat iklan</div></a>
+    <a class="ad-card" href="https://www.facebook.com/ads/library/?id=977959894828170" target="_blank" rel="noopener"><div class="ad-prev"><div class="ap-ico"><svg class="fb-svg" viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.4 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></div><span class="ad-num">#4</span></div><div class="ad-body"><div class="al">Ad Library</div><div class="at">Iklan Acuan #4</div></div><div class="ad-foot"><svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>Lihat iklan</div></a>
+    <a class="ad-card" href="https://www.facebook.com/ads/library/?id=1531088651996142" target="_blank" rel="noopener"><div class="ad-prev"><div class="ap-ico"><svg class="fb-svg" viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.4 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></div><span class="ad-num">#5</span></div><div class="ad-body"><div class="al">Ad Library</div><div class="at">Iklan Acuan #5</div></div><div class="ad-foot"><svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>Lihat iklan</div></a>
+  </div>
+</div></div>
+
+</main>
+</div>
+
+<div class="kbd-hint"><span class="kbd">&uarr;</span><span class="kbd">&darr;</span></div>
+
+<script>
+const panels=document.querySelectorAll('.panel'),navItems=document.querySelectorAll('.ni'),ctr=document.getElementById('ctr');
+let cur=0;
+function goTo(i){panels[cur].classList.remove('active');navItems[cur].classList.remove('active');cur=i;panels[cur].classList.add('active');navItems[cur].classList.add('active');panels[cur].scrollTop=0;ctr.textContent=(cur+1)+' / '+panels.length;navItems[cur].scrollIntoView({block:'nearest',behavior:'smooth'})}
+navItems.forEach((item,i)=>item.addEventListener('click',()=>goTo(i)));
+window.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();if(cur<panels.length-1)goTo(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();if(cur>0)goTo(cur-1)}});
+</script>
+</body>
+</html>
