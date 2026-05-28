@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batik Semar — Strategic Execution Document</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ol:#6B7A1F;--ol-lt:#8B9B2A;--ol-pale:#F0F2DC;
+  --fo:#2E3A12;--fo-mid:#3D4A1A;--fo-lt:#5C6B20;
+  --cr:#F7F4E8;--cr-dk:#EDE5CC;--cr-line:#D8CCA8;
+  --ink:#1A1A0E;--ink-mid:#3D3520;--ink-lt:#6B5A30;
+  --go:#C8922A;--go-lt:#E2B55A;--go-pale:#F5E9CC;
+  --re:#8B1A1A;--gr:#1E5C30;--bl:#1C2B5E;
+  --wh:#FFFFFF;--nav:60px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cr);color:var(--ink);font-size:14px;line-height:1.75}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:var(--nav);background:var(--fo);display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:2px solid rgba(139,155,42,0.25)}
+.nl{display:flex;align-items:center;gap:8px}
+.nw{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:1.5px;text-transform:uppercase}
+.ns{width:1px;height:18px;background:rgba(139,155,42,0.4);margin:0 10px}
+.nfor{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.nlinks{display:flex;gap:1px;flex-wrap:nowrap}
+.nlinks a{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.38);padding:4px 7px;text-decoration:none;transition:.2s;white-space:nowrap}
+.nlinks a:hover{color:var(--ol-lt);background:rgba(139,155,42,0.1)}
+.nbadge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt);border:1px solid rgba(139,155,42,0.35);padding:4px 10px;white-space:nowrap}
+.cov{min-height:100vh;padding-top:var(--nav);background:var(--cr);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.cov-inner{padding:72px 72px 52px;position:relative;z-index:2}
+.cov-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--ol);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+.cov-tag::before{content:'';width:24px;height:1.5px;background:var(--ol)}
+.cov-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+.chip{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border:1.5px solid var(--ol-lt);color:var(--fo-mid)}
+.chip.dk{background:var(--fo-mid);border-color:var(--fo-mid);color:var(--ol-lt)}
+.cov-meta{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--cr-line);max-width:600px}
+.cm{padding:12px 14px;border-right:1px solid var(--cr-line)}
+.cm:last-child{border-right:none}
+.cm-l{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--ol);margin-bottom:4px}
+.cm-v{font-size:12px;font-weight:700;color:var(--ink);line-height:1.2}
+.cov-bot{background:var(--fo-mid);padding:12px 72px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.cov-bot span{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(240,242,220,.4)}
+.h1{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5.5vw,74px);font-weight:700;line-height:.93;margin-bottom:14px}
+.h1 em{font-style:italic;color:var(--ol)}
+.h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.2vw,44px);font-weight:700;line-height:1.05;margin-bottom:12px}
+.h2 em{font-style:italic;color:var(--ol)}
+.h2.inv{color:#fff}.h2.inv em{color:var(--ol-lt)}
+.h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;line-height:1.1;margin-bottom:8px;color:var(--ink)}
+.h3.inv{color:#fff}
+.rule{width:36px;height:2px;background:var(--ol);margin-bottom:18px}
+.rule.wh{background:var(--ol-lt)}
+.stag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--ol);margin-bottom:7px;display:flex;align-items:center;gap:10px}
+.stag::after{content:'';height:1px;background:rgba(107,122,31,.25);width:40px}
+.stag.inv{color:var(--ol-lt)}.stag.inv::after{background:rgba(139,155,42,.2)}
+.pg{max-width:1060px;margin:0 auto;padding:72px 44px}
+.pg.pt0{padding-top:0}
+.lead{font-size:14.5px;line-height:1.9;color:var(--ink-mid);max-width:680px;margin-bottom:22px}
+.lead.inv{color:rgba(255,255,255,.72)}
+.body{font-size:13px;line-height:1.8;color:var(--ink-mid)}
+.s-cr{background:var(--cr)}.s-wh{background:var(--wh)}.s-fo{background:var(--fo)}.s-fom{background:var(--fo-mid)}.s-gp{background:var(--go-pale)}
+.sep{height:4px;background:linear-gradient(90deg,var(--fo),var(--ol-lt),var(--fo))}
+.band{padding:22px 44px;background:var(--fo);border-top:1px solid rgba(139,155,42,.2);border-bottom:1px solid rgba(139,155,42,.2)}
+.band p{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(240,242,220,.75);max-width:780px}
+.band-lt{padding:18px 44px;background:var(--ol-pale);border-top:1px solid var(--cr-line);border-bottom:1px solid var(--cr-line)}
+.band-lt p{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--fo-mid)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.g21{display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start}
+.card{background:var(--wh);border:1px solid var(--cr-line);padding:18px}
+.ct{border-top:3px solid var(--ol)}.ct-go{border-top:3px solid var(--go)}.ct-re{border-top:3px solid var(--re)}.ct-gr{border-top:3px solid var(--gr)}.ct-bl{border-top:3px solid var(--bl)}
+.cnum{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;line-height:1;margin-bottom:5px;color:var(--ol)}
+.cnum.re{color:var(--re)}.cnum.gr{color:var(--gr)}.cnum.go{color:var(--go)}.cnum.inv{color:var(--ol-lt)}
+.clabel{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);margin-bottom:5px;font-weight:500}
+.cdesc{font-size:12px;color:var(--ink-lt);line-height:1.6}
+.ins{background:var(--fo);border-left:4px solid var(--ol-lt);padding:18px 22px;margin-bottom:14px}
+.ins p{font-size:13px;line-height:1.85;color:rgba(240,242,220,.8)}
+.ins strong{color:var(--ol-lt)}
+.ins-lt{background:var(--ol-pale);border-left:4px solid var(--ol);padding:18px 22px;margin-bottom:14px}
+.ins-lt p{font-size:13px;line-height:1.85;color:var(--ink-mid)}
+.ins-lt strong{color:var(--fo-mid)}
+.ins-go{background:var(--go-pale);border-left:4px solid var(--go);padding:18px 22px;margin-bottom:14px}
+.ins-go p{font-size:13px;line-height:1.85;color:var(--ink-mid)}
+.ins-go strong{color:#7A3B1E}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px}
+.tbl th{background:var(--fo);color:var(--ol-lt);font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;padding:9px 12px;text-align:left}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--cr-line);vertical-align:top}
+.tbl tr:nth-child(even) td{background:rgba(240,242,220,.4)}
+.tbl tr.hl td{background:var(--ol-pale);font-weight:600}
+.pill{display:inline-block;padding:2px 7px;border-radius:2px;font-size:9.5px;font-weight:600}
+.pg-g{background:#D4EDDA;color:#155724}.pg-r{background:#FDDEDE;color:#7A1A1A}.pg-y{background:#FFF3CD;color:#7A5A00}.pg-b{background:#D1E0F7;color:var(--bl)}.pg-o{background:var(--ol-pale);color:var(--fo)}
+.wb{border:1px solid var(--cr-line);margin-bottom:10px;background:var(--wh)}
+.wh-bar{background:var(--fo-mid);padding:10px 18px;display:flex;align-items:center;justify-content:space-between}
+.wh-bar h4{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#fff}
+.wh-bar span{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt)}
+.wb-body{padding:14px 18px}
+.day{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--cr-line)}
+.day:last-child{border-bottom:none}
+.day-l{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);min-width:56px;padding-top:2px;flex-shrink:0}
+.day-c h5{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.day-c p,.day-c ul{font-size:11.5px;color:var(--ink-mid);line-height:1.65}
+.day-c ul{padding-left:13px}
+.day-c li{margin-bottom:2px}
+.sbox{background:var(--fo);border:1px solid rgba(139,155,42,.2);padding:18px 22px;margin-bottom:14px}
+.sbox .sl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:10px}
+.si{display:flex;gap:12px;padding:7px 0;border-bottom:1px solid rgba(139,155,42,.1)}
+.si:last-child{border-bottom:none}
+.si-t{font-family:'DM Mono',monospace;font-size:8.5px;color:var(--ol-lt);min-width:60px;flex-shrink:0;padding-top:2px}
+.si-c{font-size:12px;color:rgba(240,242,220,.75);line-height:1.6}
+.si-c em{color:var(--ol-lt);font-style:normal;font-weight:600}
+.ph{border:1px solid var(--cr-line);margin-bottom:10px}
+.ph-head{display:grid;grid-template-columns:110px 1fr;align-items:stretch}
+.ph-num{background:var(--fo-mid);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 10px;text-align:center}
+.ph-num .big{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:var(--ol-lt);line-height:1}
+.ph-num .sm{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
+.ph-body{background:var(--wh);padding:18px 22px}
+.ph-body h3{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.ph-body ul{padding-left:14px}
+.ph-body li{font-size:12px;color:var(--ink-mid);margin-bottom:5px;line-height:1.6}
+.ph-body li strong{color:var(--ink)}
+.track{border:1px solid rgba(139,155,42,.25);margin-bottom:10px}
+.track-h{background:rgba(139,155,42,.1);padding:10px 16px;border-bottom:1px solid rgba(139,155,42,.2);display:flex;align-items:center;gap:10px}
+.track-n{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--ol);line-height:1}
+.track-h h4{font-weight:700;font-size:13px;color:var(--fo-mid)}
+.track-h span{font-size:7.5px;color:var(--ol);margin-left:auto;font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase}
+.track-b{padding:14px 16px;background:var(--wh)}
+.track-b ul{padding-left:14px}
+.track-b li{font-size:12px;color:var(--ink-mid);margin-bottom:5px;line-height:1.6}
+.pc{border:1px solid var(--cr-line);background:var(--wh);padding:20px}
+.pc-tag{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--ol);margin-bottom:5px}
+.pc-pct{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--ol-lt);line-height:1;margin-bottom:5px}
+.pc h4{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.pc p{font-size:11.5px;color:var(--ink-lt);line-height:1.6;margin-bottom:8px}
+.pc .ex strong{color:var(--fo-mid);display:block;margin-bottom:2px;font-size:9.5px;letter-spacing:.5px;text-transform:uppercase}
+.pc .ex{font-size:10.5px;color:var(--ink-lt)}
+.jstage{border:1px solid var(--cr-line);background:var(--wh);padding:18px}
+.jstage-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--ol-lt);line-height:1;margin-bottom:6px}
+.jstage h4{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.jstage .jsub{font-size:10.5px;color:var(--ink-lt);margin-bottom:8px;font-style:italic}
+.jstage ul{padding-left:13px}
+.jstage li{font-size:11px;color:var(--ink-mid);margin-bottom:3px;line-height:1.55}
+.vrow{display:grid;grid-template-columns:170px 1fr 72px 72px;gap:0;border-bottom:1px solid var(--cr-line);align-items:center}
+.vrow.hdr{background:var(--fo)}.vrow.hdr div{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt);padding:9px 12px}
+.vrow div{padding:9px 12px;font-size:12px;color:var(--ink-mid)}
+.vrow .vp{font-weight:700;color:var(--ink)}
+.vtot{background:var(--ol-pale)}.vtot div{font-weight:700;color:var(--fo-mid)}
+.kpi-h{background:var(--ol-pale);border:1px solid var(--cr-line);border-bottom:none;padding:9px 12px}
+.kpi-h h4{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--fo-mid)}
+.tier{border:1px solid;padding:20px;margin-bottom:12px}
+.t1{border-color:var(--gr);background:rgba(30,92,48,.05)}.t2{border-color:var(--go);background:rgba(200,146,42,.05)}.t3{border-color:var(--bl);background:rgba(27,42,74,.05)}
+.tlabel{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.t1 .tlabel{color:var(--gr)}.t2 .tlabel{color:var(--go)}.t3 .tlabel{color:var(--bl)}
+.tdot{width:7px;height:7px;border-radius:50%}
+.t1 .tdot{background:var(--gr)}.t2 .tdot{background:var(--go)}.t3 .tdot{background:var(--bl)}
+.titems{display:flex;flex-wrap:wrap;gap:7px}
+.titem{font-size:12px;padding:5px 10px;border-radius:2px;color:var(--ink-mid);background:var(--wh);border:1px solid var(--cr-line)}
+.titem strong{color:var(--ink)}
+.cls{background:var(--fo);padding:72px;text-align:center}
+.cls-inner{max-width:580px;margin:0 auto}
+.mb8{margin-bottom:8px}.mb14{margin-bottom:14px}.mb22{margin-bottom:22px}.mb32{margin-bottom:32px}
+.mt14{margin-top:14px}.mt22{margin-top:22px}
+.hl-box{background:var(--go-pale);border:2px solid var(--go);padding:18px 22px;margin-bottom:14px}
+.hl-box h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <div class="nl">
+    <svg style="height:26px;flex-shrink:0" viewBox="330 240 440 420" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+      <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+      <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+    </svg>
+    <span class="nw">CUSTOMPEDIA</span>
+    <div class="ns"></div>
+    <span class="nfor">Batik Semar · Execution Doc</span>
+  </div>
+  <div class="nlinks">
+    <a href="#cover">Cover</a><a href="#bigidea">Big Idea</a><a href="#gap">Gap</a><a href="#kompetitor">Kompetitor</a>
+    <a href="#audience">Audience</a><a href="#journey">Journey</a><a href="#pilar">Pilar</a><a href="#b2b">B2B</a>
+    <a href="#sosmed">Sosmed</a><a href="#fase0">Fase 0</a><a href="#fase1">Fase 1</a>
+    <a href="#kol">KOL</a><a href="#marketplace">Marketplace</a><a href="#ads">Ads</a>
+    <a href="#kpi">KPI</a><a href="#longterm">Long Term</a>
+  </div>
+  <div class="nbadge">Internal · Mei 2026</div>
+</nav>
+
+<!-- COVER -->
+<section class="cov" id="cover">
+  <div style="position:absolute;right:-60px;bottom:-60px;width:440px;height:440px;opacity:.05;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='200' cy='200' r='185' stroke='%233D4A1A' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='200' cy='200' r='140' stroke='%233D4A1A' stroke-width='1' fill='none'/%3E%3Ccircle cx='200' cy='200' r='95' stroke='%233D4A1A' stroke-width='1' fill='none'/%3E%3Ccircle cx='200' cy='200' r='50' stroke='%238B9B2A' stroke-width='1.5' fill='none'/%3E%3Cline x1='10' y1='200' x2='390' y2='200' stroke='%233D4A1A' stroke-width='.7'/%3E%3Cline x1='200' y1='10' x2='200' y2='390' stroke='%233D4A1A' stroke-width='.7'/%3E%3Crect x='158' y='158' width='84' height='84' stroke='%238B9B2A' stroke-width='1.5' transform='rotate(45 200 200)' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;z-index:0"></div>
+  <div class="cov-inner">
+    <div class="cov-tag">Strategic Execution Document · Batik Semar · Mei 2026</div>
+    <h1 class="h1" style="max-width:660px">Rencana <em>Eksekusi</em><br>yang Bisa Dipegang</h1>
+    <div class="rule"></div>
+    <p class="lead">Dokumen teknis operasional untuk aktivasi 360° Batik Semar — dari Big Idea, gap analysis, pilar konten, B2B strategy, SOW fase per fase, hingga KPI terukur.</p>
+    <div class="cov-chips">
+      <span class="chip">Big Idea</span><span class="chip">Gap Analysis</span><span class="chip">Pilar Konten 3+1</span>
+      <span class="chip dk">SOW Fase 0 & 1</span><span class="chip dk">B2B Strategy</span><span class="chip dk">KPI Framework</span>
+    </div>
+    <div class="cov-meta">
+      <div class="cm"><div class="cm-l">Brand</div><div class="cm-v">Batik Semar<br>Solo, 1947</div></div>
+      <div class="cm"><div class="cm-l">Oleh</div><div class="cm-v">Custompedia</div></div>
+      <div class="cm"><div class="cm-l">Periode</div><div class="cm-v">12 Bulan 2026</div></div>
+      <div class="cm"><div class="cm-l">Dokumen</div><div class="cm-v">Execution Plan</div></div>
+    </div>
+  </div>
+  <div class="cov-bot">
+    <span>Big Idea · Gap · Kompetitor · Pilar · B2B · SOW · KPI · Long Term</span>
+    <span>Confidential · Mei 2026</span>
+  </div>
+</section>
+<div class="sep"></div>
+
+<!-- BIG IDEA -->
+<section class="s-fo" id="bigidea">
+  <div class="pg">
+    <div class="stag inv">01 — Big Idea</div>
+    <h2 class="h2 inv">The Living <em>Archive</em></h2>
+    <div class="rule wh"></div>
+    <p class="lead inv">Menjadikan Batik Semar bukan sekadar brand pakaian — melainkan warisan budaya 79 tahun yang masih hidup dan relevan. Ini adalah framing yang menjadi ruh dari seluruh strategi.</p>
+    <div class="g3 mb22">
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(139,155,42,.2);padding:22px"><div style="font-size:22px;margin-bottom:8px">📖</div><h3 class="h3 inv" style="font-size:17px;margin-bottom:7px">Mengaktifkan Heritage</h3><p style="font-size:12px;color:rgba(240,242,220,.65);line-height:1.65">Membangun dan mendokumentasikan brand dengan narasi sejarah dan budaya. Pasar penuh klaim "Heritage", tapi tidak banyak yang bisa membuktikannya secara visual dan emosional. Semar bisa.</p></div>
+      <div style="background:rgba(139,155,42,.1);border:2px solid rgba(139,155,42,.35);padding:22px"><div style="font-size:22px;margin-bottom:8px">🎓</div><h3 class="h3" style="font-size:17px;margin-bottom:7px;color:var(--ol-lt)">Bukan Menjual, Mengedukasi</h3><p style="font-size:12px;color:rgba(240,242,220,.75);line-height:1.65">Mengubah audiens dari "penonton pasif" menjadi yang "bisa membedakan". Conversion rate audiens yang teredukasi 2–3× lebih tinggi dari cold traffic berbasis iklan.</p></div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(139,155,42,.2);padding:22px"><div style="font-size:22px;margin-bottom:8px">🔄</div><h3 class="h3 inv" style="font-size:17px;margin-bottom:7px">Konversi dari Konteks</h3><p style="font-size:12px;color:rgba(240,242,220,.65);line-height:1.65">Konversi terbentuk karena audiens sudah mengenal Semar — sudah jadi Top-of-Mind. Ini adalah perbedaan antara membeli karena iklan dan membeli karena percaya.</p></div>
+    </div>
+    <div class="ins mb22"><p><strong>3 Strategi Kunci Revitalisasi Batik Heritage:</strong> (1) Inovasi Produk — desain modern tanpa hilangkan makna budaya; (2) Transformasi Digital — manfaatkan sosmed dan marketplace; (3) Cultural Storytelling — cerita sejarah, filosofi, dan makna motif sebagai nilai tambah autentisitas. Ketiganya menjadi fondasi eksekusi di dokumen ini.</p></div>
+    <div style="border:2px solid rgba(139,155,42,.35);padding:26px;background:rgba(139,155,42,.06)">
+      <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:8px">Positioning Statement</div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#fff;line-height:1.55;margin-bottom:12px">"Batik Semar adalah warisan hidup batik Solo sejak 1947 — diwariskan oleh tangan yang telah melewati kebakaran, krisis, dan pandemi. Bukan sekadar kain. Ini adalah karakter bangsa yang terus bernapas."</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="border-left:2px solid var(--ol);padding-left:10px"><div style="font-size:10px;color:var(--ol-lt);font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Nilai 1</div><div style="font-size:12px;font-weight:600;color:#fff">Ketahanan</div></div>
+        <div style="border-left:2px solid var(--ol);padding-left:10px"><div style="font-size:10px;color:var(--ol-lt);font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Nilai 2</div><div style="font-size:12px;font-weight:600;color:#fff">Makna di Balik Motif</div></div>
+        <div style="border-left:2px solid var(--ol);padding-left:10px"><div style="font-size:10px;color:var(--ol-lt);font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Nilai 3</div><div style="font-size:12px;font-weight:600;color:#fff">Pewarisan Lintas Generasi</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sep"></div>
+<!-- GAP ANALYSIS -->
+<section class="s-wh" id="gap">
+  <div class="pg">
+    <div class="stag">02 — Gap Analysis</div>
+    <h2 class="h2">Yang Masih <em>Kurang</em> & Harus Diisi</h2>
+    <div class="rule"></div>
+    <p class="lead">Dari pembacaan mendalam deck Custompedia dan data lapangan, 4 gap yang perlu direspons secara strategis — tidak hanya diakui, tapi dieksekusi.</p>
+    <div style="border:1px solid var(--cr-line);margin-bottom:12px">
+      <div style="background:var(--fo);padding:10px 18px;display:flex;align-items:center;gap:12px"><span style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--ol-lt);line-height:1">01</span><div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt)">Masuk ke Strategi B2B</div><h3 class="h3 inv" style="margin-bottom:0;font-size:15px">Klien B2B Existing Belum Jadi Aset Storytelling</h3></div></div>
+      <div style="padding:16px 20px;background:var(--wh)">
+        <div class="g21"><p class="body">Tiga klien existing — <strong>Prodia Life, RS Telogorejo, DHL Logistik</strong> — belum diangkat secara digital. Ini social proof kelas enterprise yang tidak bisa diklaim kompetitor manapun. Vendor seragam biasa tidak pernah melayani DHL atau rumah sakit besar.</p>
+        <div class="ins-lt" style="margin-bottom:0"><p><strong>Eksekusi:</strong> Logo + foto seragam klien masuk ke landing page B2B, Highlight IG "B2B & Seragam", katalog WA, dan 1 konten showcase/bulan dalam format storytelling — bukan katalog.</p></div></div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--cr-line);margin-bottom:12px">
+      <div style="background:var(--fo-mid);padding:10px 18px;display:flex;align-items:center;gap:12px"><span style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--ol-lt);line-height:1">02</span><div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt)">Revive & Improve</div><h3 class="h3 inv" style="margin-bottom:0;font-size:15px">"#SayaPakaiBatikSemar" — Campaign yang Bisa Dihidupkan Kembali</h3></div></div>
+      <div style="padding:16px 20px;background:var(--wh)">
+        <p class="body mb14">Campaign UGC ini pernah berjalan — meraih engagement dan menunjukkan kredibilitas brand. Masalah: tidak ada narasi, insentif minim, distribusi pasif.</p>
+        <div class="g2">
+          <div style="border-left:3px solid var(--re);padding:10px 14px;background:var(--cr)"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--re);margin-bottom:5px">Masalah</div><ul style="padding-left:12px;font-size:11.5px;color:var(--ink-mid);line-height:1.65"><li>Foto pakai batik tanpa cerita</li><li>Tidak ada insentif partisipasi</li><li>Distribusi pasif, kurasi tidak ada</li></ul></div>
+          <div style="border-left:3px solid var(--gr);padding:10px 14px;background:var(--cr)"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gr);margin-bottom:5px">Revive</div><ul style="padding-left:12px;font-size:11.5px;color:var(--ink-mid);line-height:1.65"><li>Reframe: "#CeritaBatikSemar" — kapan & kenapa mereka pakai</li><li>Seed: Pak Ardyanto posting pertama</li><li>Insentif: voucher Rp 100rb atau Batik Kit</li><li>Kurasi + repost UGC terbaik ke feed</li></ul></div>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--cr-line);margin-bottom:12px">
+      <div style="background:var(--ol);padding:10px 18px;display:flex;align-items:center;gap:12px"><span style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:rgba(255,255,255,.9);line-height:1">03</span><div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6)">Diintegrasikan ke Pilar Konten</div><h3 class="h3" style="margin-bottom:0;font-size:15px;color:#fff">2 Tension yang Belum Dieksplorasi Kompetitor Manapun</h3></div></div>
+      <div style="padding:16px 20px;background:var(--wh)">
+        <div class="g2 mb14">
+          <div style="border:1px solid var(--cr-line);padding:16px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:8px">Tension 1 — Koneksi Emosional</div><table style="width:100%;font-size:11.5px"><tr><td style="padding:5px 0;color:var(--ink-lt);border-bottom:1px solid var(--cr-line)"><strong style="color:var(--ink)">Fakta:</strong> Customer beli batik karena kewajiban dresscode</td></tr><tr><td style="padding:5px 0;color:var(--re);border-bottom:1px solid var(--cr-line)"><strong>Tension:</strong> Tidak ada koneksi emosional dengan brand</td></tr><tr><td style="padding:5px 0;color:var(--gr)"><strong>Peluang:</strong> Bangun koneksi → jadi Top-of-Mind untuk direkomendasikan</td></tr></table><div style="background:var(--ol-pale);border-left:3px solid var(--ol);padding:8px 12px;margin-top:8px;font-size:11.5px;color:var(--fo-mid)"><strong>Eksekusi:</strong> Card fisik di produk berisi nama motif + makna filosofinya.</div></div>
+          <div style="border:1px solid var(--cr-line);padding:16px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:8px">Tension 2 — Museum Experience</div><table style="width:100%;font-size:11.5px"><tr><td style="padding:5px 0;color:var(--ink-lt);border-bottom:1px solid var(--cr-line)"><strong style="color:var(--ink)">Fakta:</strong> Semar punya offline store sebagai museum heritage</td></tr><tr><td style="padding:5px 0;color:var(--re);border-bottom:1px solid var(--cr-line)"><strong>Tension:</strong> Pengalaman "museum" tidak dikomunikasikan</td></tr><tr><td style="padding:5px 0;color:var(--gr)"><strong>Peluang:</strong> Offline store = user experience unik yang tidak bisa direplikasi online</td></tr></table><div style="background:var(--ol-pale);border-left:3px solid var(--ol);padding:8px 12px;margin-top:8px;font-size:11.5px;color:var(--fo-mid)"><strong>Eksekusi:</strong> "Museum trail" galeri dengan QR code per titik → video/cerita di smartphone.</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--cr-line);margin-bottom:14px">
+      <div style="background:var(--ink);padding:10px 18px;display:flex;align-items:center;gap:12px"><span style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--ol-lt);line-height:1">04</span><div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt)">Masuk ke Strategi B2B</div><h3 class="h3 inv" style="margin-bottom:0;font-size:15px">Persona Corporate Gift Buyer — Segmen yang Terlewat</h3></div></div>
+      <div style="padding:16px 20px;background:var(--wh)">
+        <div class="g2">
+          <div><div style="background:var(--cr);border:1px solid var(--cr-line);padding:14px;margin-bottom:8px"><p style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:6px">👤 Corporate Gift Buyer</p><ul style="padding-left:12px;font-size:11.5px;color:var(--ink-mid);line-height:1.65"><li>PR Manager, General Affairs, usia 30–55</li><li>Rutin beri souvenir ke klien/partner</li><li>Pain point: minimum order terlalu tinggi</li><li>Channel: Instagram, Shopee, Google</li></ul></div><div class="ins-lt" style="margin-bottom:0"><p><strong>Koneksi aset:</strong> Batik Semar pernah buat hampers saat COVID — diliput Detik.com. MVP yang proven, tinggal relaunch ke persona ini.</p></div></div>
+          <div><ul style="padding-left:14px;font-size:12px;color:var(--ink-mid);line-height:1.75"><li style="margin-bottom:7px"><strong>Produk:</strong> "Batik Semar Corporate Gift" — MOQ mulai 10 pcs, custom packaging, sertifikat heritage</li><li style="margin-bottom:7px"><strong>Seasonal:</strong> Lebaran + akhir tahun — campaign khusus 4–6 minggu sebelum, Ads ke HRD/GA</li><li style="margin-bottom:7px"><strong>Konten:</strong> 1 konten/bulan di IG tentang hampers & corporate gift</li><li><strong>Landing Page:</strong> Section khusus corporate gift + form order</li></ul></div>
+        </div>
+      </div>
+    </div>
+    <div class="hl-box"><h4>⚠️ Koreksi Deck: "Brand Berusia 19 Tahun" → Harus 79 Tahun</h4><p class="body">Di slide About Batik Semar tertulis "Brand berusia 19 tahun ini..." — harus dikoreksi sebelum presentasi ke owner. Batik Semar berdiri 1947, usianya <strong>79 tahun</strong>. Jika tidak dikoreksi, merusak kredibilitas seluruh deck di mata owner.</p></div>
+  </div>
+</section>
+
+<div class="band"><p>"Tension yang belum dieksplorasi adalah ruang kosong yang bisa langsung diklaim. Tidak ada biaya untuk mengklaim ruang yang tidak ada kompetitornya."</p></div>
+<!-- KOMPETITOR -->
+<section class="s-cr" id="kompetitor">
+  <div class="pg">
+    <div class="stag">03 — Competitive Landscape</div>
+    <h2 class="h2">Di Mana Batik Semar <em>Seharusnya Berada</em></h2>
+    <div class="rule"></div>
+    <p class="lead">Tidak ada kompetitor yang membangun brand story kuat dan konsisten. Ruang Cultural Heritage Brand masih kosong dan Semar adalah satu-satunya yang punya klaim valid.</p>
+    <table class="tbl mb22">
+      <thead><tr><th>Brand</th><th>Followers</th><th>Strategi Konten</th><th>Heritage</th><th>Tourism</th><th>TikTok</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Danar Hadi</strong><br><span style="font-size:10px;color:var(--ink-lt)">Est. 1967</span></td><td>90.9K</td><td>Fashion show, product catalog. Tidak ada storytelling heritage konsisten.</td><td><span class="pill pg-y">Ada, tidak ditonjolkan</span></td><td><span class="pill pg-g">Museum Rp45K</span></td><td><span class="pill pg-g">Aktif</span></td><td><span class="pill pg-g">Kuat</span></td></tr>
+        <tr><td><strong>Batik Keris</strong><br><span style="font-size:10px;color:var(--ink-lt)">Est. 1920</span></td><td>80.1K</td><td>Koleksi nusantara, KOL fashion. Product-focused. Tidak ada narasi heritage meski paling tua.</td><td><span class="pill pg-r">Tidak diangkat</span></td><td><span class="pill pg-r">Tidak ada</span></td><td><span class="pill pg-g">Aktif+Live</span></td><td><span class="pill pg-g">Kuat</span></td></tr>
+        <tr><td><strong>Benang Ratu</strong><br><span style="font-size:10px;color:var(--ink-lt)">~2010</span></td><td>38.5K</td><td>Volume & harga, affiliate aktif. Pusat batik & oleh-oleh.</td><td><span class="pill pg-r">Tidak relevan</span></td><td><span class="pill pg-r">Tidak ada</span></td><td><span class="pill pg-g">Affiliate</span></td><td><span class="pill pg-y">Medium</span></td></tr>
+        <tr><td><strong>Batik Fractal</strong><br><span style="font-size:10px;color:var(--ink-lt)">~2012</span></td><td>14.3K</td><td>Teknologi artisan, premium modern. Brand guideline kuat.</td><td><span class="pill pg-r">Bukan positioning</span></td><td><span class="pill pg-r">Tidak ada</span></td><td><span class="pill pg-g">Aktif+Live</span></td><td><span class="pill pg-y">Niche</span></td></tr>
+        <tr class="hl"><td><strong>BATIK SEMAR ←</strong><br><span style="font-size:10px;color:var(--fo-mid)">Est. 1947 · Solo</span></td><td>85.8K (dorman)</td><td><strong>Peluang: The Living Heritage Brand. 79 tahun cerita nyata yang tidak bisa ditiru.</strong></td><td><span class="pill pg-o">Terkuat — belum diklaim</span></td><td><span class="pill pg-o">Galeri besar</span></td><td><span class="pill pg-r">485 followers</span></td><td><span class="pill pg-r">Mati Suri</span></td></tr>
+      </tbody>
+    </table>
+    <div class="g3">
+      <div class="ins-lt" style="margin-bottom:0"><p><strong>Tidak ada yang angkat Heritage & Usia:</strong> Danar Hadi 58 tahun tapi tidak menyoroti usia sebagai USP. Semar 79 tahun — klaim yang valid dan belum diklaim siapapun.</p></div>
+      <div class="ins-lt" style="margin-bottom:0"><p><strong>Semua product-focused:</strong> Seluruh kompetitor didominasi foto produk, fashion show, promo. Belum ada yang bangun brand story kuat dan konsisten secara digital.</p></div>
+      <div class="ins-lt" style="margin-bottom:0"><p><strong>Cerita Motif — ruang kosong:</strong> Tidak ada kompetitor yang konsisten dokumentasikan filosofi per motif. Save rate konten edukatif 3–5× lebih tinggi dari konten produk biasa.</p></div>
+    </div>
+  </div>
+</section>
+<div class="sep"></div>
+
+<!-- AUDIENCE -->
+<section class="s-wh" id="audience">
+  <div class="pg">
+    <div class="stag">04 — Audience & Decision Maker</div>
+    <h2 class="h2">Siapa yang Kita <em>Layani</em></h2>
+    <div class="rule"></div>
+    <div class="g3 mb22">
+      <div class="card ct-bl"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--bl);margin-bottom:8px">B2B · Persona 1</div><h3 class="h3" style="font-size:15px;margin-bottom:8px">Procurement Officer</h3><ul style="padding-left:12px;font-size:11.5px;color:var(--ink-mid);line-height:1.7"><li>Usia 30–50, korporasi menengah-besar</li><li>Hospitality, BUMN, Manufaktur</li><li>Decision: lead time + harga competitive</li><li>Channel: Instagram, Google</li><li><strong>Pain point:</strong> Vendor tidak konsisten ukuran dan warna</li></ul></div>
+      <div class="card ct"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:8px">B2C · Persona 2</div><h3 class="h3" style="font-size:15px;margin-bottom:8px">Formal Event Attendee</h3><ul style="padding-left:12px;font-size:11.5px;color:var(--ink-mid);line-height:1.7"><li>Usia 28–45, Milenial–Gen X, Professional</li><li>Butuh batik representatif dan nyaman</li><li>Decision: estetika motif + tampilan eksklusif</li><li>Channel: Instagram, TikTok, Google, Rekomendasi</li><li><strong>Pain point:</strong> Sulit beli batik premium dengan ukuran lengkap</li></ul></div>
+      <div class="card ct-go"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--go);margin-bottom:8px">B2B · Persona 3</div><h3 class="h3" style="font-size:15px;margin-bottom:8px">Corporate Gift Buyer</h3><ul style="padding-left:12px;font-size:11.5px;color:var(--ink-mid);line-height:1.7"><li>Usia 30–55, PR Manager, GA</li><li>Rutin beri souvenir ke klien/partner</li><li>Decision: lead time + opsi hampers</li><li>Channel: Instagram, Shopee, Google</li><li><strong>Pain point:</strong> Minimum order terlalu tinggi</li></ul></div>
+    </div>
+    <div class="ins-lt mb0"><p><strong>Target Audiens Utama Instagram:</strong> Milenial 30–45 tahun — membutuhkan batik formal dalam aktivitas sehari-hari, bernostalgia akan kehidupan masa kecil, romantisasi slow living. Audiens ini paling responsif terhadap heritage storytelling dan konten edukatif budaya.</p></div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="s-cr" id="journey">
+  <div class="pg pt0">
+    <div class="stag">05 — Customer Journey</div>
+    <h2 class="h2">5 Stage <em>Sebelum Beli</em></h2>
+    <div class="rule"></div>
+    <p class="lead">Setiap pilar konten diarahkan melayani audiens di stage yang tepat. Konten yang salah stage adalah konversi yang terbuang.</p>
+    <div class="g2 mb22" style="gap:10px">
+      <div class="jstage"><div class="jstage-num">1</div><h4>Discovery</h4><div class="jsub">Belum kenal Batik Semar</div><ul><li>Konten: Heritage Storytelling + Behind Process</li><li>Channel: IG Reels, TikTok FYP</li><li>KPI: Reach, Impressions, Views</li></ul></div>
+      <div class="jstage"><div class="jstage-num">2</div><h4>Interest</h4><div class="jsub">Mulai follow & simpan konten</div><ul><li>Konten: Warisan & Cerita + Cerita Motif</li><li>Channel: IG Posts + KOL</li><li>KPI: Followers Growth, ER, Profile Visit</li></ul></div>
+      <div class="jstage"><div class="jstage-num">3</div><h4>Consideration</h4><div class="jsub">Aktif compare produk & cek harga</div><ul><li>Konten: Koleksi & Commerce + Behind Process</li><li>Channel: IG Bio + Marketplace</li><li>KPI: Saved Product, Leads WA/DM</li></ul></div>
+      <div class="jstage"><div class="jstage-num">4</div><h4>Intent</h4><div class="jsub">Siap membeli</div><ul><li>Konten: CTA-driven dari semua pilar</li><li>Channel: DM IG + WhatsApp + Marketplace</li><li>⚠️ Response time WA &lt;2 jam working hours</li></ul></div>
+      <div class="jstage" style="border-color:var(--ol);background:var(--ol-pale)"><div class="jstage-num" style="color:var(--fo-mid)">5</div><h4 style="color:var(--fo-mid)">Conversion</h4><div class="jsub">Closing & repeat</div><ul><li>B2C: Order Marketplace — GMV + ROAS</li><li>B2B: Deal Closed (oleh tim Batik Semar)</li><li>Pengalaman positif → UGC → loop ke Discovery</li></ul></div>
+      <div class="ins" style="margin-bottom:0"><p><strong>Critical Success Factor:</strong> Response time WhatsApp &lt;2 jam working hours. Quick follow-up &lt;5 menit meningkatkan close rate signifikan. Satu-satunya faktor di luar konten yang paling mempengaruhi konversi — dan sepenuhnya controllable.</p></div>
+    </div>
+  </div>
+</section>
+<div class="sep"></div>
+<!-- PILAR KONTEN -->
+<section class="s-fo" id="pilar">
+  <div class="pg">
+    <div class="stag inv">06 — Pilar Konten</div>
+    <h2 class="h2 inv">Framework <em>3+1</em> — Satu Narasi, Dua Audiens</h2>
+    <div class="rule wh"></div>
+    <p class="lead inv">3 Pilar Utama untuk B2C: storytelling, edukasi, dan commerce — 90–95% dari semua konten. 1 Pilar Khusus untuk B2B: berdiri sendiri dengan tone berbeda, tapi bersumber dari narasi yang sama.</p>
+    <div class="ins mb22"><p><strong>Precedent — "Canting dari Eyang" (2020):</strong> Mini-documentary ini membuktikan bahwa storytelling emosional bisa dieksekusi untuk Batik Semar. What works: reputasi brand lewat storytelling. Masalah: penyebaran konten kurang, awareness rendah. Perbaikan: lanjutkan dengan distribusi lebih luas dan terstruktur. Mini-documentary Pak Ardyanto adalah versi yang jauh lebih kuat dari precedent ini.</p></div>
+  </div>
+</section>
+
+<section class="s-wh">
+  <div class="pg pt0">
+    <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--ol);margin-bottom:10px">3 Pilar Utama — B2C (90–95% dari total konten)</div>
+    <div class="g3 mb32">
+      <div class="pc ct" style="border-top-color:var(--fo-mid)">
+        <div class="pc-tag">Pilar 1</div>
+        <div class="pc-pct" style="color:var(--fo-mid)">40%</div>
+        <h4>Warisan & Cerita</h4>
+        <p>Emotional equity yang tidak bisa ditiru. Cerita yang hanya dimiliki Semar — tidak bisa dibeli kompetitor dengan budget apapun.</p>
+        <div class="ex">
+          <strong>Hero Content</strong>Mini-documentary Pak Ardyanto, timeline visual 1947–2026, "Hal yang tidak pernah diceritakan" format TikTok
+          <strong style="margin-top:7px">Hub Content</strong>Foto arsip keluarga Kasigit, milestone brand (ekspor 1989), cerita kebakaran 2002 & bangkit, cerita di balik setiap motif (series mingguan), quote pendiri Niniek
+          <strong style="margin-top:7px">Hygiene</strong>Story aktivitas harian galeri, momen personal Pak Ardyanto
+        </div>
+      </div>
+      <div class="pc ct">
+        <div class="pc-tag">Pilar 2</div>
+        <div class="pc-pct">25%</div>
+        <h4>Proses & Manusia</h4>
+        <p>Autentisitas yang membedakan dari fast fashion. Justifikasi harga premium paling elegan — tanpa harus menyebut harga.</p>
+        <div class="ex">
+          <strong>Hero Content</strong>Full proses membatik dari nol. POV Tour Guide: "Kalau kamu masuk Batik Semar untuk pertama kali..."
+          <strong style="margin-top:7px">Hub Content</strong>"Kenapa batik tulis lebih mahal dari cap?" Profil pengrajin senior. Virtual tour galeri
+          <strong style="margin-top:7px">Hygiene</strong>Story aktivitas pengrajin, sneak peek produksi, staff jelaskan produk favorit
+        </div>
+      </div>
+      <div class="pc ct-go">
+        <div class="pc-tag">Pilar 3</div>
+        <div class="pc-pct" style="color:var(--go)">30%</div>
+        <h4>Koleksi & Commerce</h4>
+        <p>Mendorong konversi tanpa merusak brand positioning. Setiap konten produk tetap dalam konteks cerita — bukan sekadar foto dengan caption harga.</p>
+        <div class="ex">
+          <strong>Hero Content</strong>"3 cara styling batik Kawung untuk kerja" di galeri. Lookbook koleksi baru dengan setting heritage
+          <strong style="margin-top:7px">Hub Content</strong>Mix and match, "Produk terlaris bulan ini + kenapa", unboxing + packaging. Seasonal: Lebaran, pernikahan, wisuda
+          <strong style="margin-top:7px">Hygiene</strong>TikTok Shop Keranjang Kuning, Live Shopping (internal), flash sale eksklusif TikTok
+        </div>
+      </div>
+    </div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--ol);margin-bottom:10px">1 Pilar Khusus — B2B (5% regular, naik 15–20% saat momen seasonal)</div>
+    <div style="border:2px solid var(--fo);margin-bottom:22px">
+      <div style="background:var(--fo);padding:12px 20px;display:flex;align-items:center;gap:16px">
+        <div style="font-size:22px">👔</div>
+        <div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--ol-lt)">Pilar 4 · Berdiri Sendiri</div><h3 class="h3 inv" style="font-size:17px;margin-bottom:0">B2B Storytelling — Bukan Hard Sell, Bukan Katalog</h3></div>
+        <div style="margin-left:auto;text-align:right"><div style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--ol-lt);line-height:1">5%</div><div style="font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)">regular</div></div>
+      </div>
+      <div style="padding:18px 20px;background:var(--wh)">
+        <div class="ins-lt mb14"><p><strong>Prinsip utama:</strong> Tidak pernah sebut harga. Tidak tunjukkan diskon. Selalu dalam bentuk cerita atau showcase prestisius. CTA selalu "konsultasi" atau "hubungi kami" — bukan "order sekarang". Tone: profesional tapi hangat.</p></div>
+        <div class="g2">
+          <div>
+            <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:7px">Sub-kategori Konten B2B</div>
+            <ul style="padding-left:13px;font-size:12px;color:var(--ink-mid);line-height:1.75">
+              <li style="margin-bottom:7px"><strong>Portfolio Showcase (Cerita, bukan Katalog):</strong> "DHL memilih motif Parang — filosofi bergerak tanpa henti yang relevan dengan logistik" → cerita, bukan promosi</li>
+              <li style="margin-bottom:7px"><strong>Edukasi B2B (Thought Leadership):</strong> "3 hal yang perlu dipertimbangkan saat memilih seragam batik" — konten berguna untuk HRD/GA yang secara implisit membuktikan expertise Semar</li>
+              <li style="margin-bottom:7px"><strong>Social Proof B2B:</strong> Foto seragam di setting kerja nyata. "Lebih dari X perusahaan mempercayakan seragam kepada kami sejak 1947"</li>
+              <li><strong>Seasonal:</strong> 6 minggu sebelum Lebaran, Oktober (Hari Batik Nasional), Desember — intensifikasi ke 15–20%</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:7px">Platform B2B</div>
+            <div style="border:1px solid var(--cr-line);padding:12px;margin-bottom:8px"><div style="font-size:11px;font-weight:700;color:var(--ink);margin-bottom:3px">Instagram — Highlight "B2B & Seragam"</div><p style="font-size:11.5px;color:var(--ink-mid)">Highlight khusus jadi destinasi pertama procurement officer saat visit profil. 1 konten B2B/bulan di feed.</p></div>
+            <div style="border:1px solid var(--cr-line);padding:12px;margin-bottom:8px"><div style="font-size:11px;font-weight:700;color:var(--ink);margin-bottom:3px">WhatsApp Business</div><p style="font-size:11.5px;color:var(--ink-mid)">Semua komunikasi follow-up, catalog, negosiasi. 6 quick reply template. Label system CRM sederhana.</p></div>
+            <div style="border:1px solid var(--cr-line);padding:12px"><div style="font-size:11px;font-weight:700;color:var(--ink);margin-bottom:3px">Landing Page B2B (Dedicated)</div><p style="font-size:11.5px;color:var(--ink-mid)">Company profile + portofolio (DHL, Prodia, RS Telogorejo) + spesifikasi + form inquiry + section Corporate Gift.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--ol);margin-bottom:10px">Distribusi Pilar per Fase</div>
+    <table class="tbl">
+      <thead><tr><th>Pilar</th><th>Bulan 1 — Awareness</th><th>Bulan 2 — Engagement</th><th>Bulan 3 — Conversion</th><th>Bulan 6+</th></tr></thead>
+      <tbody>
+        <tr><td><strong>P1 — Warisan & Cerita</strong></td><td><strong style="color:var(--fo-mid)">50%</strong></td><td>40%</td><td>35%</td><td>30%</td></tr>
+        <tr><td><strong>P2 — Proses & Manusia</strong></td><td>20%</td><td>20%</td><td>15%</td><td>15%</td></tr>
+        <tr><td><strong>P3 — Koleksi & Commerce</strong></td><td>20%</td><td>30%</td><td><strong style="color:var(--fo-mid)">40%</strong></td><td>45%</td></tr>
+        <tr><td><strong>P4 — B2B Storytelling</strong></td><td>10%</td><td>10%</td><td>10%</td><td>10% (↑20% seasonal)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--ink-lt);font-style:italic">P4 naik ke 15–20% selama momen Lebaran, Hari Batik Nasional (2 Okt), dan akhir tahun.</p>
+  </div>
+</section>
+
+<div class="band-lt"><p>"Pilar Warisan & Cerita adalah pilar yang paling mahal jika harus dibeli — tapi paling murah jika dimiliki. Batik Semar sudah memilikinya. Tinggal diceritakan."</p></div>
+<!-- B2B STRATEGY -->
+<section class="s-fom" id="b2b">
+  <div class="pg">
+    <div class="stag inv">07 — B2B Strategy</div>
+    <h2 class="h2 inv">B2B Dimulai dari <em>Hari Pertama</em></h2>
+    <div class="rule wh"></div>
+    <p class="lead inv">Siklus keputusan B2B butuh 4–8 minggu. Jika tidak dimulai sekarang, revenue digital B2B baru masuk di bulan 5–6. Terlalu lama.</p>
+    <div class="track mb10">
+      <div class="track-h"><div class="track-n" style="color:var(--ol-lt)">1</div><h4 style="color:var(--fo-mid)">Personal Outreach — Hari 1, Tanpa Budget</h4><span>Minggu 1</span></div>
+      <div class="track-b">
+        <div class="g2">
+          <div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Target Prioritas</div><ul><li>Prodia Life — kontak procurement/GA</li><li>RS Telogorejo — kontak pengadaan seragam</li><li>DHL Logistik — kontak seragam karyawan</li><li>10–15 kontak database pribadi Pak Ardyanto</li></ul></div>
+          <div style="background:var(--cr);border-left:2px solid var(--ol);padding:12px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Script WA</div><p style="font-size:11.5px;color:var(--ink-mid);line-height:1.65;font-style:italic">"Halo Pak/Bu [nama], Ardianto dari Batik Semar. Senang bisa terhubung kembali. Batik Semar kini aktif kembali dengan kapasitas produksi penuh. Apakah ada rencana pengadaan seragam di periode mendatang? Kami ada portofolio terbaru yang bisa kami share."</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="track mb10">
+      <div class="track-h"><div class="track-n" style="color:var(--ol-lt)">2</div><h4 style="color:var(--fo-mid)">Digital B2B Funnel — Landing Page + WA Business</h4><span>Minggu 2–3</span></div>
+      <div class="track-b">
+        <div class="g3">
+          <div style="border:1px solid var(--cr-line);padding:12px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Landing Page B2B</div><ul><li>Company profile + 79 tahun heritage</li><li>Portfolio: DHL, Prodia, RS Telogorejo</li><li>Spesifikasi: MOQ, lead time, custom motif</li><li>Proses 4 langkah: inquiry → sample → produksi → delivery</li><li>Section Corporate Gift + form inquiry</li></ul></div>
+          <div style="border:1px solid var(--cr-line);padding:12px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">WA Business</div><ul><li>Nama: "Batik Semar — Seragam Korporat"</li><li>Katalog: 10 foto portofolio seragam</li><li>6 quick reply template</li><li>Label: Lead Baru / B2B / Follow Up / VIP</li><li>Response target &lt;1 jam working hours</li></ul></div>
+          <div style="border:1px solid var(--cr-line);padding:12px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">KPI B2B</div><table style="width:100%;border-collapse:collapse;font-size:11.5px"><tr style="border-bottom:1px solid var(--cr-line)"><td style="padding:5px 0;color:var(--ink-lt)">Minggu 2</td><td style="font-weight:600;color:var(--fo-mid)">Landing page live</td></tr><tr style="border-bottom:1px solid var(--cr-line)"><td style="padding:5px 0;color:var(--ink-lt)">Bulan 1</td><td style="font-weight:600;color:var(--fo-mid)">5+ kontak di-reach out</td></tr><tr style="border-bottom:1px solid var(--cr-line)"><td style="padding:5px 0;color:var(--ink-lt)">Bulan 2</td><td style="font-weight:600;color:var(--fo-mid)">3–5 inquiry baru</td></tr><tr style="border-bottom:1px solid var(--cr-line)"><td style="padding:5px 0;color:var(--ink-lt)">Bulan 3</td><td style="font-weight:600;color:var(--fo-mid)">1–2 deal baru closed</td></tr><tr><td style="padding:5px 0;color:var(--ink-lt)">Bulan 6</td><td style="font-weight:600;color:var(--fo-mid)">6–10 inquiry/bulan</td></tr></table></div>
+        </div>
+      </div>
+    </div>
+    <div class="track">
+      <div class="track-h"><div class="track-n" style="color:var(--ol-lt)">3</div><h4 style="color:var(--fo-mid)">Konten B2B di Sosmed — 1 Konten/Bulan, Storytelling</h4><span>Bulan 2+</span></div>
+      <div class="track-b">
+        <div class="g2">
+          <div><ul><li style="margin-bottom:6px">Showcase seragam DHL/RS Telogorejo: "Kepercayaan yang sudah kami jaga sejak..."</li><li style="margin-bottom:6px">"Kenapa perusahaan pilih motif Sido Mukti? Filosofinya tentang kemakmuran cocok dengan nilai korporat"</li><li style="margin-bottom:6px">Behind the scenes produksi seragam massal — bukti kapasitas</li><li>Seasonal: corporate gift + hampers dengan CTA ke WA/landing page</li></ul></div>
+          <div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Instagram Highlight "B2B & Seragam"</div><ul><li>Cover: "Batik Semar untuk Perusahaan Anda"</li><li>Portofolio klien: logo + foto seragam</li><li>Spesifikasi singkat + MOQ</li><li>CTA: "Hubungi kami untuk konsultasi"</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sep"></div>
+
+<!-- SOCIAL MEDIA SETUP -->
+<section class="s-wh" id="sosmed">
+  <div class="pg">
+    <div class="stag">08 — Social Media Setup</div>
+    <h2 class="h2">Setup Akun & <em>Optimasi</em></h2>
+    <div class="rule"></div>
+    <div class="g2 mb22">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--ol);margin-bottom:10px">Instagram — Pre-Launch Checklist</div>
+        <div class="wb" style="margin-bottom:0">
+          <div class="wh-bar"><h4>Optimasi Sebelum Posting Apapun</h4></div>
+          <div class="wb-body">
+            <div class="day"><div class="day-l">Kategori</div><div class="day-c"><p>"Fashion Brand" atau "Art" — mempengaruhi distribusi di Explore</p></div></div>
+            <div class="day"><div class="day-l">Bio</div><div class="day-c"><p style="font-family:'DM Mono',monospace;font-size:10.5px;background:var(--cr);padding:7px;line-height:1.55">BATIK SEMAR · Solo, sejak 1947<br>Setiap motif menyimpan cerita. 🧵<br>🏛️ Galeri Heritage · Workshop<br>👔 Seragam Korporat<br>🛍️ [Linktree]</p></div></div>
+            <div class="day"><div class="day-l">Linktree</div><div class="day-c"><ul><li>Shopee Mall (paling dicari)</li><li>Tokopedia Official</li><li>WhatsApp B2B ("Inquiry Seragam Korporat")</li><li>YouTube Channel</li><li>Form Workshop (Google Form)</li><li>Landing Page B2B</li></ul></div></div>
+            <div class="day"><div class="day-l">Highlight</div><div class="day-c"><ul><li>① Siapa Kami · ② Cerita Motif · ③ Koleksi</li><li>④ Behind Process · ⑤ B2B & Seragam</li><li>⑥ Workshop · ⑦ #CeritaBatikSemar (UGC)</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--ol);margin-bottom:10px">Algoritma 2026 — 3 Signal Terpenting</div>
+        <div class="ins-lt mb14"><p><strong>Konfirmasi Adam Mosseri, Jan 2026:</strong> (1) <strong>Watch Time</strong> — 3 detik pertama penentu; Pak Ardyanto bicara langsung lebih efektif dari logo+musik; (2) <strong>Likes per Reach</strong> — rasio, bukan angka absolut; (3) <strong>DM Shares</strong> — sinyal terkuat; "Cerita Motif" sangat cocok karena sering di-share ke grup keluarga atau teman yang mau menikah.</p></div>
+        <div class="ins-lt mb14"><p><strong>Akun yang baru diaktifkan:</strong> Instagram tidak menghukum permanen akun yang lama tidak posting — tapi sinyal audiens-nya nol. 3–5 konten pertama harus fokus satu niche (heritage batik Solo) untuk re-train algoritma. Jangan campur niche di konten pertama.</p></div>
+        <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--ol);margin-bottom:7px">TikTok Baru — Sequence 5 Video Pertama</div>
+        <div style="border:1px solid var(--cr-line)">
+          <div style="display:flex;align-items:center;border-bottom:1px solid var(--cr-line)"><div style="background:var(--fo-mid);color:var(--ol-lt);font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;padding:8px 14px;min-width:40px;text-align:center">1</div><div style="padding:8px 12px;font-size:11.5px;color:var(--ink-mid)">Reactivation video — hook lebih kencang dari IG</div></div>
+          <div style="display:flex;align-items:center;border-bottom:1px solid var(--cr-line)"><div style="background:var(--fo-mid);color:var(--ol-lt);font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;padding:8px 14px;min-width:40px;text-align:center">2</div><div style="padding:8px 12px;font-size:11.5px;color:var(--ink-mid)">Cerita Motif pertama — paling shareable di FYP</div></div>
+          <div style="display:flex;align-items:center;border-bottom:1px solid var(--cr-line)"><div style="background:var(--fo-mid);color:var(--ol-lt);font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;padding:8px 14px;min-width:40px;text-align:center">3</div><div style="padding:8px 12px;font-size:11.5px;color:var(--ink-mid)">Time-lapse membatik — visual unik, jarang di FYP</div></div>
+          <div style="display:flex;align-items:center;border-bottom:1px solid var(--cr-line)"><div style="background:var(--fo-mid);color:var(--ol-lt);font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;padding:8px 14px;min-width:40px;text-align:center">4</div><div style="padding:8px 12px;font-size:11.5px;color:var(--ink-mid)">"POV: masuk ke Batik Semar Solo untuk pertama kali"</div></div>
+          <div style="display:flex;align-items:center"><div style="background:var(--fo-mid);color:var(--ol-lt);font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;padding:8px 14px;min-width:40px;text-align:center">5</div><div style="padding:8px 12px;font-size:11.5px;color:var(--ink-mid)">Pak Ardyanto: "Saya generasi ketiga. Ini yang tidak pernah diceritakan." — hook FYP terkuat</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--ol);margin-bottom:10px">Volume Konten Per Platform Per Bulan</div>
+    <div style="border:1px solid var(--cr-line);margin-bottom:7px">
+      <div class="vrow hdr"><div>Platform & Format</div><div>Keterangan</div><div>Jumlah</div><div>Frekuensi</div></div>
+      <div class="vrow"><div class="vp">IG Reels</div><div>60–90 dtk · Mix semua pilar · P1:5, P2:2, P3:4, P4:1</div><div><strong>12</strong></div><div>3/minggu</div></div>
+      <div class="vrow" style="background:rgba(240,242,220,.3)"><div class="vp">IG Carousel</div><div>Save-worthy · Cerita motif, tips, B2B showcase · 5–10 slide</div><div><strong>6</strong></div><div>1.5/minggu</div></div>
+      <div class="vrow"><div class="vp">IG Story</div><div>BTS, Q&A, countdown event, reshare konten terbaik</div><div><strong>16–20</strong></div><div>4–5/minggu</div></div>
+      <div class="vrow" style="background:rgba(240,242,220,.3)"><div class="vp">IG Story Interaktif</div><div>Quiz motif, poll, slider, Q&A Pak Ardyanto</div><div><strong>6</strong></div><div>1.5/minggu</div></div>
+      <div class="vrow"><div class="vp">TikTok — Mirror IG</div><div>Reels terbaik dimirror, audio disesuaikan tren TikTok</div><div><strong>10</strong></div><div>2.5/minggu</div></div>
+      <div class="vrow" style="background:rgba(240,242,220,.3)"><div class="vp">TikTok — Original</div><div>Tren audio/template TikTok-native</div><div><strong>4</strong></div><div>1/minggu</div></div>
+      <div class="vrow"><div class="vp">TikTok Live</div><div>Cerita + tunjukkan produk. Dijalankan internal Batik Semar, Custompedia setup. Mulai bulan 3.</div><div><strong>4</strong></div><div>1/minggu</div></div>
+      <div class="vrow" style="background:rgba(240,242,220,.3)"><div class="vp">YouTube</div><div>Documentary, cerita motif extended, tur galeri virtual — SEO-able jangka panjang</div><div><strong>2</strong></div><div>1/2 minggu</div></div>
+      <div class="vrow vtot"><div class="vp">TOTAL</div><div style="font-size:11.5px;color:var(--fo-mid)">80% bahan dari 2 hari syuting. Sisanya teks/carousel di meja.</div><div style="font-size:15px;font-weight:700;color:var(--fo-mid)">60–64</div><div style="font-size:11.5px;color:var(--fo-mid)">aset/bulan</div></div>
+    </div>
+    <p style="font-size:11px;color:var(--ink-lt);font-style:italic">Volume ini adalah proposal — disesuaikan setelah deal berdasarkan kapasitas tim dan paket yang disepakati.</p>
+  </div>
+</section>
+<div class="sep"></div>
+<!-- FASE 0 -->
+<section class="s-cr" id="fase0">
+  <div class="pg">
+    <div class="stag">09 — SOW Teknis</div>
+    <h2 class="h2">Fase 0: <em>Clearing</em> — Bulan 1</h2>
+    <div class="rule"></div>
+    <p class="lead">Sebelum menuang traffic baru, semua kebocoran harus ditutup dulu. Tidak ada yang bisa diskip.</p>
+    <div class="wb">
+      <div class="wh-bar"><h4>Minggu 1 — Audit Total + Emergency Shopee Fix</h4><span>Hari 1–7</span></div>
+      <div class="wb-body">
+        <div class="day"><div class="day-l">Hari 1–2</div><div class="day-c"><h5>Full Digital Audit</h5><ul><li>Instagram: followers, ER 0.02%, top 5 konten, bio, highlight, audience demographics</li><li>TikTok: buat akun baru @batiksemar.official (slate bersih, algoritma fresh, tidak ada histori engagement buruk)</li><li>Shopee Seller Center: cancel rate exact, filter "Pesanan Dibatalkan" → identifikasi alasan terbanyak (stok tidak sinkron vs buyer cancel sendiri — dua masalah, dua solusi berbeda)</li><li>Tokopedia, Blibli, Zalora: audit cepat — rating, produk aktif, last update, SEO nama produk</li><li>Output hari 2 malam: Audit Report dikirim ke owner</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 3–4</div><div class="day-c"><h5>Shopee Emergency Fix — Target: 50% → &lt;20% Cancel Rate dalam 7 Hari</h5><ul><li>Sinkronisasi stok: filter produk stok &lt;5 → non-aktif sementara → konfirmasi gudang → aktifkan kembali yang valid → pasang batas pembelian maksimal untuk stok terbatas</li><li>Auto-reply chat + jam operasional 08.00–17.00 WIB</li><li>SEO 20 produk terlaris: dari kode produk → "[Kategori] Batik [Motif] [Fungsi] - Batik Semar Solo". Benchmark: Telusur Kultur (storytelling description), Laskala (SEO title), 3 Mongkis (collection highlight)</li><li>Refreshment foto: identifikasi 10 foto terburuk → tandai untuk sesi foto minggu 2. Referensi visual: Damakara (storytelling catalog), SJA Textile (functional), Lakon (local model)</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 5</div><div class="day-c"><h5>Social Media Bio + Identity Update</h5><ul><li>Update bio Instagram + pasang Linktree dengan 6 link terstruktur sesuai customer journey</li><li>5 Highlight icons baru dengan desain konsisten</li><li>Setup akun TikTok baru: bio, connect ke Instagram, daftar TikTok Shop seller</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 6–7</div><div class="day-c"><h5>B2B Foundation</h5><ul><li>WhatsApp Business: nama, katalog 10 foto portofolio, 6 quick reply template, label system CRM sederhana</li><li>Landing Page B2B live (Google Sites — 1 hari kerja): heritage profile + portofolio klien + spesifikasi + form inquiry</li><li>Personal outreach Pak Ardyanto ke 10–15 kontak existing via WA dengan script yang sudah disiapkan</li></ul></div></div>
+      </div>
+    </div>
+    <div class="wb">
+      <div class="wh-bar"><h4>Minggu 2 — Produksi Konten Stok (2 Hari Syuting)</h4><span>Hari 8–14</span></div>
+      <div class="wb-body">
+        <div class="day"><div class="day-l">Hari 8</div><div class="day-c"><h5>Content Planning Session dengan Pak Ardyanto (2–3 jam)</h5><ul><li>Brief storytelling: 5 momen paling berkesan → material untuk documentary + series konten</li><li>Kurasi motif: 10 motif dengan cerita terkuat — Pak Ardyanto jelaskan filosofi + narasi per motif</li><li>Kurasi produk: 20 produk terbaik untuk foto katalog + 5 hero untuk sosmed</li><li>Moodboard approval: tone warna, angle, style</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 9–10</div><div class="day-c"><h5>Syuting Hari 1 — Documentary & Heritage (08.00–17.00)</h5><ul><li><strong>08–10:</strong> Wawancara Pak Ardyanto — 5 pertanyaan kunci: cerita Semar dari mata generasi ketiga, kebakaran 2002, pandemi dan tutup cabang, keputusan aktif kembali, visi 10 tahun ke depan</li><li><strong>10–12:</strong> B-roll galeri — eksterior, interior display kain, foto pendiri, close-up motif macro, tangan pengrajin memegang canting</li><li><strong>13–15:</strong> 4 episode "Cerita Motif" pertama: Parang, Kawung, Truntum, Sido Mukti — Pak Ardyanto pegang kain + narasi filosofi</li><li><strong>15–17:</strong> Foto produk sesi 1 — 10 produk, flatlay di meja kayu galeri, 3 angle per produk</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 11–12</div><div class="day-c"><h5>Syuting Hari 2 — Proses, Manusia & B2B (08.00–17.00)</h5><ul><li><strong>08–10:</strong> Behind The Process full — malam dipanaskan → canting → pewarnaan → jemur → lorot → finishing</li><li><strong>10–12:</strong> EGC — 2–3 staff senior wawancara singkat + POV tour guide keliling galeri</li><li><strong>13–15:</strong> B2B content — foto seragam portofolio existing + proses produksi seragam massal (quality control, penumpukan kain)</li><li><strong>15–17:</strong> Foto produk sesi 2 + 5 foto lifestyle produk dipakai di setting galeri</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 13–14</div><div class="day-c"><h5>Post-Production + Review dengan Owner</h5><ul><li>Culling dari estimasi 200+ raw → pilih top 60 → edit: exposure, white balance, color grading konsisten dengan brand palette</li><li>Output: 20 foto produk final + 15 lifestyle + 25 heritage/process</li><li>Meeting hari 14: alokasi foto (Shopee vs IG feed vs B2B kit), brief editor video dengan timeline deliverable</li></ul></div></div>
+      </div>
+    </div>
+    <div class="wb">
+      <div class="wh-bar"><h4>Minggu 3 — Konten Pertama Live + Press Outreach</h4><span>Hari 15–21</span></div>
+      <div class="wb-body">
+        <div class="day"><div class="day-l">Hari 15</div><div class="day-c"><h5>The Reactivation Post — Momen Paling Kritis (Reels 60–75 dtk)</h5><p style="margin-bottom:6px">Jadwal: Selasa/Rabu 09.00 WIB. Konten pertama setelah mati suri menentukan sinyal pertama ke algoritma.</p></div></div>
+      </div>
+    </div>
+    <div class="sbox mb14">
+      <div class="sl">Script — "The Reactivation" · 65 Detik</div>
+      <div class="si"><div class="si-t">0–3 dtk</div><div class="si-c">Close-up wajah Pak Ardyanto. Langsung bicara. <em>"Batik Semar berdiri tahun 1947."</em> Tidak ada musik dulu. Silence = perhatian.</div></div>
+      <div class="si"><div class="si-t">3–10 dtk</div><div class="si-c">Cut ke galeri bird's eye. Musik instrumental masuk. <em>"Tujuh puluh sembilan tahun."</em> Teks muncul di layar.</div></div>
+      <div class="si"><div class="si-t">10–18 dtk</div><div class="si-c">Pak Ardyanto lagi. <em>"Saya generasi ketiga."</em> Pause panjang. <em>"Dan kami sempat diam."</em> — Hook utama. Jangan diisi visual lain.</div></div>
+      <div class="si"><div class="si-t">18–30 dtk</div><div class="si-c">Montase: foto arsip kebakaran, papan tutup, toko sepi. Musik lebih intens.</div></div>
+      <div class="si"><div class="si-t">30–50 dtk</div><div class="si-c">Cut ke galeri sekarang — pengrajin bekerja, kain bergerak, close-up motif. Musik naik, hopeful.</div></div>
+      <div class="si"><div class="si-t">50–60 dtk</div><div class="si-c">Pak Ardyanto tatap kamera. <em>"Tapi cerita ini belum selesai."</em></div></div>
+      <div class="si"><div class="si-t">60–65 dtk</div><div class="si-c">Fade ke logo. <em>"1947 – Sekarang."</em></div></div>
+    </div>
+    <div class="wb">
+      <div class="wh-bar"><h4>Minggu 3 (lanjutan) & Minggu 4</h4><span>Hari 15–28</span></div>
+      <div class="wb-body">
+        <div class="day"><div class="day-l">Pasca posting</div><div class="day-c"><h5>Protokol 2 Jam Pertama (WAJIB)</h5><ul><li>Reply SEMUA komentar dalam 2 jam — sinyal ke algoritma bahwa konten aktif</li><li>DM personal ke 10–15 akun komunitas batik/budaya yang relevan</li><li>Share ke Story dengan sticker link + teks personal</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 16–17</div><div class="day-c"><h5>Press Outreach</h5><ul><li>Buat press kit 1 halaman: judul, 5 fakta kunci, foto galeri + Pak Ardyanto</li><li>Target: Solopos, Detik Lifestyle (pernah liput hampers COVID), IDN Times, Kompas Lifestyle, Tribun Solo</li><li>Subject email: "Story Eksklusif: Batik Semar 79 Tahun Bangkit Kembali — Generasi Ketiga yang Tidak Menyerah"</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 18–21</div><div class="day-c"><h5>B2B Follow Up + Konten Ke-2 & Ke-3</h5><ul><li>Review WA outreach minggu 1 — siapa yang belum reply → follow up dengan pesan kedua</li><li>Konten ke-2: Behind The Process — membatik 60 detik, tone lebih santai</li><li>Konten ke-3: Episode 1 "Cerita di Balik Motif" — Motif Parang</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 22–25</div><div class="day-c"><h5>Operasional + Shopee Lanjutan</h5><ul><li>Review cancel rate: harus &lt;15%. Jika masih &gt;15%: non-aktifkan produk bermasalah yang belum terselesaikan</li><li>Mulai Shopee Product Boost Rp 30–50K/hari untuk 5 produk terlaris</li><li>B2B: jadwalkan meeting untuk yang sudah tertarik dari outreach</li></ul></div></div>
+        <div class="day"><div class="day-l">Hari 26–28</div><div class="day-c"><h5>Monthly Report + Meeting Owner</h5><ul><li>Laporan 8–10 slide: cancel rate before/after, GMV bulan 1, IG followers growth, reach konten pertama, B2B inquiry masuk, media yang merespons press kit</li><li>Angka aktual vs target Tier 1 (komitmen) — harus semua hijau sebelum melanjutkan ke bulan 2</li><li>Preview bulan 2: jadwal documentary, KOL shortlist, Meta Ads yang akan mulai</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FASE 1 -->
+<section class="s-wh" id="fase1">
+  <div class="pg pt0">
+    <div class="stag">10 — SOW Teknis</div>
+    <h2 class="h2">Fase 1: <em>Ignition</em> — Bulan 2 & 3</h2>
+    <div class="rule"></div>
+    <div class="ph mb10">
+      <div class="ph-head"><div class="ph-num"><div class="big">2</div><div class="sm">Bulan 2</div></div>
+      <div class="ph-body"><h3>Ignition — Mini-Documentary Launch</h3>
+        <ul>
+          <li><strong>H-7 Checklist:</strong> Video final di-approve owner, subtitle Indonesia terpasang, musik licensed (Artlist.io/Epidemic Sound), thumbnail YouTube siap (Pak Ardyanto + "79 Tahun, Tiga Generasi"), cut 60 dtk TikTok/Reels + cut 30 dtk Meta Ads siap, press kit update dikirim ke 5 media 2 hari sebelum</li>
+          <li><strong>Hari Rilis:</strong> YouTube 07.00 → IG Reels 09.00 → reply semua komentar 2 jam pertama (WAJIB) → DM 20 kontak jaringan owner → TikTok 18.00. Jika 7 hari belum 10K views YouTube: boost Meta Ads Video Views Rp 500rb</li>
+          <li><strong>Series "Cerita di Balik Motif":</strong> Episode 2 (Kawung) minggu setelah documentary. Pertahankan format jika save rate &gt;3%, revisi hook jika &lt;1%</li>
+          <li><strong>TikTok Shop Activation:</strong> Upload 20–30 produk dengan foto baru, aktifkan Keranjang Kuning di semua video, brief 5 nano affiliator (komisi 5–8%)</li>
+          <li><strong>Meta Ads mulai (akhir bulan 2):</strong> Campaign 1 — Awareness: boost documentary cut 30 dtk, target batik+budaya usia 25–50, Jawa Tengah+kota besar, budget Rp 1.5jt/14 hari. Campaign 2 — Traffic ke Shopee: CPAS warm audience, budget Rp 1jt/14 hari</li>
+          <li><strong>KOL Nano (4–5) + Micro (1 — Roman Muhtar/Melati Tedja/Rania Yamin):</strong> Stagger 1 KOL per 3 hari. Nano: kompensasi produk. Micro: Rp 1.5–3jt</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="ph mb22">
+      <div class="ph-head"><div class="ph-num"><div class="big">3</div><div class="sm">Bulan 3</div></div>
+      <div class="ph-body"><h3>Momentum — Conversion + Community</h3>
+        <ul>
+          <li><strong>Konten shift ke conversion:</strong> CTA kontekstual — "Motif ini ada di koleksi terbaru — tap untuk lihat" / "DM untuk konsultasi seragam korporat gratis"</li>
+          <li><strong>Workshop pertama:</strong> Kapasitas 15 orang, promosi 2 minggu sebelum via Story + Highlight. Format: 30 menit tur + 60 menit workshop + foto + sertifikat. Harga Rp 85–100K/orang. Dokumentasikan seluruh event — konten untuk 2 minggu berikutnya</li>
+          <li><strong>Campaign "#CeritaBatikSemar" revival:</strong> Seed dari Pak Ardyanto → followers share cerita → kurasi 3 terbaik/bulan → repost dengan nama + cerita → insentif voucher Rp 100rb atau Batik Kit</li>
+          <li><strong>TikTok Live setup (bantu internal):</strong> Custompedia setup teknis (akun, equipment, rundown). Tim internal Batik Semar yang jalankan. Target 1–2x/minggu, 45–60 menit, format cerita + tunjukkan produk</li>
+          <li><strong>Review milestone 3 bulan:</strong> Top 3 konten vs bottom 3. Presentasi ke owner: angka aktual vs Tier 1 dan Tier 2</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+</section>
+<div class="sep"></div>
+
+<!-- KOL -->
+<section class="s-cr" id="kol">
+  <div class="pg">
+    <div class="stag">11 — KOL Activation</div>
+    <h2 class="h2">KOL per Fase — <em>Siapa, Kapan, Bagaimana</em></h2>
+    <div class="rule"></div>
+    <p class="lead">KOL Batik Semar adalah storyteller yang mengunjungi galeri dan menceritakan pengalaman — bukan endorser produk biasa.</p>
+    <table class="tbl mb22">
+      <thead><tr><th>Fase</th><th>Tipe KOL</th><th>Jumlah</th><th>Angle & Brief</th><th>Kompensasi</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Bulan 1</strong><br><span style="font-size:10px;color:var(--ink-lt)">Awareness</span></td><td>City Info Solo<br><span style="font-size:10px;color:var(--ink-lt)">50K–200K</span></td><td>1</td><td>"Hidden gem Solo yang wajib dikunjungi." Must show: galeri, staff, pengalaman. Must NOT: sebut harga, hard sell</td><td>Rp 500rb–1.5jt</td></tr>
+        <tr><td><strong>Bulan 2</strong><br><span style="font-size:10px;color:var(--ink-lt)">Engagement</span></td><td>KOL Nano (4–5) 1K–10K<br>KOL Micro (1) 10K–100K</td><td>5–6</td><td>Nano: batik enthusiast, cultural educator — brief kunjungi galeri, konten spontan. Micro: Roman Muhtar (textile), Melati Tedja (cultural), Rania Yamin (batik daily wear)</td><td>Nano: produk Rp 250–500rb<br>Micro: Rp 1.5–3jt</td></tr>
+        <tr><td><strong>Bulan 3</strong><br><span style="font-size:10px;color:var(--ink-lt)">Conversion</span></td><td>KOL Nano (3)<br>KOL Micro (1)</td><td>4</td><td>Lebih product-focused tapi tetap dalam konteks cerita. Aktifkan Keranjang Kuning TikTok untuk konversi langsung</td><td>Nano: produk<br>Micro: Rp 1.5–2jt</td></tr>
+      </tbody>
+    </table>
+    <div class="g3">
+      <div class="ins-lt" style="margin-bottom:0"><p><strong>Affiliate TikTok — 3 Tier:</strong> Tier 1: Fashion - Batik Enthusiast (paling targeted); Tier 2: Fashion - All Fashion; Tier 3: UGC Affiliate (ibu rumah tangga, creator homeliving). Komisi 5–8%, mulai bulan 2.</p></div>
+      <div class="ins-lt" style="margin-bottom:0"><p><strong>Stagger posting:</strong> Tidak boleh serentak — jadwal 1 KOL per 3 hari agar algoritma memberi distribusi organik optimal per konten, tidak saling bersaing di timeline.</p></div>
+      <div class="ins-lt" style="margin-bottom:0"><p><strong>Vetting KOL:</strong> ER minimal 3%, posting minimal 3x/minggu, konsisten 3 bulan terakhir. Untuk nano KOL: cek audience location &gt;40% Indonesia. Jangan terpengaruh follower count semata.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section class="s-wh" id="marketplace">
+  <div class="pg pt0">
+    <div class="stag">12 — Marketplace Activation</div>
+    <h2 class="h2">E-Commerce — <em>Audit & Optimasi</em></h2>
+    <div class="rule"></div>
+    <table class="tbl mb22">
+      <thead><tr><th>Platform</th><th>Kondisi Saat Ini</th><th>Saran</th><th>Prioritas</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><strong>Shopee</strong></td><td>Rating 4.9 dari 3.7K · Mall Seller · Cancel rate ~50% · Chat response cepat</td><td>Sinkronisasi stok, SEO nama produk, update foto, Collection Highlight, Product Boost</td><td><span class="pill pg-r">Emergency</span></td></tr>
+        <tr><td><strong>Tokopedia</strong></td><td>Rating 4.9 · Verified Seller · 4.445 terjual</td><td>Update model foto (lokalitas brand), tambahkan nilai motif di deskripsi, SEO, Tokopedia Ads</td><td><span class="pill pg-y">Segera</span></td></tr>
+        <tr><td><strong>Blibli</strong></td><td>Rating 4.7 dari 75 · Penjualan lebih banyak di Women</td><td>Update foto, tambahkan storytelling di deskripsi, push lokalitas brand</td><td><span class="pill pg-b">Bulan 2</span></td></tr>
+        <tr><td><strong>Zalora</strong></td><td>Rating 5 dari 34 · VIP Seller · Hanya 25 produk</td><td>Update judul SEO, perbanyak produk, daftar kampanye Zalokal, tambahkan promotion booster</td><td><span class="pill pg-b">Bulan 2</span></td></tr>
+        <tr><td><strong>TikTok Shop</strong></td><td>Belum masuk — Fashion & Batik adalah kategori terkuat</td><td>Setup etalase, SEO produk, Keranjang Kuning di semua video, affiliate niche fashion</td><td><span class="pill pg-y">Bulan 2</span></td></tr>
+      </tbody>
+    </table>
+    <div class="ins-go mb0"><p><strong>Benchmark Marketplace:</strong> 3 Mongkis (collection highlight yang kuat), Telusur Kultur (deskripsi storytelling nilai budaya), Laskala (judul produk SEO-friendly), The Body Shop Shopee (copywriting yang gabungkan storytelling nilai produk untuk memperkuat persuasi). Tujuan: setiap produk Batik Semar di marketplace bukan hanya terlihat — tapi terasa bermakna.</p></div>
+  </div>
+</section>
+<div class="sep"></div>
+
+<!-- ADS -->
+<section class="s-fo" id="ads">
+  <div class="pg">
+    <div class="stag inv">13 — Ads Strategy</div>
+    <h2 class="h2 inv">Meta Ads + Marketplace Ads</h2>
+    <div class="rule wh"></div>
+    <div class="g3 mb22">
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(139,155,42,.2);padding:20px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:7px">Shopee Ads</div><div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--ol-lt);margin-bottom:7px">Rp 2.500.000</div><p style="font-size:11.5px;color:rgba(240,242,220,.65);line-height:1.65;margin-bottom:8px">Traffic intent tinggi. Shopee Mall trust besar. Conversion rate paling stabil.</p><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:5px">KPI</div><p style="font-size:11.5px;color:rgba(240,242,220,.65)">ROAS 6x–12x<br>Revenue Rp15–35jt</p></div>
+      <div style="background:rgba(139,155,42,.1);border:2px solid rgba(139,155,42,.35);padding:20px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:7px">TikTok GMV Ads</div><div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--ol-lt);margin-bottom:7px">Rp 2.500.000</div><p style="font-size:11.5px;color:rgba(240,242,220,.75);line-height:1.65;margin-bottom:8px">Fashion niche terkuat di TikTok. Algoritma ciptakan impulse buying. Video scale cepat.</p><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:5px">KPI</div><p style="font-size:11.5px;color:rgba(240,242,220,.75)">ROAS 4x–8x<br>Revenue Rp10–25jt</p></div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(139,155,42,.2);padding:20px"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:7px">Meta CPAS + Retargeting</div><div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--ol-lt);margin-bottom:7px">Rp 1.000.000</div><p style="font-size:11.5px;color:rgba(240,242,220,.65);line-height:1.65;margin-bottom:8px">Kuat untuk retargeting, catalog ads, scaling warm audience, dan menjaga brand recall.</p><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:5px">KPI</div><p style="font-size:11.5px;color:rgba(240,242,220,.65)">ROAS 4x–8x<br>Revenue Rp10–25jt</p></div>
+    </div>
+    <div class="ins mb0"><p><strong>Total Budget Ads (dari client, di luar jasa):</strong> Rp 6.000.000/bulan → estimasi 80–180 order/bulan → estimasi omzet Rp30–70jt/bulan → overall ROAS 5x–11x. Dijalankan mulai bulan 2 setelah operasional marketplace stabil.</p></div>
+  </div>
+</section>
+<div class="sep"></div>
+<!-- KPI -->
+<section class="s-cr" id="kpi">
+  <div class="pg">
+    <div class="stag">14 — KPI Framework</div>
+    <h2 class="h2">Angka yang <em>Bisa Dipegang</em> — 3 Tier</h2>
+    <div class="rule"></div>
+    <p class="lead">Bedakan antara yang pasti bisa dicapai, sangat mungkin dicapai, dan bisa jadi bonus. Ini membangun kepercayaan owner yang realistis dan terukur.</p>
+
+    <div class="tier t1 mb14">
+      <div class="tlabel"><div class="tdot"></div>Tier 1 — Komitmen (Eksekusi Benar = Pasti Tercapai)</div>
+      <div class="titems">
+        <div class="titem"><strong>Cancel Rate Shopee</strong> → &lt;10% dalam 30 hari</div>
+        <div class="titem"><strong>Response Time WA</strong> → &lt;1 jam working hours</div>
+        <div class="titem"><strong>Bio Instagram</strong> → Updated bulan 1</div>
+        <div class="titem"><strong>TikTok Akun Baru</strong> → Live + 1 video dalam 14 hari</div>
+        <div class="titem"><strong>Landing Page B2B</strong> → Live dalam 14 hari</div>
+        <div class="titem"><strong>Posting Consistency</strong> → Min. 3 konten/minggu tanpa fail</div>
+        <div class="titem"><strong>B2B Outreach</strong> → 10+ kontak di-reach out bulan 1</div>
+      </div>
+    </div>
+
+    <div class="tier t2 mb14">
+      <div class="tlabel"><div class="tdot"></div>Tier 2 — Target Realistis (Sangat Mungkin dengan Eksekusi Baik)</div>
+      <div class="titems">
+        <div class="titem"><strong>IG Followers Bulan 3</strong> → 87.000+</div>
+        <div class="titem"><strong>Average Views Bulan 3</strong> → 5.500 (dari 2.238)</div>
+        <div class="titem"><strong>Engagement Rate Bulan 3</strong> → 0.05% (dari 0.02%)</div>
+        <div class="titem"><strong>Documentary YouTube</strong> → 30K–70K views</div>
+        <div class="titem"><strong>TikTok Followers Bulan 3</strong> → 2.000–5.000</div>
+        <div class="titem"><strong>Media Coverage</strong> → 2–3 media merespons</div>
+        <div class="titem"><strong>Workshop Peserta</strong> → 30+ di bulan 3</div>
+        <div class="titem"><strong>B2B Inquiry Digital</strong> → 5–8/bulan di bulan 3</div>
+        <div class="titem"><strong>Shopee GMV Bulan 3</strong> → +35–50%</div>
+        <div class="titem"><strong>Overall ROAS (Ads)</strong> → 5x–11x</div>
+      </div>
+    </div>
+
+    <div class="tier t3 mb22">
+      <div class="tlabel"><div class="tdot"></div>Tier 3 — Aspirasi (Bisa Terjadi, Ada Faktor di Luar Kendali)</div>
+      <div class="titems">
+        <div class="titem"><strong>Documentary</strong> → &gt;100K views dalam 30 hari</div>
+        <div class="titem"><strong>Media Nasional</strong> → Kompas, CNN Indonesia</div>
+        <div class="titem"><strong>Revenue Online Bulan 6</strong> → +100% dari baseline</div>
+        <div class="titem"><strong>Viral Organik</strong> → 1 konten &gt;500K views</div>
+        <div class="titem"><strong>Semar jadi Destinasi Wisata Resmi</strong> → Listed Dinas Pariwisata Solo</div>
+      </div>
+    </div>
+
+    <div class="kpi-h"><h4>KPI Organik per Bulan (Spesifik)</h4></div>
+    <table class="tbl mb0">
+      <thead><tr><th>Metrik</th><th>Baseline</th><th>Bulan 1</th><th>Bulan 2</th><th>Bulan 3</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Posts IG</strong></td><td>1.688</td><td>1.703 (+0.9%)</td><td>1.718 (+0.9%)</td><td>1.733 (+0.9%)</td></tr>
+        <tr><td><strong>Followers IG</strong></td><td>83.600</td><td>85.000 (+2.5%)</td><td>86.000 (+2.5%)</td><td>87.000 (+2.5%)</td></tr>
+        <tr><td><strong>Engagement Rate</strong></td><td>0.02%</td><td>0.032% (+40%)</td><td>0.042% (+31%)</td><td>0.050% (+21%)</td></tr>
+        <tr><td><strong>Average Views</strong></td><td>2.238</td><td>3.300 (+47%)</td><td>4.200 (+27%)</td><td>5.500 (+31%)</td></tr>
+        <tr><td><strong>Average Engagement</strong></td><td>16</td><td>24 (+50%)</td><td>30 (+25%)</td><td>36 (+20%)</td></tr>
+        <tr><td><strong>Cancel Rate Shopee</strong></td><td>~50%</td><td><strong style="color:var(--gr)">&lt;10%</strong></td><td>&lt;8%</td><td>&lt;7%</td></tr>
+        <tr><td><strong>B2B Inquiry</strong></td><td>0 (digital)</td><td>2–3</td><td>4–6</td><td>6–8/bulan</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="band"><p>"Viral tidak bisa dijamin, tapi kondisi untuk viral bisa diciptakan. Yang bisa dijanjikan adalah hero content dengan semua elemen yang tepat, distribusi sistematis, dan evaluasi berbasis data setiap bulan."</p></div>
+
+<!-- LONG TERM -->
+<section class="s-wh" id="longterm">
+  <div class="pg">
+    <div class="stag">15 — Long Term Vision</div>
+    <h2 class="h2">Setelah Brand <em>Berdiri Kokoh</em></h2>
+    <div class="rule"></div>
+    <p class="lead">Aktivasi digital adalah fondasi. Setelah brand established (bulan 4–6), langkah-langkah ini mengubah Batik Semar dari brand aktif menjadi institusi budaya.</p>
+
+    <div class="g3 mb22">
+      <div class="card ct"><div style="font-size:18px;margin-bottom:8px">🏛️</div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Gallery Exhibition · Bulan 6–9</div><h3 class="h3" style="font-size:15px;margin-bottom:7px">Offline Batik Exhibition</h3><p style="font-size:12px;color:var(--ink-mid);line-height:1.65">Exhibition dengan tema yang sesuai message campaign online. Goal: interaksi pengunjung, UGC masif, bridge ke destinasi turis. Kerja sama dengan komunitas seni Solo.</p></div>
+      <div class="card ct"><div style="font-size:18px;margin-bottom:8px">🎓</div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Company Visit · Bulan 6–9</div><h3 class="h3" style="font-size:15px;margin-bottom:7px">Partnership ISI + UNS</h3><p style="font-size:12px;color:var(--ink-mid);line-height:1.65">Kerja sama mahasiswa prodi D-4 Desain Mode Batik ISI Surakarta dan Pariwisata UNS. Goal: awareness, UGC, media exposure, workshop dengan kurikulum lebih terstruktur.</p></div>
+      <div class="card ct"><div style="font-size:18px;margin-bottom:8px">🤝</div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Brand Collaboration · Bulan 8–12</div><h3 class="h3" style="font-size:15px;margin-bottom:7px">Designer Lokal</h3><p style="font-size:12px;color:var(--ink-mid);line-height:1.65"><strong>Adrian Gan</strong> (44K IG, heritage & design philosophy, konsumen 35–60 menengah atas) atau <strong>Rania Yamin</strong> (421K IG, 16–29 fashion conscious, coverage Harper's Bazaar + Tatler Asia). Koleksi terbatas → press coverage tinggi.</p></div>
+    </div>
+
+    <div style="border:2px solid var(--fo);margin-bottom:22px">
+      <div style="background:var(--fo);padding:12px 20px;display:flex;align-items:center;gap:14px"><div style="font-size:22px">🧒</div><div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--ol-lt)">Future Value — Tahun 2</div><h3 class="h3 inv" style="font-size:17px;margin-bottom:0">Semar Kids — Edukasi Batik untuk Generasi Berikutnya</h3></div></div>
+      <div style="padding:18px 20px;background:var(--cr)">
+        <div class="g3">
+          <div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Batik Kit Anak</div><p style="font-size:12px;color:var(--ink-mid);line-height:1.65">MVP sudah proven — Pak Ardyanto pernah buat boks edukasi membatik saat COVID (diliput Detik.com). Relaunch dengan packaging baru, dua level: pemula usia 3–10 tahun dan lanjutan 10+.</p></div>
+          <div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Komik Edukasi Batik</div><p style="font-size:12px;color:var(--ink-mid);line-height:1.65">Mulai sebagai carousel IG gratis (test demand). Jika engagement tinggi → e-book PDF → buku fisik. Konten dasar sudah tersedia dari series "Cerita Motif".</p></div>
+          <div><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ol);margin-bottom:6px">Workshop Anak</div><p style="font-size:12px;color:var(--ink-mid);line-height:1.65">Kelas membatik khusus anak di galeri — target SD/SMP Solo + keluarga turis. Tidak ada kompetitor di segmen ini. Kategori yang sepenuhnya kosong.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--ol);margin-bottom:10px">Visi 3 Tahun</div>
+    <div class="g3">
+      <div style="padding:20px;border:1px solid var(--cr-line);background:var(--wh)"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;color:var(--ol);margin-bottom:6px">TAHUN 1</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:8px">Digital Foundation</div><ul style="padding-left:13px;font-size:11.5px;color:var(--ink-mid);line-height:1.65"><li>Ekosistem digital aktif & berjalan</li><li>100K+ followers terkonsolidasi</li><li>Workshop tourism rutin</li><li>B2B digital pipeline aktif</li><li>Semar Kids soft launch</li></ul></div>
+      <div style="padding:20px;border:2px solid var(--ol);background:var(--ol-pale)"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;color:var(--fo-mid);margin-bottom:6px">TAHUN 2</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--fo-mid);margin-bottom:8px">Heritage Experience</div><ul style="padding-left:13px;font-size:11.5px;color:var(--ink-mid);line-height:1.65"><li>Galeri destinasi wisata kota resmi</li><li>Semar Kids full launch</li><li>Brand Collaboration designer lokal</li><li>Komik edukasi digital series</li><li>Partnership ISI/UNS aktif</li></ul></div>
+      <div style="padding:20px;border:1px solid var(--cr-line);background:var(--wh)"><div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;color:var(--ol);margin-bottom:6px">TAHUN 3</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:8px">National Institution</div><ul style="padding-left:13px;font-size:11.5px;color:var(--ink-mid);line-height:1.65"><li>Semar Kids di program sekolah nasional</li><li>Buku komik edukasi fisik terbit</li><li>Ekspansi B2B skala nasional</li><li>Koleksi kolaborasi tahunan</li><li>Brand equity: institusi budaya batik Indonesia</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="cls">
+  <div class="cls-inner">
+    <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--ol-lt);margin-bottom:18px">Strategic Execution Document · Batik Semar · 2026</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:#fff;line-height:1.1;margin-bottom:14px">Semua Sudah <em style="font-style:italic;color:var(--ol-lt)">Terencana.</em><br>Tinggal Dimulai.</h2>
+    <p style="font-size:13.5px;color:rgba(240,242,220,.5);line-height:1.8;margin-bottom:28px">Dokumen ini adalah pegangan teknis untuk tim Custompedia. Setiap langkah bisa dipertanggungjawabkan — dari hari pertama hingga bulan ke-12.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:28px">
+      <svg style="height:20px" viewBox="330 240 440 420" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+        <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+        <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+      </svg>
+      <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:1.5px;text-transform:uppercase">CUSTOMPEDIA</span>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.18)">Confidential · Internal Use Only · Mei 2026</div>
+  </div>
+</section>
+
+</body>
+</html>
