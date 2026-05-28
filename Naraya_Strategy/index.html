@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Execution Strategy — Naraya Nastra Production × Custompedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yellow:#F4B400;--yellow2:#C98E00;--yellow-dim:rgba(244,180,0,.13);--yellow-border:rgba(244,180,0,.28);
+  --black:#0D0D0D;--black2:#161616;--black3:#1E1E1E;
+  --white:#FFFFFF;--white2:rgba(255,255,255,.85);--white3:rgba(255,255,255,.5);--white4:rgba(255,255,255,.18);--white5:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+  --green:#2A9D5C;--green-bg:rgba(42,157,92,.1);--green-bdr:rgba(42,157,92,.25);
+  --red-bg:rgba(220,60,60,.1);--red-bdr:rgba(220,60,60,.25);--red:#DC3C3C;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;background:var(--black);}
+body{font-family:'Barlow',sans-serif;color:var(--white);font-size:14px;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(13,13,13,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 36px;gap:12px;}
+.nav-brand{display:flex;align-items:center;gap:9px;}
+.nav-wordmark{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--white2);letter-spacing:.04em;}
+.nav-div{width:1px;height:18px;background:var(--white4);}
+.nav-doc{font-size:11px;color:var(--white3);font-weight:400;letter-spacing:.02em;}
+.nav-spacer{flex:1;}
+.slide-counter{font-size:11px;font-weight:500;color:var(--white3);letter-spacing:.06em;}
+.slide-counter span{color:var(--yellow);}
+.progress{position:fixed;top:56px;left:0;height:2px;background:var(--yellow);z-index:600;width:0;transition:width .3s ease;}
+
+/* DECK */
+.deck{position:fixed;top:56px;left:0;right:0;bottom:0;overflow-y:scroll;scroll-snap-type:y mandatory;}
+.deck::-webkit-scrollbar{width:0;}
+
+/* DOTS */
+.dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:600;display:flex;flex-direction:column;gap:7px;}
+.dots button{width:6px;height:6px;border-radius:50%;border:.5px solid rgba(244,180,0,.3);background:transparent;cursor:pointer;padding:0;transition:.2s;}
+.dots button.active{background:var(--yellow);border-color:var(--yellow);transform:scale(1.4);}
+.dots button:hover{border-color:var(--yellow);}
+
+/* HINT */
+.hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--white3);animation:bob 2.4s ease-in-out infinite;transition:opacity .3s;}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,5px)}}
+
+/* SLIDE BASE */
+.slide{min-height:calc(100vh - 56px);scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:40px 6vw;overflow:hidden;background:var(--black);border-bottom:1px solid var(--border);}
+.slide.light{background:#F7F4EE;}
+.inner{width:100%;max-width:1080px;margin:0 auto;position:relative;z-index:2;}
+.slide-num{position:absolute;right:24px;bottom:18px;font-size:10px;font-weight:500;color:rgba(255,255,255,.1);letter-spacing:.12em;}
+.slide.light .slide-num{color:rgba(13,13,13,.1);}
+.accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--yellow);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+
+/* TYPE */
+.eyebrow{font-size:10px;font-weight:600;color:var(--yellow);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;}
+.slide.light .eyebrow{color:var(--yellow2);}
+.slide-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(22px,3vw,40px);font-weight:800;line-height:1.0;letter-spacing:-.5px;color:var(--white);margin-bottom:8px;}
+.slide.light .slide-title{color:var(--black);}
+.slide-sub{font-size:13px;color:var(--white3);line-height:1.75;max-width:640px;margin-bottom:16px;}
+.slide.light .slide-sub{color:rgba(13,13,13,.55);}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+
+/* CARD */
+.card{background:var(--black2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden;transition:transform .18s,border-color .18s;}
+.card:hover{transform:translateY(-2px);border-color:var(--border2);}
+.slide.light .card{background:#fff;border-color:rgba(13,13,13,.1);}
+.card-top{position:absolute;top:0;left:0;right:0;height:2px;}
+.card-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);margin-bottom:7px;}
+.slide.light .card-label{color:var(--yellow2);}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.slide.light .card-title{color:var(--black);}
+.card-body{font-size:12px;color:var(--white3);line-height:1.65;}
+.slide.light .card-body{color:rgba(13,13,13,.55);}
+.card ul{list-style:none;margin-top:7px;}
+.card li{font-size:12px;color:var(--white3);padding:4px 0 4px 13px;position:relative;line-height:1.5;border-bottom:1px solid rgba(255,255,255,.04);}
+.slide.light .card li{color:rgba(13,13,13,.55);border-bottom-color:rgba(13,13,13,.05);}
+.card li:last-child{border-bottom:none;}
+.card li::before{content:"";position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--yellow);}
+
+/* STAT */
+.stat-box{background:var(--black2);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
+.slide.light .stat-box{background:#fff;border-color:rgba(13,13,13,.1);}
+.stat-val{font-family:'Barlow Condensed',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:800;color:var(--yellow);margin-bottom:4px;line-height:1;}
+.stat-label{font-size:11px;color:var(--white3);line-height:1.4;}
+.slide.light .stat-label{color:rgba(13,13,13,.5);}
+
+/* NOTE */
+.note{padding:11px 15px;border-radius:10px;font-size:12px;line-height:1.65;}
+.note-y{background:var(--yellow-dim);border:1px solid var(--yellow-border);color:var(--white3);border-left:3px solid var(--yellow);}
+.note-g{background:var(--green-bg);border:1px solid var(--green-bdr);color:var(--white3);border-left:3px solid var(--green);}
+.note b,.note strong{color:var(--white);}
+.slide.light .note b,.slide.light .note strong{color:var(--black);}
+.slide.light .note-y{color:rgba(13,13,13,.6);}
+
+/* PILL */
+.pill{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600;border:1px solid var(--border2);color:var(--white3);background:var(--black3);}
+.pill.g{background:var(--green-bg);border-color:var(--green-bdr);color:#2A9D5C;}
+.pill.r{background:var(--red-bg);border-color:var(--red-bdr);color:var(--red);}
+.pill.y{background:var(--yellow-dim);border-color:var(--yellow-border);color:var(--yellow);}
+
+/* BAR */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.bar-label{font-size:11px;font-weight:500;color:var(--white);min-width:170px;flex-shrink:0;}
+.slide.light .bar-label{color:var(--black);}
+.bar-track{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.slide.light .bar-track{background:rgba(13,13,13,.08);}
+.bar-fill{height:100%;border-radius:3px;}
+.bar-pct{font-size:11px;font-weight:600;min-width:30px;text-align:right;}
+
+/* AUD */
+.aud-card{background:var(--black2);border:1px solid var(--border);border-radius:14px;padding:16px;transition:transform .18s,border-color .18s;}
+.aud-card:hover{transform:translateY(-2px);border-color:var(--border2);}
+.aud-seg{font-size:9px;font-weight:700;color:var(--yellow);margin-bottom:4px;letter-spacing:.09em;text-transform:uppercase;}
+.aud-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:7px;}
+.aud-sep{height:1px;background:var(--border);margin:7px 0;}
+.aud-list{list-style:none;}
+.aud-list li{font-size:11px;color:var(--white3);padding:3px 0 3px 12px;position:relative;line-height:1.5;}
+.aud-list li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:var(--yellow);opacity:.5;}
+
+/* APP CARD */
+.app-card{background:var(--black2);border:1px solid var(--border);border-radius:14px;padding:18px;transition:transform .18s,border-color .18s;}
+.app-card:hover{transform:translateY(-2px);border-color:var(--border2);}
+.app-num{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800;color:var(--yellow);opacity:.1;line-height:1;margin-bottom:6px;}
+.app-month{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:3px 10px;margin-bottom:7px;}
+.app-month span{font-size:10px;font-weight:700;letter-spacing:.06em;}
+.app-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.app-body{font-size:12px;color:var(--white3);line-height:1.65;}
+
+/* PILLAR */
+.pillar-card{background:var(--black2);border:1px solid var(--border);border-radius:14px;padding:18px;transition:transform .18s,border-color .18s;}
+.pillar-card:hover{transform:translateY(-3px);border-color:var(--border2);}
+.pillar-num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;opacity:.1;line-height:1;margin-bottom:5px;}
+.pillar-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.pillar-desc{font-size:11.5px;color:var(--white3);line-height:1.6;}
+.pillar-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-top:9px;}
+
+/* PHASE */
+.phase-card{display:flex;gap:13px;padding:11px 14px;background:var(--black3);border:1px solid var(--border);border-radius:10px;align-items:flex-start;}
+.phase-label{font-size:10px;font-weight:600;color:var(--yellow);min-width:55px;flex-shrink:0;line-height:1.4;}
+.phase-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.phase-desc{font-size:11px;color:var(--white3);line-height:1.5;}
+
+/* MBADGE */
+.mbadge{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:4px 12px;margin-bottom:10px;}
+.mbadge-dot{width:5px;height:5px;border-radius:50%;}
+.mbadge-text{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
+
+/* TEAM */
+.team-card{background:var(--black2);border:1px solid var(--border);border-radius:14px;padding:20px 16px;text-align:center;transition:transform .18s,border-color .18s;}
+.team-card:hover{transform:translateY(-3px);border-color:var(--border2);}
+.team-avatar{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--black);margin:0 auto 10px;}
+.team-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.team-role{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+.team-desc{font-size:11px;color:var(--white3);line-height:1.6;}
+.team-badge{display:inline-flex;align-items:center;gap:4px;background:var(--black3);border:1px solid var(--border);border-radius:20px;padding:3px 9px;font-size:10px;color:var(--white3);margin-top:8px;}
+
+/* IG MOCK */
+.ig-mock{background:#0A0A0A;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.06);}
+.ig-top{display:flex;align-items:center;gap:11px;margin-bottom:10px;}
+.ig-avatar{width:44px;height:44px;border-radius:50%;background:var(--black3);border:1.5px solid rgba(244,180,0,.4);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--yellow);flex-shrink:0;}
+.ig-name{font-size:12px;font-weight:600;color:#fff;}
+.ig-handle{font-size:11px;color:#555;margin-top:1px;}
+.ig-stats{display:flex;gap:14px;margin-bottom:9px;}
+.ig-stat .val{font-size:12px;font-weight:600;color:#fff;}
+.ig-stat .lbl{font-size:10px;color:#444;}
+.ig-bio-text{font-size:11px;color:#ccc;line-height:1.65;margin-bottom:7px;}
+.ig-link{font-size:11px;color:#7EB3FF;}
+.ig-hls{display:flex;gap:9px;margin-top:11px;padding-top:9px;border-top:1px solid rgba(255,255,255,.05);}
+.ig-hl{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;}
+.ig-hl-ring{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(244,180,0,.4);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.ig-hl-lbl{font-size:8.5px;color:#444;text-align:center;max-width:42px;line-height:1.3;}
+
+/* KPI TABLE */
+.kpi-table{border:1px solid var(--border);border-radius:12px;overflow:hidden;width:100%;}
+.kpi-head{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:#0A0A0A;border-bottom:1px solid rgba(244,180,0,.15);}
+.kpi-head>div{padding:9px 13px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--white3);}
+.kpi-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--border);}
+.kpi-row:last-child{border-bottom:none;}
+.kpi-row:hover{background:rgba(255,255,255,.02);}
+.kpi-row>div{padding:9px 13px;font-size:11px;color:var(--white3);border-left:1px solid var(--border);line-height:1.5;}
+.kpi-row>div:first-child{border-left:none;font-size:11px;font-weight:500;color:var(--white);}
+.kpi-row>div:last-child{color:var(--yellow);font-weight:600;}
+
+/* CP */
+.cp-item{display:flex;gap:11px;padding:9px 13px;background:var(--black2);border:1px solid var(--border);border-radius:9px;align-items:flex-start;}
+.cp-date{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:var(--yellow);min-width:32px;flex-shrink:0;}
+.cp-title{font-size:11px;font-weight:600;color:var(--white);margin-bottom:1px;}
+.cp-desc{font-size:10px;color:var(--white3);line-height:1.4;}
+
+/* HL ITEM */
+.hl-item{background:var(--black3);border:1px solid var(--border);border-radius:9px;padding:7px 10px;display:flex;align-items:center;gap:8px;}
+.hl-num{font-size:11px;font-weight:600;color:var(--yellow);min-width:14px;}
+.hl-name{font-size:11px;color:var(--white);}
+
+/* NS */
+.ns-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s;}
+.ns-card:hover{border-color:rgba(244,180,0,.25);}
+.ns-num{width:24px;height:24px;border-radius:50%;background:var(--yellow);color:var(--black);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.ns-title{font-size:12px;font-weight:600;color:var(--white);margin-bottom:3px;}
+.ns-desc{font-size:11px;color:var(--white3);line-height:1.5;}
+
+/* CC */
+.cc-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 20px;min-width:150px;}
+.cc-role{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);margin-bottom:4px;}
+.cc-val{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--white);}
+
+/* OPT BADGE */
+.opt-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:var(--yellow-dim);border:1px solid var(--yellow-border);color:var(--yellow);margin-bottom:5px;}
+
+/* COVER */
+.cover-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 50%,rgba(244,180,0,.07) 0%,transparent 65%);}
+.cover-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:800;line-height:.92;letter-spacing:-1.5px;color:var(--white);margin-bottom:14px;}
+.cover-title em{color:var(--yellow);font-style:normal;}
+.cover-sub{font-size:13px;color:var(--white3);line-height:1.75;max-width:440px;margin-bottom:22px;}
+.cover-foot{margin-top:24px;font-size:10px;color:rgba(255,255,255,.15);letter-spacing:.1em;border-top:1px solid rgba(255,255,255,.06);padding-top:13px;}
+.cover-lines{position:absolute;right:0;top:0;bottom:0;width:35%;overflow:hidden;opacity:.12;}
+.cover-lines svg{width:100%;height:100%;}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav class="nav">
+  <div class="nav-brand">
+    <svg viewBox="260 260 490 420" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:20px;flex-shrink:0;">
+      <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+      <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+      <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+    </svg>
+    <span class="nav-wordmark">CUSTOMPEDIA</span>
+  </div>
+  <div class="nav-div"></div>
+  <span class="nav-doc">Social Media Execution Strategy — Naraya Nastra Production</span>
+  <div class="nav-spacer"></div>
+  <span class="slide-counter"><span id="curSlide">1</span> / <span id="totSlide"></span></span>
+</nav>
+<div class="dots" id="dots"></div>
+<div class="hint" id="hint">Scroll ↓</div>
+
+<div class="deck" id="deck">
+
+<!-- S1 COVER -->
+<section class="slide" id="s1" style="background:var(--black);">
+  <div class="cover-bg"></div>
+  <div class="cover-lines">
+    <svg viewBox="0 0 300 600" preserveAspectRatio="xMidYMid slice">
+      <defs><pattern id="lines" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><line x1="18" y1="0" x2="0" y2="18" stroke="#F4B400" stroke-width="1"/></pattern></defs>
+      <rect width="300" height="600" fill="url(#lines)"/>
+    </svg>
+  </div>
+  <div class="inner">
+    <div class="eyebrow reveal">May 2026 · Confidential</div>
+    <div class="cover-title reveal d1">Social Media<br>Execution <em>Strategy</em></div>
+    <p class="cover-sub reveal d2">Prepared exclusively for Naraya Nastra Production — a 3-month roadmap to build a stronger, more trusted digital presence as Semarang's premier event production partner.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;" class="reveal d3">
+      <div class="pill y">Instagram Only</div>
+      <div class="pill y">June – August 2026</div>
+      <div class="pill y">Essentials Package</div>
+    </div>
+    <div class="cover-foot reveal d4">Strategy by CUSTOMPEDIA · hello@custompedia.agency · @custompedia · Strictly Confidential</div>
+  </div>
+  <div class="slide-num">01 / 12</div>
+</section>
+
+<!-- S2 TEAM -->
+<section class="slide" id="s2">
+  <div class="accent"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">01 · Your Team</div>
+    <h2 class="slide-title reveal d1">Meet Your Team</h2>
+    <p class="slide-sub reveal d2">A dedicated team built specifically for Naraya — each person owns a clear function, so nothing gets dropped and every piece of content reflects the brand accurately.</p>
+    <div class="grid-4 reveal d3">
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--yellow);">R</div>
+        <div class="team-name">Rara</div>
+        <div class="team-role">Managing Director</div>
+        <div class="team-desc">Oversees the entire strategy and ensures every deliverable aligns with Naraya's business goals.</div>
+        <div class="team-badge">🎯 Strategy Lead</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#5A8FCC;">P</div>
+        <div class="team-name">Putri</div>
+        <div class="team-role">Strategist</div>
+        <div class="team-desc">Develops and refines the content strategy, audience targeting, and monthly execution plans.</div>
+        <div class="team-badge">📊 Planning & Research</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#3A7A5A;">D</div>
+        <div class="team-name">Diki</div>
+        <div class="team-role">Creative Director</div>
+        <div class="team-desc">Directs all visual output — ensuring every post, reel, and feed design matches Naraya's premium brand identity.</div>
+        <div class="team-badge">🎨 Visual & Creative</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#7A4A8A;">I</div>
+        <div class="team-name">Irza</div>
+        <div class="team-role">Social Media Specialist</div>
+        <div class="team-desc">Manages posting schedule, monitors performance, and ensures every content goes live on time per the content plan.</div>
+        <div class="team-badge">📱 Posting & Monitoring</div>
+      </div>
+    </div>
+    <div class="note note-y reveal d4" style="margin-top:14px;"><strong>How we work:</strong> All communication runs through a dedicated WA Group. Content approval window is 48 hours per piece — Wahyu's fast response time (1–2 hours) means we can move quickly together.</div>
+  </div>
+  <div class="slide-num">02 / 12</div>
+</section>
+
+<!-- S3 WHERE WE STARTED -->
+<section class="slide" id="s3">
+  <div class="accent"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">02 · Point of Departure</div>
+    <h2 class="slide-title reveal d1">Where We Started</h2>
+    <p class="slide-sub reveal d2">Before building the strategy, we ran a full audit of Naraya's Instagram. Here's what we found — and where the biggest opportunities are.</p>
+    <div class="grid-4 reveal d3" style="margin-bottom:14px;">
+      <div class="stat-box"><div class="stat-val">2.606</div><div class="stat-label">Current followers</div></div>
+      <div class="stat-box"><div class="stat-val">0.8%</div><div class="stat-label">Engagement rate<br><span style="font-size:10px;opacity:.6;">B2B avg: 0.5–1.5%</span></div></div>
+      <div class="stat-box"><div class="stat-val">120</div><div class="stat-label">Total posts<br><span style="font-size:10px;opacity:.6;">last post: Feb 2026</span></div></div>
+      <div class="stat-box"><div class="stat-val" style="color:#2A9D5C;">High</div><div class="stat-label">Growth<br>opportunity</div></div>
+    </div>
+    <div class="grid-2 reveal d4">
+      <div class="card">
+        <div class="card-top" style="background:var(--green);"></div>
+        <div class="card-label" style="color:var(--green);">What's Already Working</div>
+        <ul>
+          <li>Behind-the-scene content consistently gets the highest impressions</li>
+          <li>Concert event content (Capytal) performed well through student collaboration</li>
+          <li>Existing follower base of 2,600+ is ready to grow with the right content</li>
+          <li>Strong real-world track record that hasn't been fully showcased yet</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-top" style="background:var(--yellow);"></div>
+        <div class="card-label">Where We See Room to Grow</div>
+        <ul>
+          <li>Content composition isn't optimized — no clear pillars or posting rhythm</li>
+          <li>No consistent visual identity across posts</li>
+          <li>Posting stopped 3 months ago — momentum needs rebuilding</li>
+          <li>Bio and profile setup not optimized for SEO or B2B discovery</li>
+          <li>Zero educational content — the most saved format by B2B audiences</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">03 / 12</div>
+</section>
+
+<!-- S4 AUDIENCE -->
+<section class="slide" id="s4">
+  <div class="accent"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">03 · Target Audience</div>
+    <h2 class="slide-title reveal d1">Who We're<br>Talking To</h2>
+    <p class="slide-sub reveal d2">Naraya operates in B2B. Every piece of content is designed to answer the unspoken questions of three key decision-maker segments — who use Instagram to shortlist and verify vendors.</p>
+    <div class="grid-3 reveal d3">
+      <div class="aud-card">
+        <div style="font-size:20px;margin-bottom:7px;">🎪</div>
+        <div class="aud-seg">Segment 01</div>
+        <div class="aud-title">Event Organizer</div>
+        <div class="aud-sep"></div>
+        <ul class="aud-list">
+          <li>Age 19–45 — students & professionals managing events</li>
+          <li>Need: reliable vendor with good track record & fair price</li>
+          <li>Pain point: hard to find vendors who've handled events at scale</li>
+          <li>Convinced by: portfolio, social media presence, price transparency</li>
+        </ul>
+      </div>
+      <div class="aud-card">
+        <div style="font-size:20px;margin-bottom:7px;">🏛️</div>
+        <div class="aud-seg">Segment 02</div>
+        <div class="aud-title">Government & Ministry</div>
+        <div class="aud-sep"></div>
+        <ul class="aud-list">
+          <li>Age 30–50 — decision makers for formal government events</li>
+          <li>Need: vendor experienced in government event environments</li>
+          <li>Pain point: hard to find trusted vendors with government track record</li>
+          <li>Convinced by: proven credentials, referrals, past government projects</li>
+        </ul>
+      </div>
+      <div class="aud-card">
+        <div style="font-size:20px;margin-bottom:7px;">🏢</div>
+        <div class="aud-seg">Segment 03</div>
+        <div class="aud-title">Corporate Operations</div>
+        <div class="aud-sep"></div>
+        <ul class="aud-list">
+          <li>Age 28–45 — managers sourcing vendors for internal events</li>
+          <li>Need: reliable vendor for corporate gathering & internal events</li>
+          <li>Pain point: hard to find a trusted vendor with corporate experience</li>
+          <li>Convinced by: portfolio, track record, pricing fit</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note note-y reveal d4" style="margin-top:13px;"><strong>Key insight:</strong> B2B audiences don't buy from Instagram — they use it to verify. Every post needs to answer one question: <em>"Is Naraya credible enough to trust with our event?"</em></div>
+  </div>
+  <div class="slide-num">04 / 12</div>
+</section>
+
+<!-- S5 3 PHASES -->
+<section class="slide" id="s5">
+  <div class="accent"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">04 · Strategic Approach</div>
+    <h2 class="slide-title reveal d1">3 Months.<br>3 Phases. One Goal.</h2>
+    <p class="slide-sub reveal d2">The strategy is built progressively — establishing identity first, deepening trust, then converting attention into real inquiries.</p>
+    <div class="grid-3 reveal d3" style="margin-bottom:14px;">
+      <div class="app-card" style="border-top:3px solid var(--yellow);">
+        <div class="app-num">01</div>
+        <div class="app-month" style="background:var(--yellow-dim);border:1px solid var(--yellow-border);">
+          <span style="color:var(--yellow);">JUNE 2026</span>
+        </div>
+        <div class="app-title">Brand Positioning & Digital Foundation</div>
+        <div class="app-body">Build a strong, consistent first impression. Introduce Naraya as a professional production partner to the right audience — and make that positioning unmistakable from day one.</div>
+      </div>
+      <div class="app-card" style="border-top:3px solid rgba(244,180,0,.5);">
+        <div class="app-num">02</div>
+        <div class="app-month" style="background:rgba(244,180,0,.07);border:1px solid rgba(244,180,0,.15);">
+          <span style="color:rgba(244,180,0,.7);">JULY 2026</span>
+        </div>
+        <div class="app-title">Engagement & Trust</div>
+        <div class="app-body">Deepen audience trust through storytelling, behind-the-setup content, and real proof of Naraya's technical capability and work ethic.</div>
+      </div>
+      <div class="app-card" style="border-top:3px solid var(--green);">
+        <div class="app-num">03</div>
+        <div class="app-month" style="background:var(--green-bg);border:1px solid var(--green-bdr);">
+          <span style="color:var(--green);">AUGUST 2026</span>
+        </div>
+        <div class="app-title">Drive Conversion</div>
+        <div class="app-body">Convert the trust built over two months into real inquiries. Social proof from prestige clients and project-specific content give the audience everything they need to reach out.</div>
+      </div>
+    </div>
+    <div class="note note-y reveal d4">The audience built in month one is the same audience that will DM Naraya in month three. Consistency is what makes it work.</div>
+  </div>
+  <div class="slide-num">05 / 12</div>
+</section>
+
+<!-- S6 PILLARS -->
+<section class="slide" id="s6">
+  <div class="accent"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">05 · Content Pillars</div>
+    <h2 class="slide-title reveal d1">Content Pillars</h2>
+    <p class="slide-sub reveal d2">Four pillars, each with a specific role in the audience's journey — from discovering Naraya to deciding to reach out.</p>
+    <div class="grid-4 reveal d3" style="margin-bottom:13px;">
+      <div class="pillar-card" style="border-top:3px solid var(--yellow);">
+        <div class="pillar-num" style="color:var(--yellow);">01</div>
+        <div class="pillar-name">Project Showcase</div>
+        <div class="pillar-desc">The story behind each event — scale, setup, execution. Real documentation of Naraya's best work presented with context and pride.</div>
+        <div class="pillar-badge" style="background:var(--yellow-dim);border:1px solid var(--yellow-border);color:var(--yellow);">Builds Credibility</div>
+      </div>
+      <div class="pillar-card" style="border-top:3px solid rgba(244,180,0,.45);">
+        <div class="pillar-num" style="color:rgba(244,180,0,.45);">02</div>
+        <div class="pillar-name">Behind the Setup</div>
+        <div class="pillar-desc">POV of the team working — installation, coordination, technical execution. The content B2B audiences watch to assess how a vendor actually operates.</div>
+        <div class="pillar-badge" style="background:rgba(244,180,0,.07);border:1px solid rgba(244,180,0,.15);color:rgba(244,180,0,.7);">Builds Connection</div>
+      </div>
+      <div class="pillar-card" style="border-top:3px solid var(--green);">
+        <div class="pillar-num" style="color:var(--green);">03</div>
+        <div class="pillar-name">Technical Education</div>
+        <div class="pillar-desc">Content that answers real questions — what to look for in a videotron vendor, how to choose sound systems for different event scales. Saved and shared by B2B audiences.</div>
+        <div class="pillar-badge" style="background:var(--green-bg);border:1px solid var(--green-bdr);color:var(--green);">Builds Authority</div>
+      </div>
+      <div class="pillar-card" style="border-top:3px solid rgba(255,255,255,.2);">
+        <div class="pillar-num" style="color:rgba(255,255,255,.2);">04</div>
+        <div class="pillar-name">Social Proof</div>
+        <div class="pillar-desc">Testimonials and recognition from past clients — government, corporate, EO. Real words from real clients carry more weight than any caption Naraya can write.</div>
+        <div class="pillar-badge" style="background:rgba(255,255,255,.04);border:1px solid var(--border2);color:var(--white3);">Builds Trust</div>
+      </div>
+    </div>
+    <div class="note note-y reveal d4">Pillar composition shifts each month in line with the strategic phase. Breakdown per month is in the following slides.</div>
+  </div>
+  <div class="slide-num">06 / 12</div>
+</section>
+
+<!-- S7 MONTH 1 -->
+<section class="slide" id="s7">
+  <div class="accent" style="background:var(--yellow);"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">06 · Month 1 Execution</div>
+    <div class="mbadge reveal d1" style="background:var(--yellow-dim);border:1px solid var(--yellow-border);">
+      <div class="mbadge-dot" style="background:var(--yellow);"></div>
+      <span class="mbadge-text" style="color:var(--yellow);">June 2026 — Brand Positioning & Digital Foundation</span>
+    </div>
+    <h2 class="slide-title reveal d2">Month 1 —<br>Brand Positioning</h2>
+    <div class="grid-2 reveal d3">
+      <div>
+        <div style="margin-bottom:13px;">
+          <div class="bar-row"><div class="bar-label">Project Showcase</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--yellow);"></div></div><div class="bar-pct" style="color:var(--yellow);">35%</div></div>
+          <div class="bar-row"><div class="bar-label">Behind the Setup</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:rgba(244,180,0,.5);"></div></div><div class="bar-pct" style="color:rgba(244,180,0,.7);">35%</div></div>
+          <div class="bar-row"><div class="bar-label">Technical Education</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--green);"></div></div><div class="bar-pct" style="color:var(--green);">20%</div></div>
+          <div class="bar-row"><div class="bar-label">Social Proof</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:rgba(255,255,255,.3);"></div></div><div class="bar-pct" style="color:var(--white3);">10%</div></div>
+        </div>
+        <div class="note note-y" style="margin-bottom:10px;"><strong>Month 1 priority:</strong> Project Showcase and Behind the Setup dominate — the goal is to immediately demonstrate Naraya's scale and capability to first-time profile visitors.</div>
+        <div class="note note-g">8 Reels + 4 Feed Design + 6 Stories this month. 1 visit take content session included.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="cp-item"><div class="cp-date">Wk 1</div><div><div class="cp-title">Hero Content — Best Event Portfolio</div><div class="cp-desc">Open strong with 2–3 showcase reels of Naraya's most impressive events (Kemenko, Konser Capytal, Polda)</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 2</div><div><div class="cp-title">Behind the Setup Series</div><div class="cp-desc">BTS installation — time-lapse of videotron setup, team coordination on event day</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 3</div><div><div class="cp-title">Our Gear Showcase</div><div class="cp-desc">Feature the gear — LED Videotron, Sound System, Multicam — what makes Naraya's stock stand out</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 4</div><div><div class="cp-title">First Education Content</div><div class="cp-desc">"3 hal yang perlu dicek sebelum sewa videotron" — educational carousel, high save-rate potential</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">07 / 12</div>
+</section>
+
+<!-- S8 IG SETUP -->
+<section class="slide" id="s8">
+  <div class="accent"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">07 · Profile Setup</div>
+    <h2 class="slide-title reveal d1">Instagram Profile Setup</h2>
+    <p class="slide-sub reveal d2">All profile components are locked — one item needs Wahyu's confirmation before going live.</p>
+    <div class="grid-2 reveal d3">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card">
+          <div class="card-top" style="background:var(--yellow);"></div>
+          <div class="card-label">Username & Display Name — 2 Options</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+            <div style="background:var(--black3);border:1px solid var(--border);border-radius:9px;padding:10px 12px;">
+              <div class="opt-badge">Option A — Change Username</div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);margin-bottom:2px;">@naraya.production</div>
+              <div style="font-size:11px;color:var(--white3);margin-bottom:6px;">Name: Naraya Nastra · Semarang</div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="pill g">Clean & premium</span><span class="pill r">Old tags break</span></div>
+            </div>
+            <div style="background:var(--black3);border:1px solid var(--border);border-radius:9px;padding:10px 12px;">
+              <div class="opt-badge">Option B — Keep Username</div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);margin-bottom:2px;">@narayanastraproduction</div>
+              <div style="font-size:11px;color:var(--white3);margin-bottom:6px;">Name: Naraya · Event Production Smg</div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="pill g">Zero risk</span><span class="pill g">SEO-strong name</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top" style="background:var(--yellow);"></div>
+          <div class="card-label">Bio — 148 Characters</div>
+          <div style="font-family:monospace;font-size:12px;line-height:1.8;background:var(--black3);border-radius:9px;padding:10px 12px;margin-top:4px;color:var(--white3);">
+            Production Partner untuk Event Besar & MICE<br>
+            📍 Semarang — Jawa Tengah — Jakarta<br>
+            🎬 Videotron · Sound · Lighting · Streaming · LED<br>
+            ✅ <strong style="color:var(--white);">200+</strong> Event · Instansi · Korporat · EO<br>
+            🔗 Konsultasi & Company Profile ↓
+          </div>
+          <div class="note note-y" style="margin-top:9px;font-size:11px;"><strong>Needs confirmation:</strong> is "200+" accurate? Please verify before we publish.</div>
+        </div>
+        <div class="card">
+          <div class="card-top" style="background:var(--yellow);"></div>
+          <div class="card-label">Link — Linktree</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
+            <div class="hl-item"><span>💬</span><div><div class="hl-name">Chat via WhatsApp</div><div style="font-size:10px;color:var(--white3);">wa.me/6282227392461</div></div></div>
+            <div class="hl-item"><span>📁</span><div><div class="hl-name">Company Profile</div><div style="font-size:10px;color:var(--white3);">Google Drive / PDF</div></div></div>
+            <div class="hl-item"><span>📧</span><div><div class="hl-name">Email</div><div style="font-size:10px;color:var(--white3);">narayanastra.production@gmail.com</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card">
+          <div class="card-top" style="background:var(--yellow);"></div>
+          <div class="card-label">Profile Preview</div>
+          <div class="ig-mock" style="margin-top:6px;">
+            <div class="ig-top">
+              <div class="ig-avatar">N</div>
+              <div><div class="ig-name">Naraya · Event Production Smg</div><div class="ig-handle">@narayanastraproduction</div></div>
+            </div>
+            <div class="ig-stats">
+              <div class="ig-stat"><div class="val">120</div><div class="lbl">posts</div></div>
+              <div class="ig-stat"><div class="val">2.606</div><div class="lbl">followers</div></div>
+              <div class="ig-stat"><div class="val">706</div><div class="lbl">following</div></div>
+            </div>
+            <div class="ig-bio-text">Production Partner untuk Event Besar & MICE<br>📍 Semarang — Jawa Tengah — Jakarta<br>🎬 Videotron · Sound · Lighting · Streaming · LED<br>✅ 200+ Event · Instansi · Korporat · EO<br>🔗 Konsultasi & Company Profile ↓</div>
+            <div class="ig-link">linktr.ee/narayaproduction</div>
+            <div class="ig-hls">
+              <div class="ig-hl"><div class="ig-hl-ring">🎬</div><div class="ig-hl-lbl">Our Work</div></div>
+              <div class="ig-hl"><div class="ig-hl-ring">⚙️</div><div class="ig-hl-lbl">Behind Setup</div></div>
+              <div class="ig-hl"><div class="ig-hl-ring">📡</div><div class="ig-hl-lbl">Our Gear</div></div>
+              <div class="ig-hl"><div class="ig-hl-ring">🏛️</div><div class="ig-hl-lbl">MICE</div></div>
+              <div class="ig-hl"><div class="ig-hl-ring">✅</div><div class="ig-hl-lbl">Trusted By</div></div>
+              <div class="ig-hl"><div class="ig-hl-ring">📞</div><div class="ig-hl-lbl">Contact</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top" style="background:var(--yellow);"></div>
+          <div class="card-label">Highlights — 6 Categories</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+            <div class="hl-item"><span class="hl-num">1</span><span class="hl-name">Our Work</span></div>
+            <div class="hl-item"><span class="hl-num">2</span><span class="hl-name">Behind Setup</span></div>
+            <div class="hl-item"><span class="hl-num">3</span><span class="hl-name">Our Gear</span></div>
+            <div class="hl-item"><span class="hl-num">4</span><span class="hl-name">MICE</span></div>
+            <div class="hl-item"><span class="hl-num">5</span><span class="hl-name">Trusted By</span></div>
+            <div class="hl-item"><span class="hl-num">6</span><span class="hl-name">Contact</span></div>
+          </div>
+          <div class="card-body" style="margin-top:9px;font-size:11px;">Order is intentional — prove capability before directing to contact.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">08 / 12</div>
+</section>
+
+<!-- S9 MONTH 2 -->
+<section class="slide" id="s9">
+  <div class="accent" style="background:rgba(244,180,0,.5);"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">08 · Month 2 Execution</div>
+    <div class="mbadge reveal d1" style="background:rgba(244,180,0,.07);border:1px solid rgba(244,180,0,.15);">
+      <div class="mbadge-dot" style="background:rgba(244,180,0,.6);"></div>
+      <span class="mbadge-text" style="color:rgba(244,180,0,.7);">July 2026 — Engagement & Trust</span>
+    </div>
+    <h2 class="slide-title reveal d2">Month 2 —<br>Engagement & Trust</h2>
+    <div class="grid-2 reveal d3">
+      <div>
+        <div style="margin-bottom:13px;">
+          <div class="bar-row"><div class="bar-label">Project Showcase</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--yellow);"></div></div><div class="bar-pct" style="color:var(--yellow);">30%</div></div>
+          <div class="bar-row"><div class="bar-label">Technical Education</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--green);"></div></div><div class="bar-pct" style="color:var(--green);">30%</div></div>
+          <div class="bar-row"><div class="bar-label">Behind the Setup</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:rgba(244,180,0,.5);"></div></div><div class="bar-pct" style="color:rgba(244,180,0,.7);">20%</div></div>
+          <div class="bar-row"><div class="bar-label">Social Proof</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:rgba(255,255,255,.3);"></div></div><div class="bar-pct" style="color:var(--white3);">20%</div></div>
+        </div>
+        <div class="note note-y" style="margin-bottom:9px;"><strong>Tone shifts this month</strong> — more humanizing. Worker POV, team stories, the people behind Naraya. Client testimonials begin appearing within project content.</div>
+        <div class="note note-g">Technical Education rises to 30% — answers to real questions Naraya's audience is searching for.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="cp-item"><div class="cp-date">Wk 1</div><div><div class="cp-title">Team Storytelling</div><div class="cp-desc">POV of a technician from briefing to event day — humanize the crew, not just the gear</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 2</div><div><div class="cp-title">Education Series — Videotron</div><div class="cp-desc">"Bedanya P2.8 vs P3.9 — mana yang cocok untuk eventmu?" Carousel with high save potential</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 3</div><div><div class="cp-title">MICE Event Showcase</div><div class="cp-desc">Highlight a government/MICE event — Kemenko or Kemenkum — with full setup documentation</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 4</div><div><div class="cp-title">First Client Testimonial</div><div class="cp-desc">Real quote from a client integrated with the actual event photos — credibility without bragging</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">09 / 12</div>
+</section>
+
+<!-- S10 MONTH 3 -->
+<section class="slide" id="s10">
+  <div class="accent" style="background:var(--green);"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">09 · Month 3 Execution</div>
+    <div class="mbadge reveal d1" style="background:var(--green-bg);border:1px solid var(--green-bdr);">
+      <div class="mbadge-dot" style="background:var(--green);"></div>
+      <span class="mbadge-text" style="color:var(--green);">August 2026 — Drive Conversion</span>
+    </div>
+    <h2 class="slide-title reveal d2">Month 3 —<br>Drive Conversion</h2>
+    <div class="grid-2 reveal d3">
+      <div>
+        <div style="margin-bottom:13px;">
+          <div class="bar-row"><div class="bar-label">Project Showcase</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--yellow);"></div></div><div class="bar-pct" style="color:var(--yellow);">35%</div></div>
+          <div class="bar-row"><div class="bar-label">Technical Education</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--green);"></div></div><div class="bar-pct" style="color:var(--green);">30%</div></div>
+          <div class="bar-row"><div class="bar-label">Social Proof</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:rgba(255,255,255,.3);"></div></div><div class="bar-pct" style="color:var(--white3);">20%</div></div>
+          <div class="bar-row"><div class="bar-label">Behind the Setup</div><div class="bar-track"><div class="bar-fill" style="width:15%;background:rgba(244,180,0,.5);"></div></div><div class="bar-pct" style="color:rgba(244,180,0,.7);">15%</div></div>
+        </div>
+        <div class="note note-g" style="margin-bottom:9px;"><strong>Education holds at 30%</strong> — product and service-specific content that gives the audience a clear reason to DM Naraya directly.</div>
+        <div class="note note-y">By month 3, the audience has been following Naraya for 60+ days. They already know the work. Now they need a reason to reach out.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="cp-item"><div class="cp-date">Wk 1</div><div><div class="cp-title">Service Deep-Dive — Videotron</div><div class="cp-desc">"Kenapa videotron Naraya dipilih untuk 200+ event?" — specs, scale, cleanliness, track record</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 2</div><div><div class="cp-title">FAQ Series</div><div class="cp-desc">Answer the 3 most common questions received via DM — turns the audience's hesitation into action</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 3</div><div><div class="cp-title">Large-Scale Event Showcase</div><div class="cp-desc">Naraya's most impressive government or corporate event — show that Naraya handles the biggest stages</div></div></div>
+        <div class="cp-item"><div class="cp-date">Wk 4</div><div><div class="cp-title">Social Proof Month</div><div class="cp-desc">Multiple client testimonials across content formats — the final trust signal before a prospect DMs</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">10 / 12</div>
+</section>
+
+<!-- S11 KPI -->
+<section class="slide" id="s11">
+  <div class="accent"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">10 · Performance</div>
+    <h2 class="slide-title reveal d1">Key Performance<br>Indicators</h2>
+    <p class="slide-sub reveal d2">Targets are set based on Naraya's current account data and B2B industry benchmarks for 2026. Under-10K accounts with consistent content have 2–4× higher engagement potential than larger accounts.</p>
+    <div class="grid-4 reveal d3" style="margin-bottom:14px;">
+      <div class="stat-box"><div class="stat-val">2.606</div><div class="stat-label">Followers now<br><span style="font-size:10px;opacity:.5;">baseline</span></div></div>
+      <div class="stat-box"><div class="stat-val">0.8%</div><div class="stat-label">Engagement rate<br><span style="font-size:10px;opacity:.5;">B2B avg: 0.5–1.5%</span></div></div>
+      <div class="stat-box"><div class="stat-val">3 mo</div><div class="stat-label">Since last post<br><span style="font-size:10px;opacity:.5;">Feb 2026</span></div></div>
+      <div class="stat-box"><div class="stat-val">Large</div><div class="stat-label">Growth<br>opportunity</div></div>
+    </div>
+    <div class="kpi-table reveal d4">
+      <div class="kpi-head">
+        <div>Metric</div>
+        <div>Month 1 — June</div>
+        <div>Month 2 — July</div>
+        <div>Month 3 — August</div>
+      </div>
+      <div class="kpi-row"><div>Follower Growth</div><div>+50–100</div><div>+80–150</div><div>+100–200</div></div>
+      <div class="kpi-row"><div>Engagement Rate</div><div>0.8–1.2%<br><span style="font-size:10px;opacity:.5;">baseline: 0.8%</span></div><div>1.2–1.8%</div><div>1.5–2.5%</div></div>
+      <div class="kpi-row"><div>Avg. Reels Views</div><div>500–1,500<br><span style="font-size:10px;opacity:.5;">establish baseline</span></div><div>1,000–2,500</div><div>1,500–3,500</div></div>
+      <div class="kpi-row"><div>Avg. Reach per Post</div><div>300–600</div><div>500–900</div><div>700–1,200</div></div>
+      <div class="kpi-row"><div>Save Rate (Education)</div><div>≥ 2% of reach</div><div>≥ 3% of reach</div><div>≥ 4% of reach</div></div>
+      <div class="kpi-row"><div>Organic DM Inquiries</div><div>0–2</div><div>2–5</div><div>5–10</div></div>
+      <div class="kpi-row"><div>Linktree Link Clicks</div><div>Baseline set</div><div>+20% vs June</div><div>+20% vs July</div></div>
+    </div>
+    <div class="note note-y reveal d5" style="margin-top:11px;">A performance report is delivered at the end of each month — covering data, top-performing content, and recommendations for the month ahead.</div>
+  </div>
+  <div class="slide-num">11 / 12</div>
+</section>
+
+<!-- S12 CLOSING -->
+<section class="slide" id="s12" style="background:var(--black2);">
+  <div class="cover-bg"></div>
+  <div class="cover-lines" style="opacity:.07;"></div>
+  <div class="accent"></div>
+  <div class="inner">
+    <div style="text-align:center;max-width:680px;margin:0 auto;">
+      <div style="display:inline-block;background:var(--yellow-dim);border:1px solid var(--yellow-border);color:var(--yellow);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:18px;" class="reveal">Naraya × Custompedia · June – August 2026</div>
+      <div class="cover-title reveal d1" style="font-size:clamp(30px,4.5vw,56px);">Let's Build<br>Something <em>Bigger.</em></div>
+      <p style="font-size:14px;color:var(--white3);max-width:460px;margin:0 auto 28px;line-height:1.8;" class="reveal d2">The strategy is ready. The profile is set. All that's left is to start — and make sure Naraya's digital presence finally reflects the quality of work you've been doing since 2020.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:24px;text-align:left;" class="reveal d3">
+        <div class="ns-card"><div class="ns-num">1</div><div><div class="ns-title">Choose Username Option</div><div class="ns-desc">Confirm Option A or B so profile setup can be executed immediately.</div></div></div>
+        <div class="ns-card"><div class="ns-num">2</div><div><div class="ns-title">Confirm "200+" Figure</div><div class="ns-desc">Validate the event count in the bio before it goes public.</div></div></div>
+        <div class="ns-card"><div class="ns-num">3</div><div><div class="ns-title">Grant Instagram Access</div><div class="ns-desc">Via Meta Business Suite so Custompedia can manage posting.</div></div></div>
+        <div class="ns-card"><div class="ns-num">4</div><div><div class="ns-title">Prepare Visual Assets</div><div class="ns-desc">Photos & videos from Kemenko, Kemenkum, Polda, and concerts.</div></div></div>
+        <div class="ns-card"><div class="ns-num">5</div><div><div class="ns-title">Set Up Linktree</div><div class="ns-desc">Create account, add 3 links, place in bio.</div></div></div>
+        <div class="ns-card"><div class="ns-num">6</div><div><div class="ns-title">Kick-off Content Plan</div><div class="ns-desc">Custompedia sends Month 1 plan for review and approval.</div></div></div>
+      </div>
+      <div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;" class="reveal d4">
+        <div class="cc-card"><div class="cc-role">Social Media Specialist</div><div class="cc-val">Irza</div></div>
+        <div class="cc-card"><div class="cc-role">Email</div><div class="cc-val">hello@custompedia.agency</div></div>
+        <div class="cc-card"><div class="cc-role">Instagram</div><div class="cc-val">@custompedia</div></div>
+      </div>
+      <div style="padding-top:14px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;" class="reveal d5">
+        <svg viewBox="260 260 490 420" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:15px;">
+          <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+          <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+          <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+        </svg>
+        <span style="font-size:12px;font-weight:600;color:var(--white3);">CUSTOMPEDIA</span>
+        <span style="font-size:10px;color:rgba(255,255,255,.18);">· Social Media Execution Strategy — Naraya Nastra Production · Confidential · © 2026</span>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">12 / 12</div>
+</section>
+
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('dots');
+const progressEl=document.getElementById('progress');
+const hintEl=document.getElementById('hint');
+const curEl=document.getElementById('curSlide');
+const totEl=document.getElementById('totSlide');
+totEl.textContent=slides.length;
+slides.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.title='Slide '+(i+1);
+  if(i===0)b.classList.add('active');
+  b.addEventListener('click',()=>go(i));
+  dotsEl.appendChild(b);
+});
+function go(i){slides[i].scrollIntoView({behavior:'smooth'});}
+let cur=0;
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.intersectionRatio>.5){
+      const i=Array.from(slides).indexOf(e.target);
+      cur=i;
+      dotsEl.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('active',j===i));
+      curEl.textContent=i+1;
+      progressEl.style.width=((i+1)/slides.length*100)+'%';
+      if(i>0)hintEl.style.opacity='0';
+      else hintEl.style.opacity='1';
+      e.target.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+    }
+  });
+},{threshold:.5});
+slides.forEach(s=>obs.observe(s));
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(Math.min(cur+1,slides.length-1));}
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(Math.max(cur-1,0));}
+});
+</script>
+</body>
+</html>
