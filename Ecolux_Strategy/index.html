@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Execution Strategy — Ecolux × Custompedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF6EE;--bg2:#F2EBD9;--bg3:#EAE0CA;
+  --maroon:#7B1618;--maroon2:#9B1F22;
+  --gold:#C9A84C;--gold2:#A8852E;
+  --ink:#1A0A08;--body:#5A4A3A;--muted:#8A7A6A;
+  --border:rgba(123,22,24,.12);--border2:rgba(123,22,24,.22);
+  --white:#FFFFFF;
+  --green:#2A7A5A;--green-bg:rgba(42,122,90,.08);--green-bdr:rgba(42,122,90,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;}
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--maroon),var(--gold));z-index:10000;width:0;transition:width .25s ease;}
+.slide-nav{position:fixed;top:0;left:0;right:0;z-index:500;background:var(--maroon);padding:0 40px;height:60px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 20px rgba(123,22,24,.25);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-wordmark{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:rgba(255,255,255,.95);}
+.nav-divider{width:1px;height:20px;background:rgba(255,255,255,.2);}
+.nav-doc{font-family:'Syne',sans-serif;font-size:12px;color:rgba(255,255,255,.45);font-weight:500;}
+.nav-spacer{flex:1;}
+.slide-counter{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.06em;}
+.slide-counter span{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--maroon);font-family:'Syne',sans-serif;font-size:12px;font-weight:700;padding:8px 18px;border-radius:8px;text-decoration:none;transition:opacity .18s;white-space:nowrap;margin-left:8px;}
+.nav-cta:hover{opacity:.85;}
+.deck{position:fixed;top:60px;left:0;right:0;bottom:0;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+.deck::-webkit-scrollbar{width:0;}
+.dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:600;display:flex;flex-direction:column;gap:8px;}
+.dots button{width:7px;height:7px;border-radius:50%;border:.5px solid rgba(123,22,24,.3);background:transparent;cursor:pointer;padding:0;transition:.25s;}
+.dots button.active{background:var(--maroon);border-color:var(--maroon);transform:scale(1.3);}
+.dots button:hover{border-color:var(--maroon);}
+.hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:600;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);animation:bob 2.4s ease-in-out infinite;transition:opacity .3s;}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,5px)}}
+.slide{min-height:calc(100vh - 60px);scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:44px 7vw;border-bottom:1px solid var(--border);overflow:hidden;background:var(--bg);}
+.slide.dark{background:var(--maroon);}
+.inner{width:100%;max-width:1100px;margin:0 auto;position:relative;z-index:2;}
+.slide-num{position:absolute;right:28px;bottom:20px;font-family:'Syne',sans-serif;font-size:10px;font-weight:600;color:rgba(26,10,8,.12);letter-spacing:.12em;}
+.slide.dark .slide-num{color:rgba(255,255,255,.12);}
+.accent-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--maroon);}
+.slide.dark .accent-bar{background:var(--gold);}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+
+/* TYPE */
+.eyebrow{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--maroon);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+.slide.dark .eyebrow{color:var(--gold);}
+.slide-title{font-family:'Syne',sans-serif;font-size:clamp(24px,3.2vw,42px);font-weight:800;line-height:1.05;letter-spacing:-.8px;color:var(--ink);margin-bottom:10px;}
+.slide.dark .slide-title{color:var(--white);}
+.slide-sub{font-size:13px;color:var(--body);line-height:1.75;max-width:660px;margin-bottom:18px;}
+.slide.dark .slide-sub{color:rgba(255,255,255,.55);}
+
+/* LAYOUT */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+
+/* CARDS */
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(123,22,24,.08);}
+.card-top{position:absolute;top:0;left:0;right:0;height:3px;}
+.card-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;}
+.card-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.card-body{font-size:12px;color:var(--body);line-height:1.65;}
+.card ul{list-style:none;margin-top:8px;}
+.card li{font-size:12px;color:var(--body);padding:4px 0 4px 14px;position:relative;line-height:1.5;border-bottom:1px solid rgba(123,22,24,.05);}
+.card li:last-child{border-bottom:none;}
+.card li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--maroon);}
+
+/* NOTES */
+.note{padding:12px 16px;border-radius:10px;font-size:12px;line-height:1.65;}
+.note-maroon{background:rgba(123,22,24,.06);border:1px solid rgba(123,22,24,.15);color:var(--body);border-left:3px solid var(--maroon);}
+.note-gold{background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.25);color:var(--body);border-left:3px solid var(--gold);}
+.note-green{background:var(--green-bg);border:1px solid var(--green-bdr);color:var(--body);border-left:3px solid var(--green);}
+.note b,.note strong{color:var(--ink);}
+
+/* PILLS */
+.pill{padding:5px 13px;border-radius:20px;font-size:11px;border:1px solid var(--border2);color:var(--body);background:var(--bg2);font-family:'Syne',sans-serif;font-weight:600;}
+
+/* STAT */
+.stat-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;transition:box-shadow .18s;}
+.stat-box:hover{box-shadow:0 6px 20px rgba(123,22,24,.08);}
+.stat-val{font-family:'Syne',sans-serif;font-size:clamp(20px,2.2vw,30px);font-weight:800;margin-bottom:4px;line-height:1;}
+.stat-label{font-size:11px;color:var(--muted);line-height:1.4;}
+
+/* COVER */
+.cover-grain{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+.cover-circle{position:absolute;border-radius:50%;pointer-events:none;}
+.cover-title{font-family:'Syne',sans-serif;font-size:clamp(38px,5.8vw,68px);font-weight:800;line-height:.95;letter-spacing:-2px;color:var(--white);margin-bottom:14px;}
+.cover-title em{color:var(--gold);font-style:normal;}
+.cover-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.75;max-width:460px;margin-bottom:24px;}
+.cover-foot{margin-top:28px;font-family:'Syne',sans-serif;font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.1em;border-top:1px solid rgba(255,255,255,.07);padding-top:14px;}
+
+/* TEAM */
+.team-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center;transition:transform .18s,box-shadow .18s;}
+.team-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(123,22,24,.1);}
+.team-avatar{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--white);margin:0 auto 12px;}
+.team-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.team-role{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--maroon);margin-bottom:10px;}
+.team-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+.team-badge{display:inline-flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:10px;color:var(--body);margin-top:9px;font-family:'Syne',sans-serif;font-weight:600;}
+
+/* AUDIENCE */
+.aud-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+.aud-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(123,22,24,.08);}
+.aud-seg{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--maroon);margin-bottom:5px;letter-spacing:.08em;text-transform:uppercase;}
+.aud-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.aud-sep{height:1px;background:var(--border);margin:8px 0;}
+.aud-list{list-style:none;}
+.aud-list li{font-size:11.5px;color:var(--body);padding:3px 0 3px 13px;position:relative;line-height:1.5;}
+.aud-list li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:var(--maroon);opacity:.45;}
+.aud-tag{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-top:10px;display:inline-block;}
+
+/* APPROACH */
+.app-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+.app-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(123,22,24,.09);}
+.app-num{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--maroon);opacity:.07;line-height:1;margin-bottom:8px;}
+.app-month{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:3px 11px;margin-bottom:8px;}
+.app-month span{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;}
+.app-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.app-body{font-size:12px;color:var(--body);line-height:1.65;}
+
+/* PILLARS */
+.pillar-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+.pillar-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(123,22,24,.1);}
+.pillar-num{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;opacity:.1;line-height:1;margin-bottom:6px;}
+.pillar-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.pillar-desc{font-size:11.5px;color:var(--body);line-height:1.6;}
+.pillar-badge{display:inline-block;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-top:10px;}
+
+/* BAR */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.bar-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ink);min-width:180px;flex-shrink:0;}
+.bar-track{flex:1;height:7px;background:var(--bg3);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;}
+.bar-pct{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;min-width:32px;text-align:right;}
+
+/* CONTENT PLAN */
+.cp-item{display:flex;gap:12px;padding:10px 14px;background:var(--white);border:1px solid var(--border);border-radius:9px;align-items:flex-start;transition:box-shadow .18s;}
+.cp-item:hover{box-shadow:0 4px 12px rgba(123,22,24,.07);}
+.cp-date{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--maroon);min-width:34px;flex-shrink:0;}
+.cp-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.cp-desc{font-size:10.5px;color:var(--muted);line-height:1.4;}
+
+/* MBADGE */
+.mbadge{display:inline-flex;align-items:center;gap:7px;border-radius:20px;padding:5px 14px;margin-bottom:12px;}
+.mbadge-dot{width:6px;height:6px;border-radius:50%;}
+.mbadge-text{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+
+/* IG */
+.ig-preview{background:#0F0F0F;border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,.07);}
+.ig-header{display:flex;align-items:center;gap:13px;margin-bottom:13px;}
+.ig-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--maroon),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:white;flex-shrink:0;}
+.ig-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:white;}
+.ig-handle{font-size:11px;color:#777;margin-top:1px;}
+.ig-bio{font-size:12px;color:#ddd;line-height:1.65;margin-bottom:10px;}
+.ig-link{font-size:11px;color:#7EB3FF;}
+.ig-hls{display:flex;gap:10px;margin-top:13px;overflow-x:auto;padding-bottom:4px;}
+.ig-hl{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}
+.ig-hl-ring{width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(201,168,76,.5);display:flex;align-items:center;justify-content:center;font-size:17px;}
+.ig-hl-label{font-size:9px;color:#777;text-align:center;max-width:52px;line-height:1.3;}
+
+/* PHASE */
+.phase-card{display:flex;gap:14px;padding:13px 16px;background:var(--white);border:1px solid var(--border);border-radius:10px;align-items:flex-start;transition:box-shadow .18s;}
+.phase-card:hover{box-shadow:0 4px 12px rgba(123,22,24,.07);}
+.phase-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--maroon);min-width:58px;flex-shrink:0;line-height:1.4;}
+.phase-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.phase-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* KPI */
+.kpi-table{border:1px solid var(--border);border-radius:12px;overflow:hidden;width:100%;background:var(--white);}
+.kpi-head{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:var(--maroon);}
+.kpi-head>div{padding:10px 14px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+.kpi-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--border);}
+.kpi-row:last-child{border-bottom:none;}
+.kpi-row:hover{background:rgba(123,22,24,.025);}
+.kpi-row>div{padding:10px 14px;font-size:11.5px;}
+.kpi-metric{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ink);}
+.kpi-val{color:var(--body);border-left:1px solid var(--border);line-height:1.5;}
+.kpi-val.hi{color:var(--maroon);font-weight:600;}
+
+/* NEEDS */
+.need-item{display:flex;gap:13px;padding:13px 16px;background:var(--white);border:1px solid var(--border);border-radius:10px;align-items:flex-start;transition:box-shadow .18s;}
+.need-item:hover{box-shadow:0 4px 14px rgba(123,22,24,.08);}
+.need-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.need-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.need-desc{font-size:11.5px;color:var(--body);line-height:1.55;}
+
+/* NS */
+.ns-item{display:flex;gap:13px;padding:12px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;align-items:center;transition:border-color .18s;}
+.ns-item:hover{border-color:rgba(255,255,255,.2);}
+.ns-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--maroon);font-family:'Syne',sans-serif;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ns-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.ns-desc{font-size:11px;color:rgba(255,255,255,.45);line-height:1.3;}
+
+/* CLOSING CONTACTS */
+.cc-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 22px;text-align:center;min-width:160px;}
+.cc-role{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.cc-val{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="dots" id="dots"></div>
+<div class="hint" id="hint">Scroll ↓</div>
+
+<nav class="slide-nav">
+  <a class="nav-logo" href="#">
+    <svg viewBox="260 260 490 420" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:22px;flex-shrink:0;">
+      <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+      <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+      <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+    </svg>
+    <span class="nav-wordmark">CUSTOMPEDIA</span>
+  </a>
+  <div class="nav-divider"></div>
+  <span class="nav-doc">Social Media Execution Strategy · ECOLUX Doors</span>
+  <div class="nav-spacer"></div>
+  <span class="slide-counter"><span id="curSlide">1</span> / <span id="totSlide"></span></span>
+  <a class="nav-cta" href="mailto:hello@custompedia.agency">Get in Touch</a>
+</nav>
+
+<div class="deck" id="deck">
+
+<!-- S1 COVER -->
+<section class="slide dark" id="s1" style="padding:48px 7vw;">
+  <div class="cover-grain"></div>
+  <div class="cover-circle" style="width:520px;height:520px;top:-120px;right:-100px;background:radial-gradient(circle,rgba(201,168,76,.1) 0%,transparent 70%);"></div>
+  <div class="cover-circle" style="width:280px;height:280px;bottom:-60px;left:15%;background:radial-gradient(circle,rgba(255,255,255,.03) 0%,transparent 70%);"></div>
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">Confidential · June – August 2026</div>
+    <div style="margin-bottom:16px;" class="reveal d1">
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:4px;color:var(--gold);text-transform:uppercase;">ECOLUX DOORS</div>
+      <div style="font-size:10px;color:rgba(255,255,255,.3);letter-spacing:1.5px;margin-top:3px;font-family:'Syne',sans-serif;">by PT. Bogowonto Primalaras</div>
+    </div>
+    <div class="cover-title reveal d2">Social Media<br>Execution<br><em>Strategy</em></div>
+    <p class="cover-sub reveal d3">A three-month Instagram strategy built around Ecolux's brand, audience, and business goals — from awareness to conversion.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;" class="reveal d4">
+      <span class="pill" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.55);">3-Month Contract</span>
+      <span class="pill" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.55);">4 Content Pillars</span>
+      <span class="pill" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.55);">Indo Build Tech · July 2026</span>
+      <span class="pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.3);color:var(--gold);">Organic Instagram</span>
+    </div>
+    <div class="cover-foot reveal d5">Confidential — © CUSTOMPEDIA 2026. All rights reserved · Prepared exclusively for ECOLUX Doors</div>
+  </div>
+  <div class="slide-num">01 / 12</div>
+</section>
+
+<!-- S2 MEET YOUR TEAM -->
+<section class="slide" id="s2">
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">01 · Your Team</div>
+    <h2 class="slide-title reveal d1">Meet Your Team</h2>
+    <p class="slide-sub reveal d2">A dedicated team assigned exclusively to Ecolux — each person with a clear role, so you always know who to reach and for what.</p>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;" class="reveal d3">
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--maroon);">R</div>
+        <div class="team-name">Rara</div>
+        <div class="team-role">Managing Director</div>
+        <div class="team-desc">Oversees strategy and ensures all work aligns with Ecolux's business objectives. Your primary point of contact for strategic decisions.</div>
+        <div class="team-badge">📋 Strategy & Decisions</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--maroon2);">P</div>
+        <div class="team-name">Putri</div>
+        <div class="team-role">Strategist</div>
+        <div class="team-desc">Designs content strategy, pillar composition, and ensures every piece of content serves Ecolux's B2B audience effectively.</div>
+        <div class="team-badge">🎯 Planning & Strategy</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--gold2);">D</div>
+        <div class="team-name">Diki</div>
+        <div class="team-role">Creative Director</div>
+        <div class="team-desc">Maintains visual consistency and creative direction across all content — from carousel design to video production briefs.</div>
+        <div class="team-badge">🎨 Visual & Creative</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#5A4A3A;">S</div>
+        <div class="team-name">Syally</div>
+        <div class="team-role">Content Writer</div>
+        <div class="team-desc">Writes all captions, copy, and text overlays with the tone and voice that reflects Ecolux as a luxury, trusted brand.</div>
+        <div class="team-badge">✍️ Copy & Captions</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--green);">G</div>
+        <div class="team-name">Ghula</div>
+        <div class="team-role">Social Media Specialist</div>
+        <div class="team-desc">Manages posting schedule, monitors performance, and ensures every content goes live on time per the agreed content plan.</div>
+        <div class="team-badge">📱 Posting & Monitoring</div>
+      </div>
+    </div>
+    <div class="note note-gold reveal d4" style="margin-top:14px;">All communication is managed through a dedicated WA Group and Custompedia's Client Portal. Content approval window is 48 hours per piece.</div>
+  </div>
+  <div class="slide-num">02 / 12</div>
+</section>
+
+<!-- S3 WHERE WE STARTED -->
+<section class="slide" id="s3">
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">02 · Point of Departure</div>
+    <h2 class="slide-title reveal d1">Where We Started</h2>
+    <p class="slide-sub reveal d2">Before building the strategy, we analyzed Ecolux's Instagram in depth. Here's what we found — and where the biggest opportunities lie.</p>
+    <div class="grid-4 reveal d3" style="margin-bottom:16px;">
+      <div class="stat-box"><div class="stat-val" style="color:var(--maroon);">4,427</div><div class="stat-label">Current followers</div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--maroon);">0.5%</div><div class="stat-label">Engagement rate<br><span style="font-size:10px;color:#bbb;">Industry avg: 1–3%</span></div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--maroon);">798</div><div class="stat-label">Avg. views<br>per content</div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--gold2);">Large</div><div class="stat-label">Growth<br>opportunity</div></div>
+    </div>
+    <div class="grid-2 reveal d4">
+      <div class="card">
+        <div class="card-top" style="background:var(--green);"></div>
+        <div class="card-label" style="color:var(--green);">What's Already Working</div>
+        <ul>
+          <li>Strong visual content consistently reaches 800–1,500 views</li>
+          <li>An existing audience base ready to grow</li>
+          <li>A prestigious portfolio that hasn't been fully showcased yet</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-top" style="background:var(--maroon);"></div>
+        <div class="card-label" style="color:var(--maroon);">Where We See Room to Grow</div>
+        <ul>
+          <li>Content doesn't yet reflect the true scale and quality of Ecolux</li>
+          <li>No educational content — the most sought-after format by B2B audiences</li>
+          <li>Brand storytelling isn't being communicated consistently</li>
+          <li>Content mix isn't optimized toward business objectives</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">03 / 12</div>
+</section>
+
+<!-- S4 WHO WE'RE TALKING TO -->
+<section class="slide" id="s4">
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">03 · Target Audience</div>
+    <h2 class="slide-title reveal d1">Who We're<br>Talking To</h2>
+    <p class="slide-sub reveal d2">Ecolux operates in B2B. Every piece of content we create is designed to answer the unspoken questions of three key decision-maker segments.</p>
+    <div class="grid-3 reveal d3">
+      <div class="aud-card">
+        <div class="card-top" style="background:var(--gold);"></div>
+        <div style="font-size:22px;margin-bottom:8px;">🏗️</div>
+        <div class="aud-seg">Segment 01</div>
+        <div class="aud-title">Architects & Interior Designers</div>
+        <div class="aud-sep"></div>
+        <ul class="aud-list">
+          <li>Need: bespoke design options, premium materials, a partner who understands aesthetics</li>
+          <li>Worry: product won't match specs, delivery delays</li>
+          <li>Convinced by: a strong visual portfolio, certified materials</li>
+        </ul>
+        <div class="aud-tag" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--gold2);">New Project</div>
+      </div>
+      <div class="aud-card">
+        <div class="card-top" style="background:var(--maroon);"></div>
+        <div style="font-size:22px;margin-bottom:8px;">🏢</div>
+        <div class="aud-seg">Segment 02</div>
+        <div class="aud-title">Developers, Hotel Owners & Contractors</div>
+        <div class="aud-sep"></div>
+        <ul class="aud-list">
+          <li>Need: vendor who can handle large scale, on-time, consistently</li>
+          <li>Worry: budget overrun, project delays, penalties from end-clients</li>
+          <li>Convinced by: proven track record, factory capacity, reliability</li>
+        </ul>
+        <div class="aud-tag" style="background:rgba(123,22,24,.08);border:1px solid rgba(123,22,24,.18);color:var(--maroon);">New Project</div>
+      </div>
+      <div class="aud-card">
+        <div class="card-top" style="background:rgba(201,168,76,.5);"></div>
+        <div style="font-size:22px;margin-bottom:8px;">🏨</div>
+        <div class="aud-seg">Segment 03</div>
+        <div class="aud-title">Hotel Operators & Engineers</div>
+        <div class="aud-sep"></div>
+        <ul class="aud-list">
+          <li>Need: high durability, clear warranty, low-maintenance long-term</li>
+          <li>Worry: guest complaints, operational reputation, unexpected repair costs</li>
+          <li>Convinced by: written warranty, Fire Door & STC certifications, after-sales</li>
+        </ul>
+        <div class="aud-tag" style="background:var(--green-bg);border:1px solid var(--green-bdr);color:var(--green);">New & Renovation</div>
+      </div>
+    </div>
+    <div class="note note-maroon reveal d4" style="margin-top:14px;"><strong>Key insight:</strong> B2B audiences don't purchase from Instagram. They use it to shortlist — to verify whether a vendor is credible enough to recommend to their client or employer. Every Ecolux post needs to answer that question.</div>
+  </div>
+  <div class="slide-num">04 / 12</div>
+</section>
+
+<!-- S5 3 MONTHS 3 PHASES -->
+<section class="slide" id="s5">
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">04 · Strategic Approach</div>
+    <h2 class="slide-title reveal d1">3 Months.<br>3 Phases. One Goal.</h2>
+    <p class="slide-sub reveal d2">The strategy is built progressively — establishing awareness first, deepening trust, then driving conversion organically.</p>
+    <div class="grid-3 reveal d3" style="margin-bottom:14px;">
+      <div class="app-card" style="border-top:3px solid var(--gold);">
+        <div class="app-num">01</div>
+        <div class="app-month" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);">
+          <span style="color:var(--gold2);">JUNE 2026</span>
+        </div>
+        <div class="app-title">Awareness & Identity</div>
+        <div class="app-body">Build a strong, consistent first impression. Introduce Ecolux as a Luxury Bespoke Wood Doors Specialist to the right audience — and make that positioning unmistakable from day one.</div>
+      </div>
+      <div class="app-card" style="border-top:3px solid var(--maroon);">
+        <div class="app-num">02</div>
+        <div class="app-month" style="background:rgba(123,22,24,.07);border:1px solid rgba(123,22,24,.18);">
+          <span style="color:var(--maroon);">JULY 2026</span>
+        </div>
+        <div class="app-title">Engagement & Trust</div>
+        <div class="app-body">Deepen audience trust through storytelling and transparency. Leverage the Indo Build Tech 8–12 July momentum as an organic reach booster and lead attractor.</div>
+      </div>
+      <div class="app-card" style="border-top:3px solid var(--green);">
+        <div class="app-num">03</div>
+        <div class="app-month" style="background:var(--green-bg);border:1px solid var(--green-bdr);">
+          <span style="color:var(--green);">AUGUST 2026</span>
+        </div>
+        <div class="app-title">Drive Conversion</div>
+        <div class="app-body">Convert the trust built over two months into real inquiries. Product-specific content and social proof from prestigious clients give the audience everything they need to reach out.</div>
+      </div>
+    </div>
+    <div class="note note-gold reveal d4">All three phases are interconnected — the audience built in month one is the same audience that will send an inquiry in month three. Consistency is what makes it work.</div>
+  </div>
+  <div class="slide-num">05 / 12</div>
+</section>
+
+<!-- S6 CONTENT PILLARS -->
+<section class="slide" id="s6">
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">05 · Content Pillars</div>
+    <h2 class="slide-title reveal d1">Content Pillars</h2>
+    <p class="slide-sub reveal d2">Four pillars, each with a specific role in the audience's journey — from discovering Ecolux to deciding to reach out.</p>
+    <div class="grid-4 reveal d3" style="margin-bottom:14px;">
+      <div class="pillar-card" style="border-top:3px solid var(--gold);">
+        <div class="pillar-num" style="color:var(--gold);">01</div>
+        <div class="pillar-name">Portfolio &<br>Project Highlight</div>
+        <div class="pillar-desc">The story behind each project — why those materials, how it came together. Client reviews integrated naturally as social proof.</div>
+        <div class="pillar-badge" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--gold2);">Builds Credibility</div>
+      </div>
+      <div class="pillar-card" style="border-top:3px solid var(--maroon);">
+        <div class="pillar-num" style="color:var(--maroon);">02</div>
+        <div class="pillar-name">Company<br>Highlight</div>
+        <div class="pillar-desc">Who Ecolux is beyond the numbers — company values, achievements, and the human story behind every door produced.</div>
+        <div class="pillar-badge" style="background:rgba(123,22,24,.08);border:1px solid rgba(123,22,24,.18);color:var(--maroon);">Builds Connection</div>
+      </div>
+      <div class="pillar-card" style="border-top:3px solid var(--green);">
+        <div class="pillar-num" style="color:var(--green);">03</div>
+        <div class="pillar-name">Education</div>
+        <div class="pillar-desc">Content that answers technical questions — door specifications, material guides, certification explainers. The content B2B audiences save and act on.</div>
+        <div class="pillar-badge" style="background:var(--green-bg);border:1px solid var(--green-bdr);color:var(--green);">Builds Authority</div>
+      </div>
+      <div class="pillar-card" style="border-top:3px solid var(--muted);">
+        <div class="pillar-num" style="color:var(--muted);">04</div>
+        <div class="pillar-name">Awareness<br>& Events</div>
+        <div class="pillar-desc">Active when there's a real moment — exhibitions, milestones, or major achievements. Drives organic reach to new audiences.</div>
+        <div class="pillar-badge" style="background:var(--bg2);border:1px solid var(--border);color:var(--muted);">Situational</div>
+      </div>
+    </div>
+    <div class="note note-maroon reveal d4">Pillar composition shifts each month in line with the strategic phase — not a fixed ratio. Breakdown per month is in the following slides.</div>
+  </div>
+  <div class="slide-num">06 / 12</div>
+</section>
+
+<!-- S7 MONTH 1 -->
+<section class="slide" id="s7">
+  <div class="accent-bar" style="background:var(--gold);"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">06 · Month 1 Execution</div>
+    <div class="mbadge reveal d1" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.28);">
+      <div class="mbadge-dot" style="background:var(--gold);"></div>
+      <span class="mbadge-text" style="color:var(--gold2);">June 2026 — Awareness & Identity</span>
+    </div>
+    <h2 class="slide-title reveal d2">Month 1 —<br>Awareness & Identity</h2>
+    <div class="grid-2 reveal d3">
+      <div>
+        <div style="margin-bottom:14px;">
+          <div class="bar-row"><div class="bar-label">Portfolio & Project Highlight</div><div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--gold);"></div></div><div class="bar-pct" style="color:var(--gold2);">33%</div></div>
+          <div class="bar-row"><div class="bar-label">Company Highlight</div><div class="bar-track"><div class="bar-fill" style="width:27%;background:var(--maroon);"></div></div><div class="bar-pct" style="color:var(--maroon);">27%</div></div>
+          <div class="bar-row"><div class="bar-label">Education</div><div class="bar-track"><div class="bar-fill" style="width:27%;background:var(--green);"></div></div><div class="bar-pct" style="color:var(--green);">27%</div></div>
+          <div class="bar-row"><div class="bar-label">Awareness & Events</div><div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--muted);"></div></div><div class="bar-pct" style="color:var(--muted);">13%</div></div>
+        </div>
+        <div class="note note-gold" style="margin-bottom:10px;"><strong>15 pieces of content</strong> — 4 Reels · 10 Carousel/Feed · 6 Story Mirroring</div>
+        <div class="note note-maroon">Month one is about laying the foundation. Anyone who discovers Ecolux's account should immediately understand who they are and why they're worth trusting.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">June Content Preview</div>
+        <div class="cp-item"><div class="cp-date">4/6</div><div><div class="cp-title">Company Highlight Reels — "Crafted Through Decades"</div><div class="cp-desc">28 years · 25K doors/month · the journey from Semarang to global</div></div></div>
+        <div class="cp-item"><div class="cp-date">10/6</div><div><div class="cp-title">Company Highlight Carousel — "Meet The Maker"</div><div class="cp-desc">The craftsmen behind 25,000 doors every month</div></div></div>
+        <div class="cp-item"><div class="cp-date">16/6</div><div><div class="cp-title">Company Highlight Carousel — "Ecolux by The Numbers"</div><div class="cp-desc">28 years · 25K/month · 6 countries · 7 international certifications</div></div></div>
+        <div class="cp-item" style="border-color:rgba(42,122,90,.22);"><div class="cp-date" style="color:var(--green);">20/6</div><div><div class="cp-title">Education Reels — "Door Specification Checklist"</div><div class="cp-desc">A complete spec guide for hospitality project doors</div></div></div>
+        <div class="cp-item"><div class="cp-date">22/6</div><div><div class="cp-title">Company Highlight Carousel — "Factory Tour"</div><div class="cp-desc">25,000 doors a month. This is where they're made.</div></div></div>
+        <div class="cp-item" style="border-color:rgba(42,122,90,.22);"><div class="cp-date" style="color:var(--green);">26/6</div><div><div class="cp-title">Education Carousel — "FSC & SVLK"</div><div class="cp-desc">Luxury without guilt. The wood in your door has a story.</div></div></div>
+        <div class="cp-item" style="border-color:rgba(42,122,90,.22);"><div class="cp-date" style="color:var(--green);">30/6</div><div><div class="cp-title">Education Reels — "Product Feature: Solid Engineered Door"</div><div class="cp-desc">This is what premium looks like.</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">07 / 12</div>
+</section>
+
+<!-- S8 IG SETUP -->
+<section class="slide" id="s8">
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">07 · Instagram Setup</div>
+    <h2 class="slide-title reveal d1">Instagram Setup</h2>
+    <p class="slide-sub reveal d2">We've prepared the account to reflect Ecolux's positioning as a luxury brand from the moment anyone visits the profile. Please review and confirm.</p>
+    <div class="grid-2 reveal d3">
+      <div class="ig-preview">
+        <div class="ig-header">
+          <div class="ig-avatar">E</div>
+          <div>
+            <div class="ig-name">Ecolux | Luxury Bespoke Wood Doors</div>
+            <div class="ig-handle">@ecoluxdoors</div>
+          </div>
+        </div>
+        <div class="ig-bio">Bespoke Wood Doors for Hospitality & Commercial 🚪<br>Your Reliable Project Partner<br>Proudly Made in 🇮🇩<br>FSC · ISO 9001 · Est. 1997<br>↓ Start Your Project</div>
+        <div class="ig-link">🔗 linktr.ee/ecoluxdoors</div>
+        <div class="ig-hls">
+          <div class="ig-hl"><div class="ig-hl-ring">🏗️</div><div class="ig-hl-label">Our Projects</div></div>
+          <div class="ig-hl"><div class="ig-hl-ring">🚪</div><div class="ig-hl-label">Our Doors</div></div>
+          <div class="ig-hl"><div class="ig-hl-ring">🏭</div><div class="ig-hl-label">Our Factory</div></div>
+          <div class="ig-hl"><div class="ig-hl-ring">🏆</div><div class="ig-hl-label">Exhibitions</div></div>
+          <div class="ig-hl"><div class="ig-hl-ring">📋</div><div class="ig-hl-label">Certifications</div></div>
+          <div class="ig-hl"><div class="ig-hl-ring">📦</div><div class="ig-hl-label">How to Order</div></div>
+          <div class="ig-hl"><div class="ig-hl-ring">❓</div><div class="ig-hl-label">FAQs</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card"><div class="card-top" style="background:var(--gold);"></div><div class="card-label" style="color:var(--gold2);">Name Field</div><div class="card-title">Ecolux | Luxury Bespoke Wood Doors</div><div class="card-body">The keyword "Luxury Bespoke Wood Doors" makes Ecolux discoverable to architects and procurement teams actively searching for premium door vendors on Instagram.</div></div>
+        <div class="card"><div class="card-top" style="background:var(--gold);"></div><div class="card-label" style="color:var(--gold2);">Bio — 146 Characters</div><div class="card-body" style="line-height:1.8;">"Bespoke Wood Doors for Hospitality & Commercial 🚪 / Your Reliable Project Partner / Proudly Made in 🇮🇩 / FSC · ISO 9001 · Est. 1997 / ↓ Start Your Project"</div></div>
+        <div class="card"><div class="card-top" style="background:var(--gold);"></div><div class="card-label" style="color:var(--gold2);">Highlights — 7 Categories</div><div class="card-body">Our Projects · Our Doors · Our Factory · Exhibitions · Certifications · How to Order · FAQs<br><br><span style="font-size:11px;color:var(--muted);">All events and exhibitions — including Indo Build Tech in July — go into the Exhibitions highlight.</span></div></div>
+        <div class="note note-gold">Please confirm so we can complete the setup before the first content goes live.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">08 / 12</div>
+</section>
+
+<!-- S9 MONTH 2 -->
+<section class="slide" id="s9">
+  <div class="accent-bar" style="background:var(--maroon);"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">08 · Month 2 Execution</div>
+    <div class="mbadge reveal d1" style="background:rgba(123,22,24,.08);border:1px solid rgba(123,22,24,.2);">
+      <div class="mbadge-dot" style="background:var(--maroon);"></div>
+      <span class="mbadge-text" style="color:var(--maroon);">July 2026 — Engagement & Trust</span>
+    </div>
+    <h2 class="slide-title reveal d2">Month 2 —<br>Engagement & Trust</h2>
+    <div class="grid-2 reveal d3">
+      <div>
+        <div style="margin-bottom:14px;">
+          <div class="bar-row"><div class="bar-label">Portfolio & Project Highlight</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--gold);"></div></div><div class="bar-pct" style="color:var(--gold2);">30%</div></div>
+          <div class="bar-row"><div class="bar-label">Company Highlight</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--maroon);"></div></div><div class="bar-pct" style="color:var(--maroon);">25%</div></div>
+          <div class="bar-row"><div class="bar-label">Education</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--green);"></div></div><div class="bar-pct" style="color:var(--green);">20%</div></div>
+          <div class="bar-row"><div class="bar-label">Awareness — Indo Build Tech</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--muted);"></div></div><div class="bar-pct" style="color:var(--muted);">25%</div></div>
+        </div>
+        <div class="note note-maroon" style="margin-bottom:10px;"><strong>Company Highlight shifts in tone this month</strong> — more humanizing. Worker POV, behind-the-process stories, the people behind Ecolux. Client reviews begin appearing within portfolio content.</div>
+        <div class="note note-gold">Awareness rises to 25% this month due to Indo Build Tech. This is not a permanent shift.</div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">🏛️ Indo Build Tech Strategy — 8–12 July</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="phase-card"><div class="phase-label">Phase 1<br>Week 1</div><div><div class="phase-title">Teaser</div><div class="phase-desc">Build anticipation for Ecolux's presence at the exhibition. Strong hook, tease the key products on display.</div></div></div>
+          <div class="phase-card"><div class="phase-label">Phase 2<br>D-3 to D-1</div><div><div class="phase-title">Push</div><div class="phase-desc">Drive the audience to visit. Specific booth location CTA. Story countdown to create urgency.</div></div></div>
+          <div class="phase-card"><div class="phase-label">Phase 3<br>8–12 July+</div><div><div class="phase-title">Live & Recap</div><div class="phase-desc">Live coverage from the booth, products on display, highlights. Post-event recap to sustain momentum.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">09 / 12</div>
+</section>
+
+<!-- S10 MONTH 3 -->
+<section class="slide" id="s10">
+  <div class="accent-bar" style="background:var(--green);"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">09 · Month 3 Execution</div>
+    <div class="mbadge reveal d1" style="background:var(--green-bg);border:1px solid var(--green-bdr);">
+      <div class="mbadge-dot" style="background:var(--green);"></div>
+      <span class="mbadge-text" style="color:var(--green);">August 2026 — Drive Conversion</span>
+    </div>
+    <h2 class="slide-title reveal d2">Month 3 —<br>Drive Conversion</h2>
+    <div class="grid-2 reveal d3">
+      <div>
+        <div style="margin-bottom:14px;">
+          <div class="bar-row"><div class="bar-label">Portfolio & Project Highlight</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--gold);"></div></div><div class="bar-pct" style="color:var(--gold2);">35%</div></div>
+          <div class="bar-row"><div class="bar-label">Education</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--green);"></div></div><div class="bar-pct" style="color:var(--green);">30%</div></div>
+          <div class="bar-row"><div class="bar-label">Company Highlight</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--maroon);"></div></div><div class="bar-pct" style="color:var(--maroon);">20%</div></div>
+          <div class="bar-row"><div class="bar-label">Awareness & Events</div><div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--muted);"></div></div><div class="bar-pct" style="color:var(--muted);">15%</div></div>
+        </div>
+        <div class="note note-green" style="margin-bottom:10px;"><strong>Education rises to 30%</strong> this month — product-specific content that answers technical questions and gives the audience a clear reason to DM Ecolux.</div>
+        <div class="card"><div class="card-top" style="background:var(--green);"></div><div class="card-label" style="color:var(--green);">Product Education Series</div><ul><li>Fire-Rated Door (FR30/FR60) — for hotels & public facilities</li><li>Acoustic Door (STC27/STC32) — ballrooms & meeting rooms</li><li>FAQ Series — answers to questions received via DM</li><li>Bespoke process — from client brief to finished door</li></ul></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card"><div class="card-top" style="background:var(--gold);"></div><div class="card-label" style="color:var(--gold2);">Testimonials — Priority This Month</div><ul><li>Social proof from prestigious clients takes center stage in the conversion month</li><li>Format: client quote integrated with real installed project photos</li><li>Priority: Andaz Bali, Four Seasons Ubud, Hyatt, Alila SCBD</li></ul></div>
+        <div class="card"><div class="card-top" style="background:var(--maroon);"></div><div class="card-label" style="color:var(--maroon);">Post-IBT Momentum</div><ul><li>Follow-up content from Indo Build Tech meetings and leads</li><li>Sustain relevance and engagement after the exhibition</li></ul></div>
+        <div class="note note-gold">By the end of August, the audience that has been following Ecolux for three months will have everything they need to reach out — with confidence.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">10 / 12</div>
+</section>
+
+<!-- S11 KPI -->
+<section class="slide" id="s11">
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">10 · Performance</div>
+    <h2 class="slide-title reveal d1">Key Performance<br>Indicators</h2>
+    <p class="slide-sub reveal d2">Targets are set based on Ecolux's current account data and the nature of B2B audiences — consistent, sustainable organic growth over three months.</p>
+    <div class="kpi-table reveal d3">
+      <div class="kpi-head">
+        <div>Metric</div>
+        <div>June — Awareness</div>
+        <div>July — Engagement</div>
+        <div>August — Conversion</div>
+      </div>
+      <div class="kpi-row"><div class="kpi-metric">Follower Growth</div><div class="kpi-val">+100–200</div><div class="kpi-val">+150–300<br><span style="font-size:10px;color:#bbb;">IBT boost</span></div><div class="kpi-val hi">+200–350</div></div>
+      <div class="kpi-row"><div class="kpi-metric">Avg. Reach per Post</div><div class="kpi-val">500–900</div><div class="kpi-val">700–1,200</div><div class="kpi-val hi">800–1,500</div></div>
+      <div class="kpi-row"><div class="kpi-metric">Avg. Views (Reels)</div><div class="kpi-val">800–1,500<br><span style="font-size:10px;color:#bbb;">baseline: 798</span></div><div class="kpi-val">1,000–2,500</div><div class="kpi-val hi">1,200–3,000</div></div>
+      <div class="kpi-row"><div class="kpi-metric">Engagement Rate</div><div class="kpi-val">0.5–1%</div><div class="kpi-val">1–1.5%</div><div class="kpi-val hi">1.5–2%</div></div>
+      <div class="kpi-row"><div class="kpi-metric">Save Rate (Education)</div><div class="kpi-val">≥ 2% of reach</div><div class="kpi-val">≥ 3% of reach</div><div class="kpi-val hi">≥ 4% of reach</div></div>
+      <div class="kpi-row"><div class="kpi-metric">Organic DM Inquiries</div><div class="kpi-val">0–2</div><div class="kpi-val">2–5</div><div class="kpi-val hi">5–10</div></div>
+      <div class="kpi-row"><div class="kpi-metric">Website Clicks (Link Bio)</div><div class="kpi-val">Baseline set</div><div class="kpi-val">+20% vs June</div><div class="kpi-val hi">+20% vs July</div></div>
+    </div>
+    <div class="note note-maroon reveal d4" style="margin-top:12px;">A performance report is delivered at the end of each month — covering data, top-performing content, and recommendations for the month ahead.</div>
+  </div>
+  <div class="slide-num">11 / 12</div>
+</section>
+
+<!-- S12 CLOSING -->
+<section class="slide dark" id="s12" style="padding:48px 7vw;">
+  <div class="cover-grain"></div>
+  <div class="cover-circle" style="width:500px;height:500px;top:-120px;right:-80px;background:radial-gradient(circle,rgba(201,168,76,.1) 0%,transparent 70%);"></div>
+  <div class="cover-circle" style="width:300px;height:300px;bottom:-80px;left:10%;background:radial-gradient(circle,rgba(255,255,255,.03) 0%,transparent 70%);"></div>
+  <div class="accent-bar"></div>
+  <div class="inner">
+    <div style="text-align:center;max-width:700px;margin:0 auto;">
+      <div style="display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.55);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px;font-family:'Syne',sans-serif;" class="reveal">Ecolux × Custompedia · June – August 2026</div>
+      <div style="font-family:'Syne',sans-serif;font-size:clamp(30px,4.5vw,56px);font-weight:800;letter-spacing:-1.5px;line-height:1.02;color:var(--white);margin-bottom:10px;" class="reveal d1">Let's Get <em style="color:var(--gold);font-style:normal;">Started.</em></div>
+      <p style="font-size:14px;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto 32px;line-height:1.8;" class="reveal d2">Every great project starts with the right partner.<br>Let's open more doors together.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;" class="reveal d3">
+        <div class="ns-item" style="min-width:195px;">
+          <div class="ns-num">1</div>
+          <div><div class="ns-title">Confirm Instagram Setup</div><div class="ns-desc">Bio, highlights & name field</div></div>
+        </div>
+        <div class="ns-item" style="min-width:195px;">
+          <div class="ns-num">2</div>
+          <div><div class="ns-title">Grant Instagram Access</div><div class="ns-desc">Via Meta Business Suite</div></div>
+        </div>
+        <div class="ns-item" style="min-width:195px;">
+          <div class="ns-num">3</div>
+          <div><div class="ns-title">Prepare Visual Assets</div><div class="ns-desc">Project photos, factory footage, on-cam talent</div></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:22px;" class="reveal d4">
+        <div class="cc-card"><div class="cc-role">Managing Director</div><div class="cc-val">Rara</div></div>
+        <div class="cc-card"><div class="cc-role">Email</div><div class="cc-val">hello@custompedia.agency</div></div>
+      </div>
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;" class="reveal d5">
+        <svg viewBox="260 260 490 420" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:17px;">
+          <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+          <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+          <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+        </svg>
+        <span style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:rgba(255,255,255,.6);">CUSTOMPEDIA</span>
+        <span style="font-size:10px;color:rgba(255,255,255,.2);">· Social Media Execution Strategy — ECOLUX Doors · Confidential · © 2026</span>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">12 / 12</div>
+</section>
+
+</div>
+<script>
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('dots');
+const progressEl=document.getElementById('progress');
+const hintEl=document.getElementById('hint');
+const curEl=document.getElementById('curSlide');
+const totEl=document.getElementById('totSlide');
+totEl.textContent=slides.length;
+slides.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.title=`Slide ${i+1}`;
+  if(i===0)b.classList.add('active');
+  b.addEventListener('click',()=>go(i));
+  dotsEl.appendChild(b);
+});
+function go(i){slides[i].scrollIntoView({behavior:'smooth'});}
+let cur=0;
+new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.intersectionRatio>.5){
+      const i=Array.from(slides).indexOf(e.target);
+      cur=i;
+      dotsEl.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('active',j===i));
+      curEl.textContent=i+1;
+      progressEl.style.width=((i+1)/slides.length*100)+'%';
+      if(i>0)hintEl.style.opacity='0';
+      e.target.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+    }
+  });
+},{threshold:.5}).observe&&slides.forEach(s=>new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.intersectionRatio>.5){
+      const i=Array.from(slides).indexOf(e.target);
+      cur=i;
+      dotsEl.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('active',j===i));
+      curEl.textContent=i+1;
+      progressEl.style.width=((i+1)/slides.length*100)+'%';
+      if(i>0)hintEl.style.opacity='0';
+      e.target.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+    }
+  });
+},{threshold:.5}).observe(s));
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(Math.min(cur+1,slides.length-1));}
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(Math.max(cur-1,0));}
+});
+</script>
+</body>
+</html>
