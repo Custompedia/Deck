@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batik Semar — Seragam Korporat & B2B</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cr:#F5F0E8;--cr2:#EDE5CE;--cr3:#E0D5B5;
+  --ink:#1A2408;--ink2:#2E3A12;--ink3:#3D4A18;
+  --gd:#B8922A;--gd2:#D4A840;--gd3:#8A6B1A;
+  --mt:#7A6E58;--mt2:#9A8E78;
+  --bd:rgba(26,36,8,.1);--bd2:rgba(26,36,8,.2);
+  --wh:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--cr);color:var(--ink);overflow-x:hidden;cursor:none;}
+
+/* CURSOR */
+#cur,#curdot{position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+#cur{width:40px;height:40px;transition:opacity .3s,transform .25s cubic-bezier(.2,.8,.2,1);}
+#curdot{width:5px;height:5px;background:var(--gd);border-radius:50%;transition:transform .06s;}
+body:has(a:hover) #cur,body:has(button:hover) #cur,body:has(.hov:hover) #cur{transform:translate(-50%,-50%) scale(1.7);opacity:.45;}
+
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.6;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:28px 64px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .3s,border-color .4s;border-bottom:1px solid transparent;}
+nav.stuck{background:rgba(245,240,232,.93);backdrop-filter:blur(14px);padding:16px 64px;border-color:var(--bd);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:.03em;}
+.nav-logo em{color:var(--gd);font-style:normal;}
+.nav-r{display:flex;align-items:center;gap:40px;}
+.nav-link{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mt);text-decoration:none;transition:color .2s;}
+.nav-link:hover{color:var(--ink);}
+.nav-btn{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--cr);padding:11px 24px;border:none;text-decoration:none;transition:background .2s,transform .15s;display:inline-block;cursor:none;}
+.nav-btn:hover{background:var(--gd);transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 88px;position:relative;overflow:hidden;}
+.hero-pat{position:absolute;inset:0;opacity:.055;}
+.hero-pat svg{width:100%;height:100%;}
+.hero-yr{position:absolute;top:50%;right:48px;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:min(22vw,300px);font-weight:300;color:var(--ink);opacity:.05;line-height:1;letter-spacing:-.04em;pointer-events:none;will-change:transform;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gd);margin-bottom:22px;opacity:0;transform:translateY(18px);animation:fu .7s .35s forwards;}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:min(8.5vw,118px);font-weight:400;line-height:.9;letter-spacing:-.025em;color:var(--ink);margin-bottom:34px;opacity:0;transform:translateY(28px);animation:fu 1s .55s forwards;}
+.hero-h1 em{font-style:italic;color:var(--gd);}
+.hero-sub{max-width:500px;font-size:16px;color:var(--mt);line-height:1.82;margin-bottom:52px;opacity:0;transform:translateY(18px);animation:fu .8s .85s forwards;}
+.hero-cta{display:flex;gap:22px;align-items:center;opacity:0;animation:fu .7s 1.05s forwards;}
+.btn-p{background:var(--ink);color:var(--cr);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:17px 38px;border:none;text-decoration:none;display:inline-block;transition:background .2s,transform .18s;cursor:none;}
+.btn-p:hover{background:var(--gd);transform:translateY(-2px);}
+.btn-g{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mt);text-decoration:none;border-bottom:1px solid var(--bd2);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.btn-g:hover{color:var(--ink);border-color:var(--ink);}
+.hero-scroll{position:absolute;bottom:88px;right:64px;display:flex;flex-direction:column;align-items:center;gap:14px;opacity:0;animation:fu .7s 1.3s forwards;}
+.hero-scroll span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--mt2);writing-mode:vertical-lr;}
+.scl{width:1px;height:88px;background:linear-gradient(to bottom,var(--gd),transparent);animation:spulse 2.2s ease-in-out infinite;}
+@keyframes spulse{0%,100%{opacity:.35;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.08)}}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+
+/* TRUST BAR */
+.trust{background:var(--ink);padding:26px 64px;display:flex;align-items:center;gap:48px;overflow:hidden;}
+.trust-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.3);white-space:nowrap;flex-shrink:0;}
+.trust-sep{width:1px;height:22px;background:rgba(245,240,232,.12);flex-shrink:0;}
+.trust-clients{display:flex;gap:48px;align-items:center;}
+.trust-c{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:rgba(245,240,232,.5);letter-spacing:.04em;white-space:nowrap;transition:color .3s;cursor:none;}
+.trust-c:hover{color:rgba(245,240,232,.9);}
+.trust-meta{margin-left:auto;flex-shrink:0;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(245,240,232,.18);}
+
+/* SHARED */
+.stag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gd);margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.stag::before{content:'';width:28px;height:1px;background:var(--gd);}
+.snum{position:absolute;top:64px;right:64px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;color:rgba(26,36,8,.1);}
+.snum.lt{color:rgba(245,240,232,.08);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .85s cubic-bezier(.16,.9,.2,1),transform .85s cubic-bezier(.16,.9,.2,1);}
+.rv.on{opacity:1;transform:none;}
+.d1{transition-delay:.1s}.d2{transition-delay:.18s}.d3{transition-delay:.26s}.d4{transition-delay:.34s}.d5{transition-delay:.42s}
+
+/* WHY */
+.why{padding:140px 64px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;position:relative;}
+.why-ttl{font-family:'Cormorant Garamond',serif;font-size:min(4.2vw,56px);font-weight:400;line-height:1.07;letter-spacing:-.015em;color:var(--ink);margin-bottom:22px;}
+.why-ttl em{font-style:italic;color:var(--gd);}
+.why-body{font-size:15px;color:var(--mt);line-height:1.88;max-width:420px;margin-bottom:50px;}
+.stats{display:flex;gap:44px;padding-top:38px;border-top:1px solid var(--bd);}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:500;line-height:1;color:var(--ink);margin-bottom:5px;}
+.stat-l{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mt2);line-height:1.55;}
+.why-cards{display:flex;flex-direction:column;gap:1px;}
+.wc{padding:30px 32px;border:1px solid var(--bd);background:transparent;position:relative;overflow:hidden;transition:background .3s,border-color .3s,transform .3s;cursor:none;}
+.wc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gd);transform:scaleY(0);transform-origin:bottom;transition:transform .45s cubic-bezier(.2,.8,.2,1);}
+.wc:hover{background:var(--cr2);border-color:var(--bd2);transform:translateX(8px);}
+.wc:hover::before{transform:scaleY(1);}
+.wc-n{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--gd);margin-bottom:10px;}
+.wc-t{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--ink);margin-bottom:8px;}
+.wc-b{font-size:13.5px;color:var(--mt);line-height:1.75;}
+
+/* MOTIF */
+.motif{background:var(--ink);padding:140px 64px;overflow:hidden;position:relative;}
+.motif-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:80px;gap:40px;}
+.motif-ttl{font-family:'Cormorant Garamond',serif;font-size:min(5.5vw,72px);font-weight:300;color:var(--cr);line-height:.95;letter-spacing:-.025em;}
+.motif-ttl em{font-style:italic;color:var(--gd);}
+.motif-sub{max-width:340px;font-size:14px;color:rgba(245,240,232,.45);line-height:1.8;flex-shrink:0;}
+.motif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.mc{background:rgba(245,240,232,.03);border:1px solid rgba(245,240,232,.07);padding:50px 42px;position:relative;overflow:hidden;transition:background .4s,border-color .4s;cursor:none;}
+.mc:hover{background:rgba(184,146,42,.09);border-color:rgba(184,146,42,.28);}
+.mc-glyph{position:absolute;bottom:-16px;right:-8px;font-family:'Cormorant Garamond',serif;font-size:130px;font-weight:300;color:rgba(245,240,232,.04);line-height:1;pointer-events:none;transition:color .4s;}
+.mc:hover .mc-glyph{color:rgba(184,146,42,.07);}
+.mc-n{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(184,146,42,.5);margin-bottom:28px;}
+.mc-nm{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500;color:var(--cr);margin-bottom:10px;letter-spacing:-.01em;}
+.mc-mn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);margin-bottom:16px;}
+.mc-b{font-size:13px;color:rgba(245,240,232,.48);line-height:1.8;margin-bottom:22px;}
+.mc-use{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(245,240,232,.2);}
+.mc-use span{color:var(--gd);}
+
+/* PROCESS */
+.process{padding:140px 64px;background:var(--cr2);position:relative;}
+.process-ttl{font-family:'Cormorant Garamond',serif;font-size:min(4.5vw,60px);font-weight:400;color:var(--ink);line-height:1.05;letter-spacing:-.015em;margin-bottom:18px;}
+.process-sub{font-size:15px;color:var(--mt);line-height:1.78;max-width:480px;margin-bottom:80px;}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--bd2);}
+.step{padding:40px 28px 40px 0;border-right:1px solid var(--bd);position:relative;transition:background .3s;}
+.step:last-child{border-right:none;padding-right:0;}
+.step:hover{background:rgba(184,146,42,.04);}
+.step-n{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gd);display:block;margin-bottom:22px;}
+.step-t{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:var(--ink);margin-bottom:10px;line-height:1.2;}
+.step-b{font-size:13px;color:var(--mt);line-height:1.75;}
+.step-arr{position:absolute;right:-13px;top:38px;width:24px;height:24px;background:var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--cr);z-index:2;font-family:'DM Mono',monospace;}
+.step:last-child .step-arr{display:none;}
+
+/* PORTFOLIO + TESTIMONIAL */
+.porto{padding:140px 64px;display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:start;position:relative;}
+.porto-quote{font-family:'Cormorant Garamond',serif;font-size:min(3.5vw,46px);font-weight:300;font-style:italic;color:var(--ink);line-height:1.28;letter-spacing:-.01em;margin-bottom:38px;position:relative;}
+.porto-quote::before{content:'\201C';position:absolute;top:-44px;left:-18px;font-family:'Cormorant Garamond',serif;font-size:130px;font-weight:300;color:var(--gd);opacity:.18;line-height:1;}
+.porto-src{display:flex;align-items:center;gap:18px;}
+.porto-av{width:48px;height:48px;border-radius:50%;background:var(--ink2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cr);font-weight:500;flex-shrink:0;}
+.porto-nm{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--ink);}
+.porto-rl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--mt);text-transform:uppercase;margin-top:3px;}
+.porto-items{display:flex;flex-direction:column;gap:2px;}
+.pi{display:flex;gap:22px;padding:28px;border:1px solid var(--bd);transition:border-color .3s,transform .3s;align-items:flex-start;cursor:none;}
+.pi:hover{border-color:var(--bd2);transform:translateX(8px);}
+.pi-logo{width:50px;height:50px;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--cr);flex-shrink:0;font-weight:500;}
+.pi-nm{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:5px;}
+.pi-dt{font-size:13px;color:var(--mt);line-height:1.65;}
+.pi-tg{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:var(--gd);text-transform:uppercase;margin-top:8px;}
+
+/* FORM */
+.inquiry{background:var(--ink);padding:140px 64px;}
+.inquiry-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.25fr;gap:100px;align-items:start;}
+.inq-ttl{font-family:'Cormorant Garamond',serif;font-size:min(4.5vw,58px);font-weight:300;color:var(--cr);line-height:1.05;letter-spacing:-.015em;margin-bottom:22px;}
+.inq-ttl em{font-style:italic;color:var(--gd);}
+.inq-body{font-size:14.5px;color:rgba(245,240,232,.45);line-height:1.82;margin-bottom:50px;}
+.contacts{display:flex;flex-direction:column;gap:22px;}
+.ci{display:flex;gap:18px;align-items:flex-start;}
+.ci-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--gd);text-transform:uppercase;min-width:36px;padding-top:2px;flex-shrink:0;}
+.ci-val{font-size:14.5px;color:rgba(245,240,232,.65);line-height:1.6;}
+.form{display:flex;flex-direction:column;gap:18px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fl{display:flex;flex-direction:column;gap:7px;}
+.fl label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.3);}
+.fl input,.fl select,.fl textarea{background:rgba(245,240,232,.05);border:1px solid rgba(245,240,232,.1);color:var(--cr);font-family:'DM Sans',sans-serif;font-size:14px;padding:14px 18px;outline:none;transition:border-color .3s,background .3s;width:100%;border-radius:0;-webkit-appearance:none;cursor:none;}
+.fl input::placeholder,.fl textarea::placeholder{color:rgba(245,240,232,.22);}
+.fl input:focus,.fl select:focus,.fl textarea:focus{border-color:var(--gd);background:rgba(184,146,42,.07);}
+.fl select option{background:var(--ink);color:var(--cr);}
+.fl textarea{resize:none;min-height:120px;}
+.fsub{background:var(--gd);color:var(--ink);font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;padding:18px 40px;border:none;cursor:none;transition:background .25s,transform .18s;width:100%;font-weight:500;margin-top:6px;}
+.fsub:hover{background:var(--gd2);transform:translateY(-2px);}
+.fnote{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(245,240,232,.18);text-align:center;margin-top:6px;}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid rgba(245,240,232,.07);padding:38px 64px;display:flex;align-items:center;justify-content:space-between;}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:rgba(245,240,232,.35);letter-spacing:.03em;}
+.ft-brand em{color:var(--gd);font-style:normal;}
+.ft-links{display:flex;gap:32px;}
+.ft-links a{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,240,232,.28);text-decoration:none;transition:color .2s;cursor:none;}
+.ft-links a:hover{color:rgba(245,240,232,.7);}
+.ft-copy{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:rgba(245,240,232,.16);}
+
+/* PROGRESS BAR */
+#pgbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gd),var(--gd2));z-index:9999;width:0;transition:width .08s;}
+
+/* GOLD LINE */
+.gline{width:52px;height:1px;background:var(--gd);margin-bottom:30px;}
+
+/* SECTION DIVIDER */
+.sdiv{padding:0 64px;}
+.sdiv hr{border:none;border-top:1px solid var(--bd);}
+</style>
+</head>
+<body>
+
+<div id="pgbar"></div>
+<div id="cur">
+  <svg viewBox="0 0 40 40" fill="none">
+    <circle cx="20" cy="11" r="7" stroke="#B8922A" stroke-width=".9" fill="none" opacity=".55"/>
+    <circle cx="20" cy="29" r="7" stroke="#B8922A" stroke-width=".9" fill="none" opacity=".55"/>
+    <circle cx="11" cy="20" r="7" stroke="#B8922A" stroke-width=".9" fill="none" opacity=".55"/>
+    <circle cx="29" cy="20" r="7" stroke="#B8922A" stroke-width=".9" fill="none" opacity=".55"/>
+    <circle cx="20" cy="20" r="3" fill="#B8922A" opacity=".9"/>
+  </svg>
+</div>
+<div id="curdot"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Batik <em>Semar</em></a>
+  <div class="nav-r">
+    <a href="#kenapa" class="nav-link">Tentang Kami</a>
+    <a href="#motif" class="nav-link">Koleksi Motif</a>
+    <a href="#proses" class="nav-link">Proses</a>
+    <a href="#porto" class="nav-link">Portofolio</a>
+    <a href="#inquiry" class="nav-btn">Konsultasi Gratis</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-pat" aria-hidden="true">
+    <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="kw" x="0" y="0" width="90" height="90" patternUnits="userSpaceOnUse">
+          <circle cx="45" cy="22" r="18" fill="none" stroke="#1A2408" stroke-width="1.1"/>
+          <circle cx="45" cy="68" r="18" fill="none" stroke="#1A2408" stroke-width="1.1"/>
+          <circle cx="22" cy="45" r="18" fill="none" stroke="#1A2408" stroke-width="1.1"/>
+          <circle cx="68" cy="45" r="18" fill="none" stroke="#1A2408" stroke-width="1.1"/>
+          <circle cx="45" cy="45" r="4" fill="#1A2408" opacity=".4"/>
+          <circle cx="45" cy="0" r="4" fill="#1A2408" opacity=".25"/>
+          <circle cx="45" cy="90" r="4" fill="#1A2408" opacity=".25"/>
+          <circle cx="0" cy="45" r="4" fill="#1A2408" opacity=".25"/>
+          <circle cx="90" cy="45" r="4" fill="#1A2408" opacity=".25"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#kw)"/>
+    </svg>
+  </div>
+  <div class="hero-yr" id="heroYr">1947</div>
+  <div class="hero-scroll">
+    <div class="scl"></div>
+    <span>Gulir</span>
+  </div>
+
+  <p class="hero-eyebrow">Seragam Korporat · B2B Partnership · Sejak 1947</p>
+  <h1 class="hero-h1">Warisan <em>Tujuh<br>Puluh Sembilan<br>Tahun</em> untuk<br>Perusahaan Anda</h1>
+  <p class="hero-sub">Lebih dari seragam — setiap motif yang kami pilihkan membawa filosofi yang telah bertahan selama berabad-abad, relevan untuk nilai perusahaan Anda hari ini.</p>
+  <div class="hero-cta">
+    <a href="#inquiry" class="btn-p">Mulai Konsultasi</a>
+    <a href="#porto" class="btn-g">Lihat Portofolio →</a>
+  </div>
+</section>
+
+<div class="trust">
+  <span class="trust-lbl">Dipercaya oleh</span>
+  <div class="trust-sep"></div>
+  <div class="trust-clients">
+    <span class="trust-c">DHL Logistik</span>
+    <div class="trust-sep"></div>
+    <span class="trust-c">RS Telogorejo</span>
+    <div class="trust-sep"></div>
+    <span class="trust-c">Prodia Life</span>
+    <div class="trust-sep"></div>
+    <span class="trust-c" style="color:rgba(245,240,232,.28);font-style:italic;">& 50+ perusahaan lainnya</span>
+  </div>
+  <span class="trust-meta">Melayani B2B sejak 1989</span>
+</div>
+
+<section class="why" id="kenapa">
+  <div class="snum">— 01</div>
+  <div>
+    <div class="stag rv">Mengapa Batik Semar</div>
+    <h2 class="why-ttl rv d1">Bukan Sekadar Vendor<br>Seragam — <em>Mitra<br>Identitas</em> Perusahaan</h2>
+    <p class="why-body rv d2">Ketika perusahaan memilih seragam, mereka sedang memilih narasi tentang diri mereka. Sejak 1947, kami memastikan narasi itu kuat, autentik, dan bermakna di setiap lembar batik yang kami hasilkan.</p>
+    <div class="stats rv d3">
+      <div><div class="stat-n" data-c="79">0</div><div class="stat-l">Tahun<br>Pengalaman</div></div>
+      <div><div class="stat-n" data-c="50">0</div><div class="stat-l">Klien<br>Korporat+</div></div>
+      <div><div class="stat-n" data-c="6">0</div><div class="stat-l">Negara<br>Ekspor</div></div>
+    </div>
+  </div>
+  <div class="why-cards">
+    <div class="wc rv hov"><div class="wc-n">01 ——</div><div class="wc-t">Motif dengan Filosofi</div><div class="wc-b">Setiap motif dipilih bukan hanya karena indah — tapi karena maknanya relevan dengan karakter dan nilai perusahaan Anda. Tim kami membantu proses pemilihan ini.</div></div>
+    <div class="wc rv d1 hov"><div class="wc-n">02 ——</div><div class="wc-t">Konsistensi Kualitas Terstandar</div><div class="wc-b">Sistem produksi kami memastikan konsistensi warna, ukuran, dan kualitas di setiap unit — bahkan untuk pesanan ribuan lembar sekaligus.</div></div>
+    <div class="wc rv d2 hov"><div class="wc-n">03 ——</div><div class="wc-t">Lead Time yang Terencana</div><div class="wc-b">Timeline produksi transparan dengan konfirmasi di setiap tahap. Tidak ada kejutan di hari pengiriman — janji yang kami pegang sejak 1989.</div></div>
+    <div class="wc rv d3 hov"><div class="wc-n">04 ——</div><div class="wc-t">Custom Motif Eksklusif</div><div class="wc-b">Untuk klien pilihan, kami kembangkan motif eksklusif yang tidak kami produksi untuk pihak lain — identitas visual yang benar-benar milik perusahaan Anda.</div></div>
+  </div>
+</section>
+
+<div class="sdiv"><hr></div>
+
+<section class="motif" id="motif">
+  <div class="snum lt">— 02</div>
+  <div class="motif-hd">
+    <div>
+      <div class="stag rv" style="color:var(--gd);">Koleksi Motif B2B</div>
+      <h2 class="motif-ttl rv d1">Pilih Motif yang<br>Bercerita untuk<br><em>Perusahaan Anda</em></h2>
+    </div>
+    <p class="motif-sub rv d2">Setiap motif batik membawa filosofi yang telah diwariskan selama berabad-abad. Kami membantu Anda menemukan yang paling relevan dengan identitas perusahaan.</p>
+  </div>
+  <div class="motif-grid">
+    <div class="mc rv hov">
+      <div class="mc-glyph">◎</div>
+      <div class="mc-n">Motif 001</div>
+      <div class="mc-nm">Parang</div>
+      <div class="mc-mn">Kegigihan · Ketangguhan</div>
+      <div class="mc-b">Motif berusia 500+ tahun. Pola diagonal berulang melambangkan ombak yang tidak pernah berhenti — simbol kerja tanpa henti dan keteguhan hati yang tidak pernah goyah.</div>
+      <div class="mc-use">Ideal untuk: <span>Logistik, Manufaktur, BUMN</span></div>
+    </div>
+    <div class="mc rv d1 hov">
+      <div class="mc-glyph">✦</div>
+      <div class="mc-n">Motif 002</div>
+      <div class="mc-nm">Kawung</div>
+      <div class="mc-mn">Keadilan · Kemurnian</div>
+      <div class="mc-b">Empat lingkaran yang saling menyentuh — terinspirasi buah aren. Melambangkan keseimbangan sempurna, keadilan, dan kemurnian niat dalam setiap keputusan.</div>
+      <div class="mc-use">Ideal untuk: <span>Perbankan, Hukum, Kesehatan</span></div>
+    </div>
+    <div class="mc rv d2 hov">
+      <div class="mc-glyph">❋</div>
+      <div class="mc-n">Motif 003</div>
+      <div class="mc-nm">Sido Mukti</div>
+      <div class="mc-mn">Kemakmuran · Kesejahteraan</div>
+      <div class="mc-b">Dipakai dalam ritual pernikahan kerajaan Jawa sejak berabad-abad lalu. Mengandung harapan kemakmuran dan kebahagiaan yang berkelanjutan bagi pemakainya.</div>
+      <div class="mc-use">Ideal untuk: <span>Hospitality, Properti, Retail</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="proses">
+  <div class="snum">— 03</div>
+  <div class="stag rv">Proses Pengadaan B2B</div>
+  <h2 class="process-ttl rv d1">Dari Konsultasi hingga<br>Seragam di Tangan Anda</h2>
+  <p class="process-sub rv d2">Lima tahap yang transparan. Tidak ada kejutan. Tidak ada kompromi kualitas di setiap langkahnya.</p>
+  <div class="steps">
+    <div class="step rv hov"><div class="step-arr">→</div><span class="step-n">01</span><div class="step-t">Konsultasi Awal</div><div class="step-b">Diskusi kebutuhan, jumlah unit, motif, warna, dan timeline. Gratis, tanpa komitmen apapun.</div></div>
+    <div class="step rv d1 hov"><div class="step-arr">→</div><span class="step-n">02</span><div class="step-t">Seleksi Motif</div><div class="step-b">Tim kami membantu menemukan motif yang paling relevan dengan nilai dan karakter perusahaan Anda.</div></div>
+    <div class="step rv d2 hov"><div class="step-arr">→</div><span class="step-n">03</span><div class="step-t">Sampel & Approval</div><div class="step-b">Sampel fisik dikirim untuk persetujuan. Revisi hingga sempurna sebelum produksi massal dimulai.</div></div>
+    <div class="step rv d3 hov"><div class="step-arr">→</div><span class="step-n">04</span><div class="step-t">Produksi</div><div class="step-b">Produksi dengan standar ketat. Update progres berkala kepada tim pengadaan Anda.</div></div>
+    <div class="step rv d4 hov"><span class="step-n">05</span><div class="step-t">Pengiriman</div><div class="step-b">QC final sebelum keluar dari fasilitas. Pengiriman tepat waktu ke seluruh Indonesia.</div></div>
+  </div>
+</section>
+
+<section class="porto" id="porto">
+  <div class="snum">— 04</div>
+  <div>
+    <div class="stag rv">Yang Mereka Rasakan</div>
+    <blockquote class="porto-quote rv d1">"Motif Parang yang kami pilih bukan sekadar seragam — ini menjadi bagian dari identitas visual tim kami di lapangan."</blockquote>
+    <div class="porto-src rv d2">
+      <div class="porto-av">DL</div>
+      <div>
+        <div class="porto-nm">Tim Pengadaan</div>
+        <div class="porto-rl">DHL Logistik Indonesia</div>
+      </div>
+    </div>
+  </div>
+  <div class="porto-items rv d1">
+    <div class="pi hov">
+      <div class="pi-logo">DHL</div>
+      <div><div class="pi-nm">DHL Logistik</div><div class="pi-dt">Seragam lapangan motif Parang untuk 200+ unit. Konsistensi warna dan ukuran dijaga di setiap batch produksi tanpa pengecualian.</div><div class="pi-tg">Logistik · 200+ Unit · Motif Parang</div></div>
+    </div>
+    <div class="pi hov">
+      <div class="pi-logo">RST</div>
+      <div><div class="pi-nm">RS Telogorejo</div><div class="pi-dt">Seragam administrasi motif Kawung — dipilih karena filosofi keadilan dan kemurnian yang selaras dengan nilai institusi kesehatan.</div><div class="pi-tg">Kesehatan · Motif Kawung · Admin & Manajemen</div></div>
+    </div>
+    <div class="pi hov">
+      <div class="pi-logo">PLI</div>
+      <div><div class="pi-nm">Prodia Life</div><div class="pi-dt">Seragam tim marketing dengan custom colorway menyesuaikan corporate color guide Prodia secara presisi.</div><div class="pi-tg">Asuransi · Custom Color · Marketing Team</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="inquiry" id="inquiry">
+  <div class="inquiry-inner">
+    <div>
+      <div class="stag rv" style="color:var(--gd);">Mulai Percakapan</div>
+      <h2 class="inq-ttl rv d1">Konsultasikan<br>Kebutuhan<br><em>Anda</em></h2>
+      <p class="inq-body rv d2">Tidak perlu tahu semua detailnya dulu. Ceritakan kebutuhan Anda, tim kami akan bantu menemukan solusi terbaik — tanpa tekanan, tanpa komitmen.</p>
+      <div class="contacts rv d3">
+        <div class="ci"><span class="ci-lbl">WA</span><span class="ci-val">0822-2617-1071<br><small style="font-size:12px;opacity:.55;">Respon dalam 2 jam di hari kerja</small></span></div>
+        <div class="ci"><span class="ci-lbl">Email</span><span class="ci-val">b2b@batiksemar.co.id</span></div>
+        <div class="ci"><span class="ci-lbl">Galeri</span><span class="ci-val">Jl. Punggawan, Banjarsari, Solo<br><small style="font-size:12px;opacity:.55;">Kunjungan bisa dijadwalkan</small></span></div>
+      </div>
+    </div>
+    <div class="form rv d2">
+      <div class="frow">
+        <div class="fl"><label>Nama Lengkap</label><input type="text" placeholder="Bapak / Ibu ..."></div>
+        <div class="fl"><label>Perusahaan</label><input type="text" placeholder="PT / CV / ..."></div>
+      </div>
+      <div class="frow">
+        <div class="fl"><label>Jabatan</label><input type="text" placeholder="HRD / Procurement / GA"></div>
+        <div class="fl"><label>No. WhatsApp</label><input type="tel" placeholder="08xx-xxxx-xxxx"></div>
+      </div>
+      <div class="fl">
+        <label>Estimasi Jumlah Unit</label>
+        <select>
+          <option value="">Pilih rentang...</option>
+          <option>10 – 50 unit</option>
+          <option>51 – 200 unit</option>
+          <option>201 – 500 unit</option>
+          <option>500+ unit</option>
+          <option>Belum tahu, butuh konsultasi dulu</option>
+        </select>
+      </div>
+      <div class="fl"><label>Ceritakan Kebutuhan Anda</label><textarea placeholder="Jenis seragam, acara / penggunaan, timeline, atau pertanyaan lainnya..."></textarea></div>
+      <button class="fsub" id="fsub">Kirim Permintaan Konsultasi</button>
+      <p class="fnote">Informasi Anda aman dan tidak dibagikan ke pihak ketiga</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="ft-brand">Batik <em>Semar</em> · 1947</span>
+  <div class="ft-links">
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">Email</a>
+  </div>
+  <span class="ft-copy">© 2026 Batik Semar. Hak Cipta Dilindungi.</span>
+</footer>
+
+<script>
+// CURSOR
+const cur = document.getElementById('cur');
+const dot = document.getElementById('curdot');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove', e => {
+  mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+});
+(function loop(){
+  cx+=(mx-cx)*.11; cy+=(my-cy)*.11;
+  cur.style.left=cx+'px'; cur.style.top=cy+'px';
+  requestAnimationFrame(loop);
+})();
+
+// NAV + PROGRESS BAR
+const nav=document.getElementById('nav');
+const pgbar=document.getElementById('pgbar');
+window.addEventListener('scroll',()=>{
+  const sc=window.scrollY;
+  nav.classList.toggle('stuck',sc>50);
+  const pct=sc/(document.body.scrollHeight-window.innerHeight)*100;
+  pgbar.style.width=pct+'%';
+  // hero parallax
+  const yr=document.getElementById('heroYr');
+  if(yr) yr.style.transform=`translateY(calc(-50% + ${sc*.22}px))`;
+});
+
+// REVEAL
+const rvEls=document.querySelectorAll('.rv');
+const rvObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rvObs.unobserve(e.target);}});
+},{threshold:.14,rootMargin:'0px 0px -50px 0px'});
+rvEls.forEach(e=>rvObs.observe(e));
+
+// COUNT UP
+const cnts=document.querySelectorAll('[data-c]');
+const cObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target, tgt=+el.dataset.c;
+      let n=0; const step=tgt/55;
+      const t=setInterval(()=>{n=Math.min(n+step,tgt);el.textContent=Math.round(n)+(tgt===6?'':'+');if(n>=tgt)clearInterval(t);},18);
+      cObs.unobserve(el);
+    }
+  });
+},{threshold:.6});
+cnts.forEach(e=>cObs.observe(e));
+
+// FORM
+document.getElementById('fsub').addEventListener('click',function(){
+  this.textContent='Terkirim ✓  Kami akan menghubungi Anda segera';
+  this.style.background='#2E3A12';
+  this.style.color='#F5F0E8';
+  setTimeout(()=>{
+    this.textContent='Kirim Permintaan Konsultasi';
+    this.style.background='';this.style.color='';
+  },5000);
+});
+
+// ACTIVE NAV
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.nav-link');
+const lObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.style.color='');
+      const a=document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if(a) a.style.color='var(--ink)';
+    }
+  });
+},{threshold:.4});
+secs.forEach(s=>lObs.observe(s));
+</script>
+</body>
+</html>
