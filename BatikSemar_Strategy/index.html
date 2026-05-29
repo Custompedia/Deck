@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batik Semar × Custompedia — 360° Brand Activation 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fo:#2E3A12;--fo2:#3D4A1A;--ol:#6B7A1F;--ol2:#8B9B2A;--olp:#F0F2DC;
+  --go:#C8922A;--go2:#A8752A;--bg:#F7F4E8;--bg2:#EDE5CC;--bg3:#D8CCA8;
+  --ink:#1A1A0E;--body:#4A3E20;--muted:#7A6840;
+  --bdr:rgba(46,58,18,.13);--bdr2:rgba(46,58,18,.24);--wh:#FFFFFF;
+  --gr:#1E5C30;--grb:rgba(30,92,48,.07);--grd:rgba(30,92,48,.2);
+  --go-b:rgba(200,146,42,.08);--go-d:rgba(200,146,42,.25);
+  --re:#8B1A1A;--reb:rgba(139,26,26,.07);--red:rgba(139,26,26,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;}
+/* PROGRESS */
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--fo),var(--ol2));z-index:10000;width:0;transition:width .25s ease;}
+/* NAV */
+.slide-nav{position:fixed;top:0;left:0;right:0;z-index:500;background:var(--fo);padding:0 40px;height:60px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 20px rgba(46,58,18,.3);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-wm{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:rgba(255,255,255,.95);}
+.nav-div{width:1px;height:20px;background:rgba(255,255,255,.2);}
+.nav-doc{font-family:'Syne',sans-serif;font-size:12px;color:rgba(255,255,255,.38);font-weight:500;}
+.nav-sp{flex:1;}
+.sc{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.32);letter-spacing:.06em;}
+.sc span{color:var(--ol2);}
+.nav-cta{background:var(--ol2);color:var(--wh);font-family:'Syne',sans-serif;font-size:12px;font-weight:700;padding:8px 18px;border-radius:8px;text-decoration:none;transition:opacity .18s;white-space:nowrap;margin-left:8px;}
+.nav-cta:hover{opacity:.85;}
+/* DECK */
+.deck{position:fixed;top:60px;left:0;right:0;bottom:0;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+.deck::-webkit-scrollbar{width:0;}
+/* DOTS */
+.dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:600;display:flex;flex-direction:column;gap:8px;}
+.dots button{width:7px;height:7px;border-radius:50%;border:.5px solid rgba(46,58,18,.3);background:transparent;cursor:pointer;padding:0;transition:.25s;}
+.dots button.active{background:var(--fo);border-color:var(--fo);transform:scale(1.3);}
+.dots button:hover{border-color:var(--fo);}
+/* HINT */
+.hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:600;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);animation:bob 2.4s ease-in-out infinite;transition:opacity .3s;}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,5px)}}
+/* SLIDE */
+.slide{min-height:calc(100vh - 60px);scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:44px 7vw;border-bottom:1px solid var(--bdr);overflow:hidden;background:var(--bg);}
+.slide.dk{background:var(--fo);}
+.slide.dk2{background:var(--fo2);}
+.slide.cr{background:var(--olp);}
+.inner{width:100%;max-width:1100px;margin:0 auto;position:relative;z-index:2;}
+.snum{position:absolute;right:28px;bottom:20px;font-family:'Syne',sans-serif;font-size:10px;font-weight:600;color:rgba(26,26,14,.1);letter-spacing:.12em;}
+.slide.dk .snum,.slide.dk2 .snum{color:rgba(255,255,255,.09);}
+.abar{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--fo);}
+.slide.dk .abar,.slide.dk2 .abar{background:var(--ol2);}
+.slide.cr .abar{background:var(--fo);}
+/* REVEAL */
+.r{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);}
+.r.in{opacity:1;transform:none;}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
+.d4{transition-delay:.28s}.d5{transition-delay:.35s}.d6{transition-delay:.42s}.d7{transition-delay:.49s}
+/* TYPE */
+.ey{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ol);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+.slide.dk .ey,.slide.dk2 .ey{color:var(--ol2);}.slide.cr .ey{color:var(--fo);}
+.h1{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,40px);font-weight:800;line-height:1.05;letter-spacing:-.7px;color:var(--ink);margin-bottom:10px;}
+.slide.dk .h1,.slide.dk2 .h1{color:var(--wh);}
+.sub{font-size:13px;color:var(--body);line-height:1.75;max-width:660px;margin-bottom:18px;}
+.slide.dk .sub,.slide.dk2 .sub{color:rgba(255,255,255,.5);}
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;}
+.g21{display:grid;grid-template-columns:2fr 1fr;gap:14px;align-items:start;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+/* CARD */
+.card{background:#FFFFFF;border:1px solid var(--bdr);border-radius:14px;padding:18px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(46,58,18,.09);}
+.ctop{position:absolute;top:0;left:0;right:0;height:3px;}
+.clbl{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;}
+.ctitle{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#1A1A0E;margin-bottom:5px;}
+.cbody{font-size:12px;color:#4A3E20;line-height:1.65;}
+/* DARK CARD */
+.dkc{background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.2);border-radius:12px;padding:18px;transition:background .18s;}
+.dkc:hover{background:rgba(255,255,255,.09);}
+.dkc-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--wh);margin-bottom:8px;}
+.dkc-sub{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.65;}
+/* NOTE */
+.note{padding:12px 16px;border-radius:10px;font-size:12px;line-height:1.65;}
+.n-fo{background:rgba(46,58,18,.05);border:1px solid rgba(46,58,18,.14);color:var(--body);border-left:3px solid var(--fo);}
+.n-ol{background:rgba(107,122,31,.07);border:1px solid rgba(107,122,31,.2);color:var(--body);border-left:3px solid var(--ol2);}
+.n-go{background:var(--go-b);border:1px solid var(--go-d);color:var(--body);border-left:3px solid var(--go);}
+.n-gr{background:var(--grb);border:1px solid var(--grd);color:var(--body);border-left:3px solid var(--gr);}
+.n-re{background:var(--reb);border:1px solid var(--red);color:var(--body);border-left:3px solid var(--re);}
+.note b,.note strong{color:var(--ink);}
+/* PILL */
+.pill{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-family:'Syne',sans-serif;font-weight:600;}
+.p-fo{background:rgba(46,58,18,.08);border:1px solid rgba(46,58,18,.2);color:var(--fo2);}
+.p-ol{background:var(--olp);border:1px solid rgba(107,122,31,.28);color:var(--fo);}
+.p-go{background:var(--go-b);border:1px solid var(--go-d);color:var(--go2);}
+.p-dk{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:var(--wh);}
+.p-ol2{background:rgba(139,155,42,.15);border:1px solid rgba(139,155,42,.32);color:var(--ol2);}
+/* STAT */
+.sbox{background:#FFFFFF;border:1px solid var(--bdr);border-radius:12px;padding:16px;text-align:center;}
+.sbox:hover{box-shadow:0 6px 20px rgba(46,58,18,.08);}
+.sval{font-family:'Syne',sans-serif;font-size:clamp(20px,2.2vw,32px);font-weight:800;margin-bottom:4px;line-height:1;}
+.slbl{font-size:11px;color:var(--muted);line-height:1.4;}
+/* COVER */
+.cv-title{font-family:'Syne',sans-serif;font-size:clamp(36px,5.5vw,66px);font-weight:800;line-height:.93;letter-spacing:-2px;color:var(--wh);margin-bottom:14px;}
+.cv-title em{color:var(--ol2);font-style:normal;}
+.cv-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.8;max-width:460px;margin-bottom:22px;}
+.cv-foot{margin-top:26px;font-family:'Syne',sans-serif;font-size:10px;color:rgba(255,255,255,.15);letter-spacing:.1em;border-top:1px solid rgba(255,255,255,.07);padding-top:14px;}
+/* PILLAR */
+.pc{background:#FFFFFF;border:1px solid var(--bdr);border-radius:14px;padding:20px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+.pc:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(46,58,18,.1);}
+.pc-n{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;opacity:.1;line-height:1;margin-bottom:6px;}
+.pc-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#1A1A0E;margin-bottom:5px;}
+.pc-pct{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1;margin-bottom:5px;}
+.pc-desc{font-size:11.5px;color:#4A3E20;line-height:1.6;margin-bottom:10px;}
+.pc-ex{font-size:10.5px;color:#7A6840;line-height:1.6;}
+.pc-ex strong{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#2E3A12;display:block;margin-bottom:2px;margin-top:6px;}
+.pbadge{display:inline-block;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-top:8px;}
+/* PHASE CARD */
+.ac{background:#FFFFFF;border:1px solid var(--bdr);border-radius:14px;padding:20px;transition:transform .18s,box-shadow .18s;}
+.ac:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(46,58,18,.09);}
+.ac-n{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--fo);opacity:.07;line-height:1;margin-bottom:8px;}
+.ac-badge{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:3px 11px;margin-bottom:8px;}
+.ac-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.ac-body{font-size:12px;color:var(--body);line-height:1.65;}
+/* IG PREVIEW */
+.igp{background:#0F0F0F;border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,.07);}
+.iga{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--fo),var(--ol2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:white;flex-shrink:0;}
+.ign{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:white;}
+.igh{font-size:11px;color:#777;margin-top:1px;}
+.igb{font-size:12px;color:#ddd;line-height:1.65;margin-bottom:8px;}
+.ighl{display:flex;gap:10px;margin-top:13px;overflow-x:auto;padding-bottom:4px;}
+.ighl-i{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}
+.ighl-r{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(139,155,42,.5);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.ighl-l{font-size:9px;color:#666;text-align:center;max-width:50px;line-height:1.3;}
+/* KPI TABLE */
+.ktbl{border:1px solid var(--bdr);border-radius:12px;overflow:hidden;width:100%;background:#FFFFFF;}
+.khd{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:var(--fo);}
+.khd>div{padding:10px 14px;font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+.kr{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--bdr);}
+.kr:last-child{border-bottom:none;}
+.kr:hover{background:rgba(46,58,18,.025);}
+.kr>div{padding:9px 14px;font-size:11.5px;}
+.km{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ink);}
+.kv{color:var(--body);border-left:1px solid var(--bdr);line-height:1.5;}
+.kv.hi{color:var(--fo);font-weight:700;}
+/* COMP TABLE */
+.ctbl{border:1px solid var(--bdr);border-radius:12px;overflow:hidden;width:100%;background:#FFFFFF;}
+.chd{display:grid;grid-template-columns:1.3fr 0.7fr 2.2fr 0.8fr 0.8fr 0.8fr;background:var(--fo);}
+.chd>div{padding:9px 12px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.crow{display:grid;grid-template-columns:1.3fr 0.7fr 2.2fr 0.8fr 0.8fr 0.8fr;border-bottom:1px solid var(--bdr);}
+.crow:last-child{border-bottom:none;}
+.crow.hl{background:var(--olp);}
+.crow:hover:not(.hl){background:rgba(46,58,18,.02);}
+.crow>div{padding:9px 12px;font-size:11px;color:var(--body);border-left:1px solid var(--bdr);}
+.crow>div:first-child{border-left:none;}
+.cbr{font-family:'Syne',sans-serif;font-size:11.5px;font-weight:700;color:var(--ink);}
+.cbs{font-size:9.5px;color:var(--muted);}
+.tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:9px;font-weight:700;font-family:'Syne',sans-serif;}
+.tg{background:#D4EDDA;color:#155724;}
+.tr{background:#FDDEDE;color:#7A1A1A;}
+.ty{background:#FFF3CD;color:#7A5A00;}
+.to{background:var(--olp);color:var(--fo);}
+/* NS ITEM */
+.ns{display:flex;gap:13px;padding:12px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;align-items:center;transition:border-color .18s;margin-bottom:8px;}
+.ns:last-child{margin-bottom:0;}
+.ns:hover{border-color:rgba(255,255,255,.2);}
+.ns-n{width:28px;height:28px;border-radius:50%;background:var(--ol2);color:var(--wh);font-family:'Syne',sans-serif;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ns-t{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--wh);margin-bottom:2px;}
+.ns-d{font-size:11px;color:rgba(255,255,255,.42);line-height:1.3;}
+/* CC */
+.cc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 22px;text-align:center;}
+.cc-r{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:4px;}
+.cc-v{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--wh);}
+/* PERSONA */
+.pcard{border-radius:14px;padding:18px;}
+.pcard li{font-size:11.5px;color:var(--body);padding:4px 0;border-bottom:1px solid rgba(46,58,18,.07);list-style:none;}
+.pcard li:last-child{border-bottom:none;}
+.pcard li span{font-weight:600;color:var(--ink);}
+/* JOURNEY */
+.jstage{background:#FFFFFF;border:1px solid var(--bdr);border-radius:12px;padding:16px;}
+.js-n{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:var(--ol2);opacity:.25;line-height:1;margin-bottom:6px;}
+.js-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.js-sub{font-size:10.5px;color:var(--muted);margin-bottom:8px;font-style:italic;}
+.js-items{font-size:11px;color:var(--body);line-height:1.7;}
+/* KOL ROW */
+.kolrow{display:flex;gap:12px;padding:10px 14px;background:#FFFFFF;border:1px solid var(--bdr);border-radius:10px;align-items:flex-start;margin-bottom:8px;transition:box-shadow .18s;}
+.kolrow:hover{box-shadow:0 4px 12px rgba(46,58,18,.07);}
+.kol-fase{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);min-width:52px;flex-shrink:0;padding-top:2px;}
+.kol-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.kol-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+/* VISION YEAR */
+.yr{border-radius:12px;padding:20px;}
+.yr-n{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.yr-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:10px;}
+.yr ul{list-style:none;padding:0;}
+.yr li{font-size:12px;padding:5px 0;border-bottom:1px solid rgba(46,58,18,.07);line-height:1.5;}
+.yr li:last-child{border-bottom:none;}
+.yr li::before{content:"→ ";color:var(--ol2);font-weight:700;}
+/* SCRIPT BOX */
+.sbox2{background:var(--fo);border:1px solid rgba(139,155,42,.2);border-radius:12px;padding:18px 22px;}
+.sbox2-lbl{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ol2);margin-bottom:12px;}
+.srow{display:flex;gap:12px;padding:7px 0;border-bottom:1px solid rgba(139,155,42,.1);}
+.srow:last-child{border-bottom:none;}
+.stime{font-family:'DM Mono',monospace;font-size:9px;color:var(--ol2);min-width:52px;flex-shrink:0;padding-top:2px;}
+.stext{font-size:12px;color:rgba(240,242,220,.75);line-height:1.6;}
+.stext em{color:var(--ol2);font-style:normal;font-weight:600;}
+/* B2B TRACK ITEM */
+.btrack{border-radius:10px;overflow:hidden;margin-bottom:8px;}
+.btrack-h{padding:8px 14px;display:flex;align-items:center;justify-content:space-between;}
+.btrack-h h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;}
+.btrack-h span{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.btrack-b{padding:10px 14px;font-size:11.5px;line-height:1.65;}
+/* MARKETPLACE DATA */
+.mp-card{background:#FFFFFF;border:1px solid var(--bdr);border-radius:12px;padding:16px;margin-bottom:10px;transition:box-shadow .18s;}
+.mp-card:hover{box-shadow:0 4px 12px rgba(46,58,18,.07);}
+.mp-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.mp-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);}
+.mp-stat{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--fo);line-height:1;margin-bottom:3px;}
+.mp-body{font-size:12px;color:var(--body);line-height:1.65;}
+/* ADS MINI */
+.ads-mini{background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.2);border-radius:10px;padding:14px;text-align:center;}
+.ads-mini .lbl{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:6px;}
+.ads-mini .val{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--ol2);line-height:1;margin-bottom:4px;}
+.ads-mini .sub2{font-size:11px;color:rgba(255,255,255,.55);line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav class="slide-nav">
+  <a class="nav-logo" href="#">
+    <svg style="height:26px;flex-shrink:0" viewBox="330 240 440 420" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+      <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+      <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+    </svg>
+    <span class="nav-wm">CUSTOMPEDIA</span>
+  </a>
+  <div class="nav-div"></div>
+  <span class="nav-doc">360° Brand Activation · Batik Semar</span>
+  <div class="nav-sp"></div>
+  <span class="sc"><span id="curSlide">1</span> / <span id="totSlide"></span></span>
+  <a class="nav-cta" href="#">Get in Touch</a>
+</nav>
+<div class="dots" id="dots"></div>
+<div class="hint" id="hint">Scroll ↓</div>
+<div class="deck" id="deck">
+<!-- S1 COVER -->
+<div class="slide dk" id="s1">
+  <div style="position:absolute;inset:0;opacity:.03;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');background-size:200px;pointer-events:none;"></div>
+  <div style="position:absolute;right:-100px;top:-100px;width:480px;height:480px;border-radius:50%;background:rgba(139,155,42,.06);pointer-events:none;"></div>
+  <div style="position:absolute;left:-60px;bottom:-60px;width:300px;height:300px;border-radius:50%;background:rgba(139,155,42,.04);pointer-events:none;"></div>
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1" style="margin-bottom:6px;"><span class="ey">360° Brand Activation · Mei 2026</span></div>
+    <div class="r d2"><h1 class="cv-title">Batik Semar<br>× <em>Custompedia</em></h1></div>
+    <div class="r d3"><p class="cv-sub">Strategi aktivasi digital untuk mengembalikan Batik Semar ke posisi yang seharusnya — sebagai warisan budaya Solo yang paling relevan di 2026.</p></div>
+    <div class="r d4" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;">
+      <span class="pill p-ol2">Big Idea</span><span class="pill p-ol2">Pilar Konten</span><span class="pill p-ol2">B2B Strategy</span><span class="pill p-ol2">3-Bulan Roadmap</span><span class="pill p-ol2">KOL Activation</span><span class="pill p-ol2">KPI & Forecast</span>
+    </div>
+    <div class="r d5 cv-foot">BATIK SEMAR SOLO · Est. 1947 · Custompedia © 2026 · Confidential</div>
+  </div>
+  <div class="snum">01</div>
+</div>
+
+<!-- S2 TENTANG BATIK SEMAR -->
+<div class="slide" id="s2">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">01 · Tentang Batik Semar</div></div>
+    <div class="r d2"><h2 class="h1">79 Tahun. Tiga Generasi.<br>Satu Warisan.</h2></div>
+    <div class="r d3 g21" style="gap:28px;">
+      <div>
+        <p class="sub" style="margin-bottom:16px;">Batik Semar bukan sekadar brand fashion. Ini adalah institusi budaya yang bertahan melewati kebakaran 2002, krisis ekonomi, dan pandemi — dan tetap berdiri di Punggawan, Solo, sejak 1947.</p>
+        <div class="g4" style="margin-bottom:14px;">
+          <div class="sbox"><div class="sval" style="color:var(--fo);">1947</div><div class="slbl">Tahun berdiri<br>Generasi pertama</div></div>
+          <div class="sbox"><div class="sval" style="color:var(--fo);">Gen. 3</div><div class="slbl">Ardianto Soewono<br>Owner saat ini</div></div>
+          <div class="sbox"><div class="sval" style="color:var(--fo);">6</div><div class="slbl">Negara ekspor<br>sejak 1989</div></div>
+          <div class="sbox"><div class="sval" style="color:var(--fo);">Ratusan</div><div class="slbl">Motif dengan<br>cerita & filosofi</div></div>
+        </div>
+        <div class="note n-fo">Batik Semar menawarkan busana formal, kasual, kain, aksesori etnik, hingga souvenir — untuk segmen B2C maupun B2B korporat.</div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Klien B2B Existing</div>
+        <div class="card" style="margin-bottom:10px;border-left:3px solid var(--fo);"><div class="clbl" style="color:var(--fo);">Asuransi Kesehatan</div><div class="ctitle">Prodia Life</div><div class="cbody">Seragam korporat — trust signal kelas enterprise.</div></div>
+        <div class="card" style="margin-bottom:10px;border-left:3px solid var(--ol);"><div class="clbl" style="color:var(--ol);">Rumah Sakit</div><div class="ctitle">RS Telogorejo</div><div class="cbody">Vendor batik terpercaya untuk institusi kesehatan terkemuka.</div></div>
+        <div class="card" style="border-left:3px solid var(--go);"><div class="clbl" style="color:var(--go);">Corporate & Logistik</div><div class="ctitle">DHL Logistik</div><div class="cbody">Seragam untuk perusahaan logistik multinasional.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">02</div>
+</div>
+
+<!-- S3 REALITA PASAR -->
+<div class="slide cr" id="s3">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">02 · Realita Industri 2026</div></div>
+    <div class="r d2"><h2 class="h1">Mengapa <em style="color:var(--fo);font-style:italic;">Sekarang</em><br>adalah Waktu yang Tepat</h2></div>
+    <div class="r d3 g2" style="margin-bottom:14px;">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">Fenomena Social Commerce</div>
+        <div class="card" style="margin-bottom:9px;"><div class="ctop" style="background:var(--fo);"></div><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--fo);line-height:1;margin-bottom:4px;">80%</div><div class="cbody">transaksi digital Indonesia berasal dari <strong>social commerce</strong> — Fashion & Apparel memimpin kategori ini.</div></div>
+        <div class="card" style="margin-bottom:9px;"><div class="ctop" style="background:var(--ol);"></div><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--ol);line-height:1;margin-bottom:4px;">60%</div><div class="cbody">konsumen Indonesia membeli melalui <strong>Live Streaming</strong> — conversion rate 3× lebih tinggi dari e-commerce biasa.</div></div>
+        <div class="card"><div class="ctop" style="background:var(--go);"></div><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--go);line-height:1;margin-bottom:4px;">$4.8B</div><div class="cbody">GMV TikTok Shop Indonesia (2024) — pasar TikTok Shop <strong>terbesar di dunia</strong>. Fashion kategori terkuat.</div></div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">Perilaku Buyer Fashion 2026</div>
+        <div class="note n-fo" style="margin-bottom:9px;"><strong>Omnichannel adalah bare minimum.</strong> Brand yang belum mengintegrasikan pengalaman online dan offline akan menghadapi penurunan pelanggan yang semakin cepat.</div>
+        <div class="note n-fo" style="margin-bottom:9px;"><strong>Research online dulu, beli kemudian.</strong> Konsumen riset mendalam di Instagram, TikTok, dan marketplace sebelum memutuskan pembelian — termasuk untuk segmen B2B korporat.</div>
+        <div class="note n-fo" style="margin-bottom:9px;"><strong>Heritage menjual.</strong> Brand dengan cultural storytelling yang konsisten membangun ikatan emosional yang jauh lebih kuat dan tahan lama dari sekadar iklan produk.</div>
+        <div class="note n-go"><strong>Batik Semar ada di posisi sempurna</strong> untuk menangkap semua tren ini — dengan 79 tahun cerita nyata yang tidak bisa diklaim kompetitor manapun.</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">03</div>
+</div>
+
+<!-- S4 POSISI SAAT INI -->
+<div class="slide" id="s4">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">03 · Titik Awal</div></div>
+    <div class="r d2"><h2 class="h1">Di Mana Batik Semar<br>Berdiri Hari Ini</h2></div>
+    <div class="r d3"><p class="sub">Kami menganalisis kondisi digital Batik Semar secara menyeluruh. Ini yang kami temukan — dan di mana ruang terbesar untuk tumbuh.</p></div>
+    <div class="r d4 g4" style="margin-bottom:16px;">
+      <div class="sbox"><div class="sval" style="color:var(--fo);">85.8K</div><div class="slbl">IG Followers<br>Base audiens yang ada</div></div>
+      <div class="sbox"><div class="sval" style="color:var(--go);">0.02%</div><div class="slbl">Engagement Rate<br>Industry avg: 1.2%</div></div>
+      <div class="sbox"><div class="sval" style="color:var(--fo);">4.9★</div><div class="slbl">Rating Shopee<br>Mall Seller · 3.7K ulasan</div></div>
+      <div class="sbox"><div class="sval" style="color:var(--re);">~50%</div><div class="slbl">Cancel Rate Shopee<br>Threshold: ≤2%</div></div>
+    </div>
+    <div class="r d5 g2">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gr);margin-bottom:8px;">Aset yang Sudah Dimiliki</div>
+        <div class="note n-gr" style="margin-bottom:8px;"><strong>79 tahun heritage</strong> — narasi autentik yang tidak bisa dibuat-buat atau dibeli kompetitor</div>
+        <div class="note n-gr" style="margin-bottom:8px;"><strong>85.8K followers</strong> — base audiens yang pernah peduli, siap untuk di-re-engage</div>
+        <div class="note n-gr" style="margin-bottom:8px;"><strong>Galeri bersejarah</strong> di Punggawan Solo — aset fisik yang bisa jadi destinasi heritage unik</div>
+        <div class="note n-gr"><strong>Klien B2B kelas enterprise</strong> — DHL, RS Telogorejo, Prodia Life sebagai social proof yang kuat</div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--re);margin-bottom:8px;">Yang Perlu Segera Dibenahi</div>
+        <div class="note n-re" style="margin-bottom:8px;"><strong>Cancel rate Shopee ~50%</strong> — 25× di atas threshold Preferred Seller (≤2%). Listing turun ranking, tidak eligible kampanye Shopee, revenue bocor.</div>
+        <div class="note n-re" style="margin-bottom:8px;"><strong>Engagement rate 0.02%</strong> — 60× di bawah rata-rata industri fashion. Audiens belum terkoneksi secara emosional dengan brand.</div>
+        <div class="note n-re" style="margin-bottom:8px;"><strong>Heritage belum dikomunikasikan</strong> — 79 tahun cerita ada di galeri, tapi tidak ada di digital. Kompetitor perlahan mengisi ruang ini.</div>
+        <div class="note n-re"><strong>B2B tanpa digital funnel</strong> — inquiry hanya via chat bio. Tidak ada landing page, tidak ada WA Business terstruktur.</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">04</div>
+</div>
+
+<!-- S5 COMPETITIVE LANDSCAPE -->
+<div class="slide cr" id="s5">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">04 · Competitive Landscape</div></div>
+    <div class="r d2"><h2 class="h1">Satu Ruang yang<br>Belum Ada yang Isi</h2></div>
+    <div class="r d3"><p class="sub" style="margin-bottom:12px;">Tidak ada kompetitor yang menggabungkan: heritage autentik + digital storytelling konsisten + B2B korporat. Ruang itu milik Batik Semar untuk diklaim.</p></div>
+    <div class="r d4" style="margin-bottom:12px;">
+      <div class="ctbl">
+        <div class="chd"><div>Brand</div><div>Followers</div><div>Strategi Digital</div><div>Heritage</div><div>Tourism</div><div>B2B</div></div>
+        <div class="crow"><div><div class="cbr">Danar Hadi</div><div class="cbs">Est. 1967 · Solo</div></div><div>91K</div><div>Fashion show, product catalog. Museum aktif tapi akun museum (@museumdanarhadi) hanya 2.289 followers — tidak dioptimasi.</div><div><span class="tag ty">Ada, tidak konsisten</span></div><div><span class="tag tg">Museum aktif</span></div><div><span class="tag ty">Ada</span></div></div>
+        <div class="crow"><div><div class="cbr">Batik Keris Heritage</div><div class="cbs">Est. 1920 · Laweyan, Solo</div></div><div>8.946<br><span style="font-size:9px;color:var(--muted);">(akun heritage)</span></div><div>Punya museum + cafe Omah Lowo (gedung Belanda) + Taman Sekar Truntum. Demand tourism terbukti ada — tapi digital presence sangat lemah padahal venue-nya luar biasa.</div><div><span class="tag tg">Museum + Cafe</span></div><div><span class="tag tg">Omah Lowo Solo</span></div><div><span class="tag tr">Tidak ada</span></div></div>
+        <div class="crow"><div><div class="cbr">BT Batik Trusmi</div><div class="cbs">Cirebon · Benchmark</div></div><div>190K IG<br>29.7K TikTok</div><div>Benchmark heritage digital terkuat — storytelling budaya Cirebon, galeri besar, tourism destination. Model bisnis mirip Semar, beda kota. Bukti bahwa strategi ini works.</div><div><span class="tag tg">Konsisten</span></div><div><span class="tag tg">Kawasan wisata</span></div><div><span class="tag tr">Tidak ada</span></div></div>
+        <div class="crow hl"><div><div class="cbr" style="color:var(--fo);">Batik Semar ←</div><div class="cbs">Est. 1947 · Punggawan, Solo</div></div><div><span class="tag to">85.8K</span></div><div style="font-weight:600;color:var(--fo2);">The Living Heritage Brand — 79 tahun cerita nyata. Galeri bersejarah. Klien B2B enterprise. Aset terbesar, digital presence paling rendah → peluang terbesar.</div><div><span class="tag to">Terkuat & belum diklaim</span></div><div><span class="tag to">Galeri besar, siap diaktivasi</span></div><div><span class="tag tg">✓ DHL, Prodia, RS Telogorejo</span></div></div>
+      </div>
+    </div>
+    <div class="r d5 g3">
+      <div class="note n-fo"><strong>Batik Keris Heritage</strong> buktikan demand heritage tourism di Solo nyata — tapi digital presence mereka 8.946 followers. Semar bisa ambil posisi ini.</div>
+      <div class="note n-fo"><strong>BT Batik Trusmi</strong> (190K IG, 29.7K TikTok) buktikan model heritage + digital works. Semar punya cerita yang lebih dalam dari 3 generasi family business.</div>
+      <div class="note n-fo"><strong>Tidak ada yang punya B2B storytelling.</strong> Semar adalah satu-satunya dengan klien enterprise existing yang bisa dijadikan social proof untuk attract B2B baru.</div>
+    </div>
+  </div>
+  <div class="snum">05</div>
+</div>
+<!-- S6 BIG IDEA -->
+<div class="slide dk" id="s6">
+  <div style="position:absolute;right:-80px;top:-80px;width:400px;height:400px;border-radius:50%;background:rgba(139,155,42,.06);pointer-events:none;"></div>
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">05 · Big Idea</div></div>
+    <div class="r d2"><h2 class="h1">The Living<br><em style="color:var(--ol2);font-style:normal;">Archive</em></h2></div>
+    <div class="r d3"><p class="sub">Menjadikan Batik Semar bukan sekadar brand pakaian — melainkan warisan budaya 79 tahun yang masih hidup dan relevan. Framing yang menjadi ruh dari seluruh strategi.</p></div>
+    <div class="r d4 g3" style="margin-bottom:20px;">
+      <div class="dkc"><div style="font-size:20px;margin-bottom:8px;">📖</div><div class="dkc-title">Mengaktifkan Heritage</div><div class="dkc-sub">Membangun narasi sejarah dan budaya yang tidak bisa dibeli kompetitor. Pasar penuh klaim "Heritage" — tapi sedikit yang bisa membuktikannya secara visual dan emosional. Batik Semar bisa.</div></div>
+      <div class="dkc" style="background:rgba(139,155,42,.12);border-color:rgba(139,155,42,.35);"><div style="font-size:20px;margin-bottom:8px;">🎓</div><div class="dkc-title">Bukan Menjual — Mengedukasi</div><div class="dkc-sub">Ubah audiens dari "penonton pasif" menjadi yang "bisa membedakan" — memahami motif, nilai budaya, dan kenapa Batik Semar berbeda. Ikatan ini jauh lebih tahan lama dari iklan.</div></div>
+      <div class="dkc"><div style="font-size:20px;margin-bottom:8px;">🔄</div><div class="dkc-title">Konversi dari Konteks</div><div class="dkc-sub">Orang membeli karena sudah mengenal Batik Semar — sudah jadi Top-of-Mind. Conversion rate audiens yang teredukasi 2–3× lebih tinggi dari cold traffic berbasis iklan.</div></div>
+    </div>
+    <div class="r d5" style="border:1.5px solid rgba(139,155,42,.3);border-radius:12px;padding:20px;background:rgba(139,155,42,.06);">
+      <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ol2);margin-bottom:8px;">Positioning Statement</div>
+      <p style="font-family:'Syne',sans-serif;font-size:16px;font-weight:500;font-style:italic;color:white;line-height:1.55;margin-bottom:14px;">"Batik Semar adalah warisan hidup batik Solo sejak 1947 — diwariskan oleh tangan yang telah melewati kebakaran, krisis, dan pandemi. Bukan sekadar kain. Ini adalah karakter bangsa yang terus bernapas."</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="border-left:2px solid var(--ol2);padding-left:10px;"><div style="font-size:9px;color:var(--ol2);font-family:'Syne',sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;">Nilai 1</div><div style="font-size:13px;font-weight:700;color:white;">Ketahanan</div></div>
+        <div style="border-left:2px solid var(--ol2);padding-left:10px;"><div style="font-size:9px;color:var(--ol2);font-family:'Syne',sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;">Nilai 2</div><div style="font-size:13px;font-weight:700;color:white;">Makna di Balik Motif</div></div>
+        <div style="border-left:2px solid var(--ol2);padding-left:10px;"><div style="font-size:9px;color:var(--ol2);font-family:'Syne',sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;">Nilai 3</div><div style="font-size:13px;font-weight:700;color:white;">Pewarisan Lintas Generasi</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">06</div>
+</div>
+
+<!-- S7 AUDIENCE -->
+<div class="slide" id="s7">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">06 · Audience & Customer Journey</div></div>
+    <div class="r d2"><h2 class="h1">Siapa yang Kita<br>Ajak Bicara</h2></div>
+    <div class="r d3 g3" style="margin-bottom:16px;">
+      <div class="pcard" style="background:rgba(28,43,94,.08);border:1px solid rgba(28,43,94,.22);border-top:3px solid #4A6BD4;">
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4A6BD4;margin-bottom:6px;">B2B · Persona 1</div>
+        <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px;">Procurement Officer</div>
+        <ul class="pcard"><li>Usia 30–50 · Milenial–Gen X</li><li>Korporasi: Hospitality, BUMN, Manufaktur</li><li><span>Decision:</span> lead time + harga competitive</li><li><span>Channel riset:</span> Instagram, Google</li><li><span>Pain point:</span> Vendor tidak konsisten kualitas</li></ul>
+      </div>
+      <div class="pcard" style="background:rgba(107,122,31,.08);border:2px solid rgba(107,122,31,.35);border-top:3px solid var(--ol2);">
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:6px;">B2C · Persona 2</div>
+        <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px;">Formal Event Attendee</div>
+        <ul class="pcard"><li>Usia 28–45 · Milenial–Gen X · Professional</li><li>Butuh batik representatif & nyaman</li><li><span>Decision:</span> estetika motif + eksklusivitas</li><li><span>Channel:</span> Instagram, TikTok, Google</li><li><span>Pain point:</span> Sulit beli premium, ukuran lengkap</li></ul>
+      </div>
+      <div class="pcard" style="background:var(--go-b);border:1px solid var(--go-d);border-top:3px solid var(--go);">
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--go2);margin-bottom:6px;">B2B · Persona 3</div>
+        <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px;">Corporate Gift Buyer</div>
+        <ul class="pcard"><li>PR Manager, GA · Usia 30–55</li><li>Korporasi yang rutin beri souvenir & hampers</li><li><span>Decision:</span> lead time + opsi hampers + MOQ</li><li><span>Channel:</span> Instagram, Shopee, Google</li><li><span>Pain point:</span> MOQ terlalu tinggi</li></ul>
+      </div>
+    </div>
+    <div class="r d4">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">5-Stage Customer Journey</div>
+      <div class="g5">
+        <div class="jstage"><div class="js-n">1</div><div class="js-title">Discovery</div><div class="js-sub">Belum kenal Semar</div><div class="js-items">Reels + TikTok FYP<br>→ Reach & Views</div></div>
+        <div class="jstage"><div class="js-n">2</div><div class="js-title">Interest</div><div class="js-sub">Mulai follow & simpan</div><div class="js-items">IG Posts + KOL<br>→ ER & Profile Visit</div></div>
+        <div class="jstage"><div class="js-n">3</div><div class="js-title">Consideration</div><div class="js-sub">Compare & cek harga</div><div class="js-items">Marketplace + Bio<br>→ Saved, Link Clicks</div></div>
+        <div class="jstage"><div class="js-n">4</div><div class="js-title">Intent</div><div class="js-sub">Siap membeli</div><div class="js-items">DM + WA + Marketplace<br>→ Qualified Leads</div></div>
+        <div class="jstage" style="border-color:var(--ol2);background:var(--olp);"><div class="js-n" style="color:var(--fo);opacity:.35;">5</div><div class="js-title" style="color:var(--fo);">Conversion</div><div class="js-sub">Closing & repeat</div><div class="js-items" style="color:var(--fo2);">GMV + ROAS + B2B Deal<br>→ Revenue aktual</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">07</div>
+</div>
+
+<!-- S8 PILAR KONTEN -->
+<div class="slide dk2" id="s8">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">07 · Pilar Konten</div></div>
+    <div class="r d2"><h2 class="h1">Framework 3+1 —<br><em style="color:var(--ol2);font-style:normal;">Satu Narasi, Dua Audiens</em></h2></div>
+    <div class="r d3 g4" style="margin-bottom:16px;">
+      <div class="pc" style="border-top:3px solid var(--fo2);">
+        <div class="pc-n" style="color:var(--fo);">01</div>
+        <div class="pc-name">Warisan & Cerita</div>
+        <div class="pc-pct" style="color:var(--fo2);">40%</div>
+        <div class="pc-desc">Emotional equity yang tidak bisa ditiru. Cerita yang hanya dimiliki Batik Semar.</div>
+        <div class="pc-ex"><strong>Hero</strong>Mini-documentary Pak Ardyanto, timeline visual 1947–2026<strong>Hub</strong>Series "Cerita di Balik Motif" mingguan, foto arsip, milestone<strong>Hygiene</strong>Quote pendiri, aktivitas harian galeri</div>
+        <div class="pbadge" style="background:rgba(46,58,18,.08);color:var(--fo);">Emotional Equity</div>
+      </div>
+      <div class="pc" style="border-top:3px solid var(--ol);">
+        <div class="pc-n" style="color:var(--ol);">02</div>
+        <div class="pc-name">Proses & Manusia</div>
+        <div class="pc-pct" style="color:var(--ol);">25%</div>
+        <div class="pc-desc">Autentisitas yang membedakan dari fast fashion. Justifikasi harga premium tanpa menyebut harga.</div>
+        <div class="pc-ex"><strong>Hero</strong>Full proses membatik, POV Tour Guide galeri<strong>Hub</strong>"Kenapa batik tulis lebih mahal?" Profil pengrajin senior<strong>Hygiene</strong>Sneak peek produksi, staff jelaskan produk favorit</div>
+        <div class="pbadge" style="background:var(--olp);color:var(--fo);">Autentisitas</div>
+      </div>
+      <div class="pc" style="border-top:3px solid var(--go);">
+        <div class="pc-n" style="color:var(--go);">03</div>
+        <div class="pc-name">Koleksi & Commerce</div>
+        <div class="pc-pct" style="color:var(--go);">30%</div>
+        <div class="pc-desc">Konversi dalam konteks cerita — bukan sekadar foto produk dengan caption harga.</div>
+        <div class="pc-ex"><strong>Hero</strong>Lookbook koleksi di galeri, styling batik untuk berbagai acara<strong>Hub</strong>Mix and match, UGC, seasonal (Lebaran, pernikahan)<strong>Hygiene</strong>TikTok Shop, flash sale eksklusif, motif pilihan minggu ini</div>
+        <div class="pbadge" style="background:var(--go-b);color:var(--go2);">Konversi</div>
+      </div>
+      <div class="pc" style="border:2px solid var(--ol2);border-top:3px solid var(--ol2);">
+        <div class="pc-n" style="color:var(--fo);">04</div>
+        <div class="pc-name" style="color:var(--fo);">B2B Storytelling</div>
+        <div class="pc-pct" style="color:var(--fo2);">5%</div>
+        <div class="pc-desc" style="color:var(--body);"><strong style="color:var(--ink);">Bukan hard sell, bukan katalog.</strong> Portfolio dalam bentuk cerita, thought leadership untuk HRD & GA.</div>
+        <div class="pc-ex" style="color:var(--muted);"><strong style="color:var(--fo);">Konten</strong>Showcase seragam DHL/RS Telogorejo sebagai cerita kepercayaan<strong style="color:var(--fo);">Platform</strong>IG Highlight "B2B & Seragam" + Landing Page dedicated<strong style="color:var(--fo);">Seasonal</strong>Lebaran, Hari Batik Nasional (2 Okt), Desember → naik ke 20%</div>
+        <div class="pbadge" style="background:var(--olp);color:var(--fo);">B2B Trust</div>
+      </div>
+    </div>
+    <div class="r d4" style="background:rgba(255,255,255,.05);border:1px solid rgba(139,155,42,.2);border-radius:10px;padding:14px 18px;">
+      <div style="display:grid;grid-template-columns:160px repeat(4,1fr);gap:0;font-size:11.5px;">
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:4px 0;">Pilar</div>
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;padding:4px 0;">Bulan 1</div>
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;padding:4px 0;">Bulan 2</div>
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;padding:4px 0;">Bulan 3</div>
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;padding:4px 0;">Bulan 6+</div>
+        <div style="color:rgba(255,255,255,.7);padding:5px 0;border-top:1px solid rgba(255,255,255,.08);">Warisan & Cerita</div><div style="text-align:center;font-weight:700;color:var(--ol2);border-top:1px solid rgba(255,255,255,.08);">50%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">40%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">35%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">30%</div>
+        <div style="color:rgba(255,255,255,.7);padding:5px 0;border-top:1px solid rgba(255,255,255,.08);">Proses & Manusia</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">20%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">20%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">15%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">15%</div>
+        <div style="color:rgba(255,255,255,.7);padding:5px 0;border-top:1px solid rgba(255,255,255,.08);">Koleksi & Commerce</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">20%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">30%</div><div style="text-align:center;font-weight:700;color:var(--ol2);border-top:1px solid rgba(255,255,255,.08);">40%</div><div style="text-align:center;font-weight:700;color:var(--ol2);border-top:1px solid rgba(255,255,255,.08);">45%</div>
+        <div style="color:rgba(255,255,255,.7);padding:5px 0;border-top:1px solid rgba(255,255,255,.08);">B2B Storytelling</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">10%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">10%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">10%</div><div style="text-align:center;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);">↑20% seasonal</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">08</div>
+</div>
+
+<!-- S_REF_CONTENT: REFERENSI KONTEN PER PILAR -->
+<div class="slide" id="s_ref_content" style="background:#FAFAF5;">
+  <div class="abar"></div>
+  <div class="inner" style="max-width:1160px;">
+    <div class="r d1"><div class="ey">08B · Referensi Konten Per Pilar</div></div>
+    <div class="r d2"><h2 class="h1" style="margin-bottom:6px;">Ini Tone-nya.<br><em style="color:var(--ol2);font-style:normal;">Ini Arahnya.</em></h2></div>
+    <div class="r d3"><p class="sub" style="margin-bottom:16px;">Konten yang akan diproduksi mengacu pada referensi ini — bukan copy, tapi tone, angle, dan format yang sama dibangun di atas cerita Batik Semar.</p></div>
+
+    <!-- GRID 4 PILAR -->
+    <div class="r d4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+
+      <!-- PILAR 1: WARISAN & CERITA -->
+      <div style="background:#FFFFFF;border:1px solid var(--bdr);border-radius:14px;overflow:hidden;">
+        <div style="background:var(--fo);padding:10px 14px;display:flex;align-items:center;gap:8px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--ol2);flex-shrink:0;"></div>
+          <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.9);">Warisan & Cerita</span>
+          <span style="margin-left:auto;font-family:'Syne',sans-serif;font-size:9px;color:rgba(255,255,255,.35);font-weight:600;">40%</span>
+        </div>
+        <div style="padding:10px;display:flex;flex-direction:column;gap:8px;">
+
+          <!-- REF 1 -->
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://vt.tiktok.com/ZSxpN9pS4/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(46,58,18,.1)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#1A2408 60%,#3D4A18);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:#010101;border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.72a4.85 4.85 0 01-1.01-.03z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">TikTok</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--ol2);margin-bottom:3px;">REF 01</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">Heritage Brand — Cerita Pendiri & Sejarah</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Storytelling generasi</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--ol);border:1px solid var(--ol);padding:2px 7px;border-radius:10px;">Tonton →</span>
+            </div>
+          </div>
+
+          <!-- REF 2 -->
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://vt.tiktok.com/ZSxpNu7tb/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(46,58,18,.1)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#2E3A12 60%,#4A5A20);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:#010101;border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.72a4.85 4.85 0 01-1.01-.03z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">TikTok</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--ol2);margin-bottom:3px;">REF 02</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">Milestone Brand — Timeline Visual Warisan</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Arsip & pencapaian</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--ol);border:1px solid var(--ol);padding:2px 7px;border-radius:10px;">Tonton →</span>
+            </div>
+          </div>
+
+          <!-- REF 3 -->
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://vt.tiktok.com/ZSxpNqNYD/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(46,58,18,.1)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#3D4A18 60%,#5A6A28);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:#010101;border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.72a4.85 4.85 0 01-1.01-.03z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">TikTok</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--ol2);margin-bottom:3px;">REF 03</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">Cerita Motif — Makna di Balik Kain</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Edukasi motif</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--ol);border:1px solid var(--ol);padding:2px 7px;border-radius:10px;">Tonton →</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PILAR 2: PROSES & MANUSIA -->
+      <div style="background:#FFFFFF;border:1px solid var(--bdr);border-radius:14px;overflow:hidden;">
+        <div style="background:var(--ol);padding:10px 14px;display:flex;align-items:center;gap:8px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.6);flex-shrink:0;"></div>
+          <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.95);">Proses & Manusia</span>
+          <span style="margin-left:auto;font-family:'Syne',sans-serif;font-size:9px;color:rgba(255,255,255,.45);font-weight:600;">25%</span>
+        </div>
+        <div style="padding:10px;display:flex;flex-direction:column;gap:8px;">
+
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://vt.tiktok.com/ZSxpFeLTQ/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(46,58,18,.1)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#6B7A1F 60%,#8B9B2A);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:#010101;border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.72a4.85 4.85 0 01-1.01-.03z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">TikTok</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;"><svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.7);margin-bottom:3px;">REF 01</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">Behind the Craft — Proses Membatik</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Proses produksi</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--ol);border:1px solid var(--ol);padding:2px 7px;border-radius:10px;">Tonton →</span>
+            </div>
+          </div>
+
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://vt.tiktok.com/ZSxpFYDMp/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(46,58,18,.1)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#5A6820 60%,#7A8830);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:#010101;border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.72a4.85 4.85 0 01-1.01-.03z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">TikTok</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;"><svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.7);margin-bottom:3px;">REF 02</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">Profil Pengrajin — Manusia di Balik Batik</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Human interest</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--ol);border:1px solid var(--ol);padding:2px 7px;border-radius:10px;">Tonton →</span>
+            </div>
+          </div>
+
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://vt.tiktok.com/ZSxh5ToSU/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(46,58,18,.1)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#4A5818 60%,#6A7828);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:#010101;border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.72a4.85 4.85 0 01-1.01-.03z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">TikTok</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;"><svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.7);margin-bottom:3px;">REF 03</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">POV Gallery Tour — Authentic Walkthrough</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Tour & experience</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--ol);border:1px solid var(--ol);padding:2px 7px;border-radius:10px;">Tonton →</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PILAR 3: KOLEKSI & COMMERCE -->
+      <div style="background:#FFFFFF;border:1px solid var(--bdr);border-radius:14px;overflow:hidden;">
+        <div style="background:var(--go);padding:10px 14px;display:flex;align-items:center;gap:8px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.6);flex-shrink:0;"></div>
+          <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.95);">Koleksi & Commerce</span>
+          <span style="margin-left:auto;font-family:'Syne',sans-serif;font-size:9px;color:rgba(255,255,255,.45);font-weight:600;">30%</span>
+        </div>
+        <div style="padding:10px;display:flex;flex-direction:column;gap:8px;">
+
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://www.instagram.com/reel/DVIzqBLkf-T/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(200,146,42,.15)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#C8922A 60%,#A87020);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">Reel</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;"><svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.8);margin-bottom:3px;">REF 01</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">Lookbook Koleksi — Styling Editorial</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Instagram Reel</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--go2);border:1px solid var(--go2);padding:2px 7px;border-radius:10px;">Lihat →</span>
+            </div>
+          </div>
+
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://www.instagram.com/p/DVIXucAkXTb/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(200,146,42,.15)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#A87020 60%,#886010);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">Post</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;"><svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.8);margin-bottom:3px;">REF 02</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">Carousel Koleksi — Mix & Match Motif</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Instagram Post</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--go2);border:1px solid var(--go2);padding:2px 7px;border-radius:10px;">Lihat →</span>
+            </div>
+          </div>
+
+          <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://www.instagram.com/p/DV0gsz7E7zO/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(200,146,42,.15)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#886010 60%,#684800);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;">
+              <div style="position:absolute;top:10px;right:10px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">Post</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12;"><svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.8);margin-bottom:3px;">REF 03</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">Feed Commerce — Product Showcase</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Instagram Post</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--go2);border:1px solid var(--go2);padding:2px 7px;border-radius:10px;">Lihat →</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PILAR 4: B2B STORYTELLING -->
+      <div style="background:#FFFFFF;border:2px solid var(--ol2);border-radius:14px;overflow:hidden;">
+        <div style="background:linear-gradient(90deg,var(--fo),var(--fo2));padding:10px 14px;display:flex;align-items:center;gap:8px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--ol2);flex-shrink:0;"></div>
+          <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);">B2B Storytelling</span>
+          <span style="margin-left:auto;font-family:'Syne',sans-serif;font-size:9px;color:rgba(139,155,42,.45);font-weight:600;">5% → 20%</span>
+        </div>
+        <div style="padding:10px;display:flex;flex-direction:column;gap:8px;">
+
+          <div style="border:1px solid rgba(139,155,42,.3);border-radius:10px;overflow:hidden;transition:box-shadow .18s;cursor:pointer;" onclick="window.open('https://vt.tiktok.com/ZSxpYMM3c/','_blank')" onmouseover="this.style.boxShadow='0 4px 16px rgba(139,155,42,.2)'" onmouseout="this.style.boxShadow='none'">
+            <div style="background:linear-gradient(135deg,#1A2408 60%,#2E3A12);padding:22px 14px;position:relative;overflow:hidden;min-height:90px;display:flex;flex-direction:column;justify-content:flex-end;border-bottom:2px solid rgba(139,155,42,.3);">
+              <div style="position:absolute;top:10px;right:10px;background:#010101;border-radius:4px;padding:3px 7px;display:flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.72a4.85 4.85 0 01-1.01-.03z"/></svg>
+                <span style="font-family:'Syne',sans-serif;font-size:8px;color:white;font-weight:700;">TikTok</span>
+              </div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.14;"><svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+              <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--ol2);margin-bottom:3px;">REF 01 — UTAMA</div>
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:white;line-height:1.3;">B2B Portfolio Story — Corporate Heritage</div>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;color:var(--muted);">Narasi, bukan katalog</span>
+              <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--ol);border:1px solid var(--ol);padding:2px 7px;border-radius:10px;">Tonton →</span>
+            </div>
+          </div>
+
+          <!-- Note card -->
+          <div style="background:rgba(107,122,31,.07);border:1px solid rgba(107,122,31,.2);border-radius:10px;padding:14px;">
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fo);margin-bottom:8px;">Prinsip Konten B2B</div>
+            <div style="font-size:11.5px;color:var(--body);line-height:1.65;">
+              ✕ Tidak pernah sebut harga<br>
+              ✕ Tidak hard sell / CTA beli<br>
+              ✓ Selalu dalam bentuk cerita<br>
+              ✓ CTA = "Konsultasi" saja<br>
+              ✓ Tone: profesional, hangat
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- end grid -->
+  </div>
+  <div class="snum">08B</div>
+</div>
+
+
+
+<!-- S9 B2B STORYTELLING SLIDE -->
+<div class="slide dk" id="s9">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey" style="display:flex;align-items:center;gap:8px;"><span style="background:rgba(139,155,42,.2);padding:2px 8px;border-radius:4px;">Pilar 4 · Berdiri Sendiri</span><span>B2B Storytelling — Bukan Hard Sell, Bukan Katalog</span></div></div>
+    <div class="r d2" style="margin-bottom:8px;"><div style="font-family:'Syne',sans-serif;font-size:clamp(20px,2.8vw,36px);font-weight:800;color:var(--wh);line-height:1.05;">B2B Dimulai dari<br><em style="color:var(--ol2);font-style:normal;">Hari Pertama</em></div></div>
+    <div class="r d3" style="margin-bottom:16px;">
+      <div style="border-left:3px solid var(--ol2);padding:12px 16px;background:rgba(139,155,42,.07);border-radius:0 8px 8px 0;margin-bottom:14px;">
+        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.65;"><strong style="color:var(--ol2);">Prinsip utama:</strong> Tidak pernah sebut harga. Tidak tunjukkan diskon. Selalu dalam bentuk cerita atau showcase prestisius. CTA selalu "konsultasi" atau "hubungi kami" — bukan "order sekarang". Tone: profesional tapi hangat.</p>
+      </div>
+    </div>
+    <div class="r d4 g2" style="margin-bottom:14px;">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:10px;">Sub-Kategori Konten B2B</div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.15);border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--wh);margin-bottom:4px;">● Portfolio Showcase (Cerita, bukan Katalog)</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;">"DHL memilih motif Parang — filosofi bergerak tanpa henti yang relevan dengan logistik" → cerita, bukan promosi</p>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.15);border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--wh);margin-bottom:4px;">● Edukasi B2B (Thought Leadership)</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;">"3 hal yang perlu dipertimbangkan saat memilih seragam batik" — konten berguna untuk HRD/GA yang membuktikan expertise Semar</p>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.15);border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--wh);margin-bottom:4px;">● Social Proof B2B</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;">Foto seragam di setting kerja nyata. "Lebih dari X perusahaan mempercayakan seragam kepada kami sejak 1947"</p>
+        </div>
+        <div style="background:rgba(139,155,42,.12);border:1px solid rgba(139,155,42,.3);border-radius:10px;padding:12px 14px;">
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ol2);margin-bottom:4px;">● Seasonal (Naik ke 15–20%)</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.65);line-height:1.6;">6 minggu sebelum Lebaran, Oktober (Hari Batik Nasional 2 Okt), Desember — intensifikasi konten corporate gift & hampers</p>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:10px;">Platform B2B</div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.2);border-radius:10px;padding:14px;margin-bottom:10px;">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--wh);margin-bottom:5px;">Instagram — Highlight "B2B & Seragam"</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.65;">Highlight khusus jadi destinasi pertama procurement officer saat visit profil. 1 konten B2B/bulan di feed.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.2);border-radius:10px;padding:14px;margin-bottom:10px;">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--wh);margin-bottom:5px;">WhatsApp Business</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.65;">Semua komunikasi follow-up, katalog, negosiasi. 6 quick reply template. Label system CRM sederhana.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.2);border-radius:10px;padding:14px;">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--wh);margin-bottom:5px;">Landing Page B2B (Dedicated)</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.65;">Company profile + portfolio (DHL, Prodia, RS Telogorejo) + spesifikasi + form inquiry + section Corporate Gift.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">09</div>
+</div>
+<!-- S10 FASE AKTIVASI (SWIMLANE VISUAL) -->
+<div class="slide cr" id="s10">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">08 · Fase Aktivasi</div></div>
+    <div class="r d2"><h2 class="h1">3 Bulan, 2 Track,<br>Satu Tujuan</h2></div>
+    <div class="r d3" style="margin-bottom:14px;">
+      <!-- SWIMLANE TIMELINE -->
+      <div style="border:1px solid var(--bdr);border-radius:14px;overflow:hidden;background:#FFFFFF;">
+        <!-- HEADER ROW -->
+        <div style="display:grid;grid-template-columns:100px 1fr 1fr 1fr;background:var(--fo);">
+          <div style="padding:10px 14px;"></div>
+          <div style="padding:10px 14px;text-align:center;border-left:1px solid rgba(255,255,255,.12);">
+            <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:3px;">Bulan 1</div>
+            <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:white;">Reactivation</div>
+          </div>
+          <div style="padding:10px 14px;text-align:center;border-left:1px solid rgba(255,255,255,.12);background:rgba(139,155,42,.15);">
+            <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:3px;">Bulan 2</div>
+            <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:white;">Tourism & Trust</div>
+          </div>
+          <div style="padding:10px 14px;text-align:center;border-left:1px solid rgba(255,255,255,.12);">
+            <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:3px;">Bulan 3</div>
+            <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:white;">Conversion</div>
+          </div>
+        </div>
+        <!-- B2C TRACK -->
+        <div style="display:grid;grid-template-columns:100px 1fr 1fr 1fr;border-bottom:2px solid var(--bdr);">
+          <div style="padding:14px;background:var(--olp);display:flex;align-items:center;justify-content:center;border-right:1px solid var(--bdr);">
+            <div style="text-align:center;"><div style="font-size:18px;margin-bottom:4px;">📱</div><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fo);">B2C Track</div></div>
+          </div>
+          <div style="padding:14px;border-right:1px solid var(--bdr);">
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:8px;">🎬 Hero Content</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">Reactivation video — Pak Ardyanto bicara langsung, hook kuat, launch brand kembali</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">⚙️ Setup</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">Bio + highlight + linktree · Shopee + TikTok Shop setup · Series Cerita Motif dimulai</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">📢 KOL</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;">Campaign 1: Media lokal Solo + City Info → amplify reactivation video</div>
+          </div>
+          <div style="padding:14px;background:rgba(107,122,31,.04);border-right:1px solid var(--bdr);">
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:8px;">🎥 Documentary</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">Mini-documentary launch — YouTube + IG + TikTok satu hari besar</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">🏺 Workshop</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">Workshop pertama dibuka — 15 orang, galeri Batik Semar</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">📢 KOL</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;">Campaign 2: Nano 4–5 + Micro 1 — angle galeri sebagai heritage destination</div>
+          </div>
+          <div style="padding:14px;">
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:8px;">🔄 Campaign UGC</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">#CeritaBatikSemar — ajak audiens ceritakan momen mereka dengan Semar</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">📱 TikTok Live</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">Setup internal Batik Semar — cerita + tunjukkan produk</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">📢 KOL</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;">Campaign 3: Nano 3 + Micro 1 — angle workshop membatik</div>
+          </div>
+        </div>
+        <!-- B2B TRACK -->
+        <div style="display:grid;grid-template-columns:100px 1fr 1fr 1fr;">
+          <div style="padding:14px;background:rgba(46,58,18,.05);display:flex;align-items:center;justify-content:center;border-right:1px solid var(--bdr);">
+            <div style="text-align:center;"><div style="font-size:18px;margin-bottom:4px;">🤝</div><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fo);">B2B Track</div></div>
+          </div>
+          <div style="padding:14px;border-right:1px solid var(--bdr);">
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:8px;">🌐 Digital Setup</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">Landing page B2B live + WA Business setup → pertama kali Semar punya digital funnel</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">📞 Outreach</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;">Pak Ardyanto hubungi 10–15 kontak B2B existing — DHL, Prodia, RS Telogorejo dan jaringan baru</div>
+          </div>
+          <div style="padding:14px;background:rgba(107,122,31,.04);border-right:1px solid var(--bdr);">
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:8px;">📖 Konten B2B</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">Konten B2B pertama di feed IG: showcase seragam DHL sebagai cerita kepercayaan</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">🎯 Target</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;">3–5 inquiry B2B baru masuk. Follow up pipeline bulan 1. Edukasi: "cara pilih motif seragam"</div>
+          </div>
+          <div style="padding:14px;">
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:8px;">🎁 Corporate Gift</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;margin-bottom:6px;">Konten Corporate Gift & Hampers — persiapan Hari Batik Nasional (2 Okt) & akhir tahun</div>
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--fo);margin-bottom:6px;">✅ Target</div>
+            <div style="font-size:11px;color:var(--body);line-height:1.6;">1–2 deal closed. Pipeline aktif 5–8 inquiry/bulan. Seasonal konten B2B naik ke 20%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="r d4 g3" style="gap:10px;">
+      <div class="note n-fo" style="text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--fo);margin-bottom:3px;">🔄</div><strong>Reactivation</strong><br>Fondasi digital dibangun dari nol — semua channel aktif dalam 30 hari</div>
+      <div class="note n-ol" style="text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--fo);margin-bottom:3px;">🏛️</div><strong>Tourism & Trust</strong><br>Galeri jadi destinasi, konten B2B mulai menarik inquiry baru</div>
+      <div class="note n-go" style="text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--go);margin-bottom:3px;">🌿</div><strong>Conversion</strong><br>Community terbentuk, B2B pipeline aktif, ads mulai scale</div>
+    </div>
+  </div>
+  <div class="snum">10</div>
+</div>
+
+<!-- S11 SETUP AKUN + VOLUME KONTEN -->
+<div class="slide" id="s11">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">09 · Setup Akun & Volume Konten</div></div>
+    <div class="r d2"><h2 class="h1">Akun yang Siap<br>dari Hari Pertama</h2></div>
+    <div class="r d3 g2" style="gap:20px;">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">Instagram Setup</div>
+        <div class="igp" style="margin-bottom:12px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <div class="iga">BS</div>
+            <div><div class="ign">BATIK SEMAR · Solo, sejak 1947</div><div class="igh">@batik_semar</div></div>
+          </div>
+          <div class="igb">Setiap motif menyimpan cerita. 🧵<br>🏛️ Galeri Heritage · Workshop<br>👔 Seragam Korporat<br>🛍️ linktr.ee/batiksemar</div>
+          <div class="ighl">
+            <div class="ighl-i"><div class="ighl-r">🏛️</div><div class="ighl-l">Siapa Kami</div></div>
+            <div class="ighl-i"><div class="ighl-r">🧵</div><div class="ighl-l">Cerita Motif</div></div>
+            <div class="ighl-i"><div class="ighl-r">🛍️</div><div class="ighl-l">Koleksi</div></div>
+            <div class="ighl-i"><div class="ighl-r">🔍</div><div class="ighl-l">Behind Process</div></div>
+            <div class="ighl-i"><div class="ighl-r">👔</div><div class="ighl-l">B2B & Seragam</div></div>
+            <div class="ighl-i"><div class="ighl-r">🏺</div><div class="ighl-l">Workshop</div></div>
+            <div class="ighl-i"><div class="ighl-r">💬</div><div class="ighl-l">#CeritaSemar</div></div>
+          </div>
+        </div>
+        <div class="note n-fo"><strong>Algoritma Instagram 2026 — 3 sinyal terpenting:</strong> Watch Time (3 dtk pertama krusial), Likes per Reach (rasio bukan absolut), DM Shares (sinyal terkuat — "Cerita Motif" sangat cocok karena sering di-share ke grup keluarga).</div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">Volume Konten Per Bulan</div>
+        <div style="border:1px solid var(--bdr);border-radius:10px;overflow:hidden;background:#FFFFFF;margin-bottom:12px;">
+          <div style="display:grid;grid-template-columns:1fr 80px;background:var(--fo);padding:8px 14px;"><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.5);">Platform & Format</div><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;">Per Bulan</div></div>
+          <div style="display:grid;grid-template-columns:1fr 80px;padding:7px 14px;border-bottom:1px solid var(--bdr);"><div style="font-size:12px;color:var(--body);">IG Reels (60–90 dtk)</div><div style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--fo);">8</div></div>
+          <div style="display:grid;grid-template-columns:1fr 80px;padding:7px 14px;border-bottom:1px solid var(--bdr);background:rgba(240,242,220,.3);"><div style="font-size:12px;color:var(--body);">IG Feed Design (carousel/single)</div><div style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--fo);">6</div></div>
+          <div style="display:grid;grid-template-columns:1fr 80px;padding:7px 14px;border-bottom:1px solid var(--bdr);"><div style="font-size:12px;color:var(--body);">TikTok Mirror dari IG</div><div style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--fo);">8</div></div>
+          <div style="display:grid;grid-template-columns:1fr 80px;padding:7px 14px;border-bottom:1px solid var(--bdr);background:rgba(240,242,220,.3);"><div style="font-size:12px;color:var(--body);">IG Story (mirror dari konten)</div><div style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--fo);">8–12</div></div>
+          <div style="display:grid;grid-template-columns:1fr 80px;padding:7px 14px;border-bottom:1px solid var(--bdr);"><div style="font-size:12px;color:var(--body);">Admin Posting & Scheduling</div><div style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--fo);">✓</div></div>
+          <div style="display:grid;grid-template-columns:1fr 80px;padding:8px 14px;background:var(--olp);border-top:2px solid var(--ol);"><div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--fo);">Total aset/bulan</div><div style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--fo);">30–34</div></div>
+        </div>
+        <div class="note n-ol"><strong>TikTok Live</strong> dijalankan oleh tim internal Batik Semar mulai bulan 3. Custompedia bantu setup teknis: equipment checklist, rundown sesi, brief konten.</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">11</div>
+</div>
+
+<!-- S_LP_BENCH: LANDING PAGE BENCHMARK -->
+<div class="slide cr" id="s_lp_bench">
+  <div class="abar"></div>
+  <div class="inner" style="max-width:1160px;">
+    <div class="r d1"><div class="ey">11B · Landing Page — Benchmark & Prototype</div></div>
+    <div class="r d2"><h2 class="h1" style="margin-bottom:6px;">Dari Standar Pasar<br>ke <em style="color:var(--fo);">Positioning Semar</em></h2></div>
+    <div class="r d3"><p class="sub" style="margin-bottom:16px;">Dua kompetitor menunjukkan apa yang dikerjakan pasar. Prototype Batik Semar menunjukkan ke mana kita bergerak.</p></div>
+
+    <div class="r d4" style="display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:12px;align-items:start;">
+
+      <!-- KOMPETITOR 1: KONFEKSI BAJU -->
+      <div style="background:#FFFFFF;border:1px solid var(--bdr);border-radius:14px;overflow:hidden;">
+        <div style="background:#6B6B6B;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);">Kompetitor A</span>
+          <span style="background:rgba(255,255,255,.15);border-radius:4px;padding:2px 8px;font-family:'Syne',sans-serif;font-size:8px;font-weight:700;color:rgba(255,255,255,.7);">Standard Market</span>
+        </div>
+        <!-- Browser chrome -->
+        <div style="background:#F0F0F0;padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #DDD;">
+          <div style="display:flex;gap:4px;"><div style="width:8px;height:8px;border-radius:50%;background:#FF5F57;"></div><div style="width:8px;height:8px;border-radius:50%;background:#FEBC2E;"></div><div style="width:8px;height:8px;border-radius:50%;background:#28C840;"></div></div>
+          <div style="flex:1;background:white;border-radius:4px;padding:3px 8px;font-family:'DM Mono',monospace;font-size:8.5px;color:#888;border:1px solid #DDD;">konfeksibaju.com</div>
+        </div>
+        <!-- Mockup LP -->
+        <div style="padding:12px;font-size:11px;">
+          <div style="background:#1E40AF;padding:10px;border-radius:4px;margin-bottom:8px;text-align:center;">
+            <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:white;margin-bottom:4px;">Bikin Seragam Kerja</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.7);margin-bottom:6px;">Spesialis kemeja, rompi, jaket, polo shirt</div>
+            <div style="background:#F59E0B;padding:4px 12px;border-radius:4px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:#1A1A1A;display:inline-block;">Free Consultation</div>
+          </div>
+          <div style="display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap;">
+            <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:4px;padding:4px 6px;font-size:9px;color:#3730A3;">Toyota ✓</div>
+            <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:4px;padding:4px 6px;font-size:9px;color:#3730A3;">Gramedia ✓</div>
+            <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:4px;padding:4px 6px;font-size:9px;color:#3730A3;">KLHK ✓</div>
+            <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:4px;padding:4px 6px;font-size:9px;color:#3730A3;">STAN ✓</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
+            <div style="background:#F3F4F6;border-radius:4px;padding:8px;text-align:center;"><div style="font-size:9px;color:#6B7280;">Kemeja</div></div>
+            <div style="background:#F3F4F6;border-radius:4px;padding:8px;text-align:center;"><div style="font-size:9px;color:#6B7280;">Rompi</div></div>
+            <div style="background:#F3F4F6;border-radius:4px;padding:8px;text-align:center;"><div style="font-size:9px;color:#6B7280;">Jaket</div></div>
+            <div style="background:#F3F4F6;border-radius:4px;padding:8px;text-align:center;"><div style="font-size:9px;color:#6B7280;">Polo</div></div>
+          </div>
+          <a href="https://konfeksibaju.com" target="_blank" style="display:block;text-align:center;background:#1E40AF;color:white;border-radius:6px;padding:7px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-decoration:none;transition:opacity .2s;">Buka Situs →</a>
+        </div>
+        <!-- Analisis -->
+        <div style="padding:10px 12px;border-top:1px solid var(--bdr);background:rgba(107,114,128,.04);">
+          <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7280;margin-bottom:6px;">Analisis</div>
+          <div style="font-size:10.5px;color:var(--muted);line-height:1.65;">
+            ✓ Logo klien kuat (Toyota, Gramedia)<br>
+            ✓ CTA langsung WA<br>
+            ✕ Zero storytelling / heritage<br>
+            ✕ Generic — sama dengan 100+ vendor lain<br>
+            ✕ Tidak ada differensiasi nilai
+          </div>
+        </div>
+      </div>
+
+      <!-- KOMPETITOR 2: PRAMIKA UNIFORM -->
+      <div style="background:#FFFFFF;border:1px solid var(--bdr);border-radius:14px;overflow:hidden;">
+        <div style="background:#0A1F4A;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);">Kompetitor B</span>
+          <span style="background:rgba(255,200,50,.2);border:1px solid rgba(255,200,50,.4);border-radius:4px;padding:2px 8px;font-family:'Syne',sans-serif;font-size:8px;font-weight:700;color:#FFD700;">Best Competitor</span>
+        </div>
+        <!-- Browser chrome -->
+        <div style="background:#F0F0F0;padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #DDD;">
+          <div style="display:flex;gap:4px;"><div style="width:8px;height:8px;border-radius:50%;background:#FF5F57;"></div><div style="width:8px;height:8px;border-radius:50%;background:#FEBC2E;"></div><div style="width:8px;height:8px;border-radius:50%;background:#28C840;"></div></div>
+          <div style="flex:1;background:white;border-radius:4px;padding:3px 8px;font-family:'DM Mono',monospace;font-size:8.5px;color:#888;border:1px solid #DDD;">pramikauniform.com</div>
+        </div>
+        <!-- Mockup LP -->
+        <div style="padding:12px;font-size:11px;">
+          <div style="background:#0A1F4A;padding:10px;border-radius:4px;margin-bottom:8px;">
+            <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:white;margin-bottom:4px;line-height:1.3;">Konveksi seragam korporat Jakarta sejak 2018.</div>
+            <div style="font-size:9.5px;color:rgba(255,255,255,.55);margin-bottom:6px;">Spesialis 500–1.000 pcs per batch</div>
+            <div style="display:flex;gap:6px;">
+              <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:3px 8px;border-radius:3px;font-family:'Syne',sans-serif;font-size:8px;color:white;">Konsultasi Gratis</div>
+              <div style="border:1px solid rgba(255,255,255,.2);padding:3px 8px;border-radius:3px;font-family:'Syne',sans-serif;font-size:8px;color:rgba(255,255,255,.6);">Company Profile</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:8px;">
+            <div style="text-align:center;padding:6px 4px;border:1px solid var(--bdr);border-radius:4px;"><div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:#0A1F4A;">8+</div><div style="font-size:8px;color:#6B7280;">Tahun</div></div>
+            <div style="text-align:center;padding:6px 4px;border:1px solid var(--bdr);border-radius:4px;"><div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:#0A1F4A;">200+</div><div style="font-size:8px;color:#6B7280;">Klien</div></div>
+            <div style="text-align:center;padding:6px 4px;border:1px solid var(--bdr);border-radius:4px;"><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:800;color:#0A1F4A;">1.5jt+</div><div style="font-size:8px;color:#6B7280;">Pcs</div></div>
+            <div style="text-align:center;padding:6px 4px;border:1px solid var(--bdr);border-radius:4px;"><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:800;color:#0A1F4A;">5K+</div><div style="font-size:8px;color:#6B7280;">Cap/bln</div></div>
+          </div>
+          <!-- Portfolio mini -->
+          <div style="border:1px solid var(--bdr);border-radius:6px;overflow:hidden;margin-bottom:8px;">
+            <div style="background:#F9FAFB;padding:5px 8px;font-family:'Syne',sans-serif;font-size:8px;font-weight:700;color:#6B7280;letter-spacing:.08em;">PROJECT TERBARU 2025</div>
+            <div style="padding:6px 8px;font-size:10px;color:var(--ink);border-bottom:1px solid var(--bdr);">Garuda Indonesia Cargo · 1.200 pcs</div>
+            <div style="padding:6px 8px;font-size:10px;color:var(--ink);border-bottom:1px solid var(--bdr);">AXA Indonesia · 850 pcs</div>
+            <div style="padding:6px 8px;font-size:10px;color:var(--ink);">BAZNAS · 1.800 pcs</div>
+          </div>
+          <a href="https://www.pramikauniform.com" target="_blank" style="display:block;text-align:center;background:#0A1F4A;color:white;border-radius:6px;padding:7px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-decoration:none;">Buka Situs →</a>
+        </div>
+        <!-- Analisis -->
+        <div style="padding:10px 12px;border-top:1px solid var(--bdr);background:rgba(10,31,74,.03);">
+          <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7280;margin-bottom:6px;">Analisis</div>
+          <div style="font-size:10.5px;color:var(--muted);line-height:1.65;">
+            ✓ Portfolio kuat: Garuda, AXA, Yakult<br>
+            ✓ Angka spesifik (1.000+ pcs, lead time)<br>
+            ✓ Workshop photography nyata<br>
+            ✕ Zero heritage — baru 2018<br>
+            ✕ Tidak ada cerita / filosofi produk
+          </div>
+        </div>
+      </div>
+
+      <!-- PROTOTYPE BATIK SEMAR -->
+      <div style="background:#FFFFFF;border:2px solid var(--ol2);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(107,122,31,.15);">
+        <div style="background:var(--fo);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);">Batik Semar — Prototype</span>
+          <span style="background:rgba(139,155,42,.2);border:1px solid rgba(139,155,42,.4);border-radius:4px;padding:2px 8px;font-family:'Syne',sans-serif;font-size:8px;font-weight:700;color:var(--ol2);">Our Direction ✦</span>
+        </div>
+        <!-- Browser chrome -->
+        <div style="background:#F0F0F0;padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #DDD;">
+          <div style="display:flex;gap:4px;"><div style="width:8px;height:8px;border-radius:50%;background:#FF5F57;"></div><div style="width:8px;height:8px;border-radius:50%;background:#FEBC2E;"></div><div style="width:8px;height:8px;border-radius:50%;background:#28C840;"></div></div>
+          <div style="flex:1;background:white;border-radius:4px;padding:3px 8px;font-family:'DM Mono',monospace;font-size:8.5px;color:#888;border:1px solid #DDD;">batiksemar.co.id/b2b</div>
+        </div>
+        <!-- Mockup Hero Semar -->
+        <div style="padding:12px;">
+          <div style="background:linear-gradient(135deg,#1A2408,#2E3A12);padding:14px;border-radius:6px;margin-bottom:10px;position:relative;overflow:hidden;">
+            <div style="position:absolute;inset:0;opacity:.06;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle cx=%2230%22 cy=%2215%22 r=%2212%22 fill=%22none%22 stroke=%22%23F5F0E8%22 stroke-width=%220.8%22/%3E%3Ccircle cx=%2230%22 cy=%2245%22 r=%2212%22 fill=%22none%22 stroke=%22%23F5F0E8%22 stroke-width=%220.8%22/%3E%3Ccircle cx=%2215%22 cy=%2230%22 r=%2212%22 fill=%22none%22 stroke=%22%23F5F0E8%22 stroke-width=%220.8%22/%3E%3Ccircle cx=%2245%22 cy=%2230%22 r=%2212%22 fill=%22none%22 stroke=%22%23F5F0E8%22 stroke-width=%220.8%22/%3E%3C/svg%3E');background-size:60px;"></div>
+            <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;color:var(--ol2);margin-bottom:6px;">SERAGAM KORPORAT · SEJAK 1947</div>
+            <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:white;line-height:1.15;margin-bottom:8px;">Warisan <em style="color:var(--ol2);font-style:italic;">79 Tahun</em> untuk Perusahaan Anda</div>
+            <div style="font-size:9.5px;color:rgba(255,255,255,.5);margin-bottom:10px;line-height:1.5;">Bukan sekadar vendor seragam — mitra identitas perusahaan Anda.</div>
+            <div style="display:flex;gap:6px;">
+              <div style="background:var(--ol2);padding:5px 12px;border-radius:3px;font-family:'Syne',sans-serif;font-size:8.5px;font-weight:700;color:#1A2408;">Mulai Konsultasi</div>
+              <div style="border:1px solid rgba(255,255,255,.2);padding:5px 10px;border-radius:3px;font-family:'Syne',sans-serif;font-size:8.5px;color:rgba(255,255,255,.6);">Portofolio →</div>
+            </div>
+          </div>
+          <!-- Trust bar mini -->
+          <div style="background:#1A2408;border-radius:4px;padding:6px 10px;margin-bottom:10px;display:flex;align-items:center;gap:8px;justify-content:space-between;">
+            <span style="font-family:'DM Mono',monospace;font-size:7.5px;color:rgba(245,240,232,.3);">Dipercaya oleh</span>
+            <span style="font-size:9.5px;color:rgba(245,240,232,.6);">DHL</span>
+            <span style="font-size:9.5px;color:rgba(245,240,232,.6);">RS Telogorejo</span>
+            <span style="font-size:9.5px;color:rgba(245,240,232,.6);">Prodia Life</span>
+          </div>
+          <!-- Motif section mini -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;">
+            <div style="background:rgba(26,36,8,.06);border:1px solid rgba(26,36,8,.1);border-radius:4px;padding:8px 6px;text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--fo);">Parang</div>
+              <div style="font-size:8px;color:var(--muted);">Kegigihan</div>
+            </div>
+            <div style="background:rgba(26,36,8,.06);border:1px solid rgba(26,36,8,.1);border-radius:4px;padding:8px 6px;text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--fo);">Kawung</div>
+              <div style="font-size:8px;color:var(--muted);">Keadilan</div>
+            </div>
+            <div style="background:rgba(26,36,8,.06);border:1px solid rgba(26,36,8,.1);border-radius:4px;padding:8px 6px;text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--fo);">Sido Mukti</div>
+              <div style="font-size:8px;color:var(--muted);">Kemakmuran</div>
+            </div>
+          </div>
+          <!-- CTA live preview -->
+          <a href="https://custompedia.github.io/Deck/BatikSemar_LP/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--fo);color:var(--cr);border-radius:6px;padding:10px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-decoration:none;transition:background .2s;text-transform:uppercase;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Buka Live Prototype
+          </a>
+        </div>
+        <!-- Analisis -->
+        <div style="padding:10px 12px;border-top:2px solid rgba(107,122,31,.2);background:rgba(107,122,31,.04);">
+          <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:6px;">Keunggulan vs Kompetitor</div>
+          <div style="font-size:10.5px;color:var(--muted);line-height:1.7;">
+            ✦ Heritage 79 tahun — tidak tertandingi<br>
+            ✦ Filosofi motif → diferensiasi unik<br>
+            ✦ B2B digital funnel lengkap (LP + WA)<br>
+            ✦ Portfolio klien enterprise (DHL, Prodia)<br>
+            ✦ Luxury editorial design → premium feel
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end grid -->
+
+    <!-- BOTTOM NOTE -->
+    <div class="r d5" style="margin-top:14px;">
+      <div style="background:rgba(46,58,18,.05);border:1px solid rgba(46,58,18,.12);border-radius:10px;padding:12px 18px;display:flex;align-items:center;gap:16px;">
+        <div style="font-size:18px;">💡</div>
+        <div style="font-size:12px;color:var(--body);line-height:1.65;"><strong style="color:var(--ink);">Positioning yang tidak bisa ditiru:</strong> Konfeksi Baju dan Pramika bisa buat landing page yang lebih bagus — tapi mereka tidak punya 79 tahun cerita, pengrajin asli, dan galeri bersejarah di Solo. Inilah yang menjadi fondasi diferensiasi digital Batik Semar yang sustainable.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="snum">11B</div>
+</div>
+
+
+
+<!-- S12 SCRIPT REACTIVATION -->
+<div class="slide dk2" id="s12">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">10 · Script Reactivation — Hero Content Pertama</div></div>
+    <div class="r d2"><h2 class="h1">Konten Pertama<br><em style="color:var(--ol2);font-style:normal;">Harus Tepat</em></h2></div>
+    <div class="r d3"><p class="sub">Ini bukan promosi. Ini adalah momen brand menyatakan diri kembali hadir — dengan cerita, bukan dengan produk. 65 detik yang menentukan tone seluruh aktivasi.</p></div>
+    <div class="r d4 g2" style="gap:16px;margin-bottom:14px;">
+      <div class="sbox2">
+        <div class="sbox2-lbl">Script "The Reactivation" · 65 Detik</div>
+        <div class="srow"><div class="stime">0–3 dtk</div><div class="stext">Close-up wajah Pak Ardyanto. Langsung bicara. <em>"Batik Semar berdiri tahun 1947."</em> Tidak ada musik dulu. Silence = perhatian.</div></div>
+        <div class="srow"><div class="stime">3–10 dtk</div><div class="stext">Cut ke galeri bird's eye. Musik instrumental masuk. <em>"Tujuh puluh sembilan tahun."</em> Teks muncul di layar.</div></div>
+        <div class="srow"><div class="stime">10–18 dtk</div><div class="stext">Pak Ardyanto lagi. <em>"Saya generasi ketiga."</em> Pause panjang. <em>"Dan kami sempat diam."</em> — Hook utama. Jangan diisi visual lain.</div></div>
+        <div class="srow"><div class="stime">18–30 dtk</div><div class="stext">Montase: foto arsip kebakaran, papan tutup, toko sepi. Musik lebih intens.</div></div>
+        <div class="srow"><div class="stime">30–50 dtk</div><div class="stext">Cut ke galeri sekarang — pengrajin bekerja, kain bergerak, close-up motif. Musik naik, hopeful.</div></div>
+        <div class="srow"><div class="stime">50–60 dtk</div><div class="stext">Pak Ardyanto tatap kamera. <em>"Tapi cerita ini belum selesai."</em></div></div>
+        <div class="srow"><div class="stime">60–65 dtk</div><div class="stext">Fade ke logo. <em>"1947 – Sekarang."</em></div></div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:10px;">Kenapa Format Ini Works</div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.2);border-radius:10px;padding:13px;margin-bottom:8px;">
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--wh);margin-bottom:4px;">Silence di 3 detik pertama</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;">Berlawanan dengan ekspektasi audiens. Algoritma mengukur watch time — yang berhenti karena "kenapa tidak ada suara?" justru meningkatkan signal.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.2);border-radius:10px;padding:13px;margin-bottom:8px;">
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--wh);margin-bottom:4px;">"Dan kami sempat diam" — Hook Terkuat</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;">Jujur dan tidak defensif. Mengundang empati, bukan pembelaan diri. Orang yang pernah merasakan "sempat diam" akan langsung terkoneksi.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(139,155,42,.2);border-radius:10px;padding:13px;margin-bottom:8px;">
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--wh);margin-bottom:4px;">Tidak ada CTA jualan</div>
+          <p style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;">Konten pertama ini murni membangun emosi dan re-establish brand presence. Konversi bukan tujuan di sini — kepercayaan adalah.</p>
+        </div>
+        <div class="note n-ol" style="margin-top:12px;"><strong>Catatan:</strong> Script ini adalah framework. Kata-kata akhir disesuaikan dengan gaya bicara Pak Ardyanto — harus terasa natural, bukan hafalan.</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">12</div>
+</div>
+<!-- S13 MARKETPLACE -->
+<div class="slide" id="s13">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">11 · Marketplace — Shopee + TikTok Shop</div></div>
+    <div class="r d2"><h2 class="h1">2 Platform yang Dikelola<br>dengan Sangat Baik</h2></div>
+    <div class="r d3"><p class="sub">Daripada 4 platform yang setengah-setengah. Ini bukan penyederhanaan — ini fokus berbasis data.</p></div>
+    <div class="r d4 g2" style="margin-bottom:14px;">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">Shopee — Prioritas Utama</div>
+        <div class="mp-card">
+          <div class="mp-head"><div class="mp-name">Shopee Indonesia</div><span class="tag to">Mall Seller ✓</span></div>
+          <div class="mp-stat">137 juta</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">kunjungan/bulan (Agustus 2025) — #1 Indonesia</div>
+          <div class="mp-body">Batik Semar sudah Mall Seller dengan rating 4.9 dari 3.7K ulasan. Existing presence → optimasi lebih mudah dari mulai nol.</div>
+        </div>
+        <div class="note n-re" style="margin-top:10px;"><strong>⚠ Data Kritis:</strong> Cancel rate ~50% = 25× di atas threshold Preferred Seller (≤2%). Konsekuensi: listing turun ranking, tidak eligible kampanye Shopee, kehilangan visibility. Listing dengan rating >4.87 <strong>3.2× lebih mungkin</strong> muncul di "Recommended for You" dan menghasilkan 68% total sales dari placement tersebut. <strong>Fix ini adalah prioritas hari pertama.</strong></div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">TikTok Shop — Platform Konversi</div>
+        <div class="mp-card">
+          <div class="mp-head"><div class="mp-name">TikTok Shop Indonesia</div><span class="tag tg">Pasar Terbesar Global</span></div>
+          <div class="mp-stat">$4.8B</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">GMV Indonesia 2024 — pasar TikTok Shop terbesar di dunia</div>
+          <div class="mp-body">Fashion adalah kategori terkuat. Live Shopping conversion rate 3× lebih tinggi dari e-commerce biasa. Integrasi langsung dengan konten IG/TikTok yang Custompedia kelola.</div>
+        </div>
+        <div class="note n-gr" style="margin-top:10px;">Sinergi langsung: setiap Reels yang diproduksi untuk IG langsung dimirror ke TikTok dengan Keranjang Kuning aktif. Satu produksi, dua channel konversi.</div>
+      </div>
+    </div>
+    <div class="r d5">
+      <div style="border:1px solid var(--bdr);border-radius:12px;padding:16px;background:#FFFFFF;">
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">Mengapa Tidak Tokopedia, Blibli, Zalora Dulu?</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div><div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ink);margin-bottom:3px;">Tokopedia</div><div style="font-size:11px;color:var(--body);line-height:1.6;">Semar sudah ada (Verified Seller, 4.445 terjual) → biarkan jalan organik dulu. Optimasi setelah 3 bulan baseline terbentuk.</div></div>
+          <div><div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ink);margin-bottom:3px;">Blibli & Zalora</div><div style="font-size:11px;color:var(--body);line-height:1.6;">Blibli 32.2 juta kunjungan/bulan vs Shopee 137 juta. Zalora VIP Seller tapi hanya 25 produk, 34 ulasan — volume sangat kecil.</div></div>
+          <div><div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--ink);margin-bottom:3px;">Prinsip Fokus</div><div style="font-size:11px;color:var(--body);line-height:1.6;">2 platform yang dikelola dengan sangat baik jauh lebih efektif dari 4 platform yang diabaikan. Traffic + effort = ROI lebih tinggi.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">13</div>
+</div>
+
+<!-- S14 KOL + ADS -->
+<div class="slide cr" id="s14">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">12 · KOL & Ads Activation</div></div>
+    <div class="r d2"><h2 class="h1">Distribusi yang<br>Tepat Sasaran</h2></div>
+    <div class="r d3 g2" style="gap:20px;">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">KOL Activation — 3 Campaign</div>
+        <div class="kolrow">
+          <div class="kol-fase">Campaign 1<br><span style="font-size:9px;color:var(--muted);">Reactivation</span></div>
+          <div><div class="kol-title">Media Lokal Solo + City Info</div><div class="kol-desc">Angle: "brand heritage Solo yang kembali aktif" — bukan review produk, tapi destinasi & cerita. 2–3 akun media lokal + 1 City Info 50K–200K. KOL rate included. Brief, koordinasi, QC, report.</div></div>
+        </div>
+        <div class="kolrow">
+          <div class="kol-fase">Campaign 2<br><span style="font-size:9px;color:var(--muted);">Tourism</span></div>
+          <div><div class="kol-title">3–4 Nano KOL + 1 Micro KOL</div><div class="kol-desc">Angle: galeri Batik Semar sebagai heritage destination Solo. Nano: batik enthusiast & cultural educator. Micro options: Roman Muhtar (textile), Melati Tedja (cultural), atau Rania Yamin (421K, Harper's Bazaar). KOL rate included.</div></div>
+        </div>
+        <div class="kolrow" style="margin-bottom:0;">
+          <div class="kol-fase">Campaign 3<br><span style="font-size:9px;color:var(--muted);">Workshop</span></div>
+          <div><div class="kol-title">3 Nano KOL + 1 Micro KOL</div><div class="kol-desc">Angle: pengalaman workshop membatik di galeri — experiential content. Aktifkan Keranjang Kuning TikTok untuk konversi langsung. KOL rate included.</div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:10px;">Ads Strategy</div>
+        <div style="background:var(--fo);border-radius:14px;padding:16px;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;">
+            <div class="ads-mini"><div class="lbl">Shopee Ads</div><div class="val">Rp 1.5jt</div><div class="sub2">est. budget/bln · Product Boost + Headline Search · ROAS 6x–12x</div></div>
+            <div class="ads-mini" style="background:rgba(139,155,42,.15);border-color:rgba(139,155,42,.4);"><div class="lbl">TikTok GMV</div><div class="val">Rp 1jt</div><div class="sub2">est. budget/bln · GMV Max · fashion kategori terkuat · ROAS 4x–8x</div></div>
+            <div class="ads-mini"><div class="lbl">Meta Ads</div><div class="val">Rp 1jt</div><div class="sub2">est. budget/bln · Retargeting + CPAS Shopee · Warm audience · ROAS 4x–8x</div></div>
+          </div>
+          <div style="background:rgba(139,155,42,.1);border:1px solid rgba(139,155,42,.25);border-radius:8px;padding:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:center;">
+            <div><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ol2);margin-bottom:3px;">Budget/Bulan</div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:white;">Rp 3.5jt</div></div>
+            <div><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ol2);margin-bottom:3px;">Est. Order</div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:white;">80–180</div></div>
+            <div><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ol2);margin-bottom:3px;">Est. Omzet</div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:white;">Rp30–70jt</div></div>
+            <div><div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ol2);margin-bottom:3px;">ROAS Est.</div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:white;">5x–11x</div></div>
+          </div>
+          <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:8px;text-align:center;">*Budget ads dari klien, dibayar langsung ke platform — tidak melalui Custompedia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">14</div>
+</div>
+
+<!-- S15 KPI -->
+<div class="slide dk2" id="s15">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">13 · Key Performance Indicators</div></div>
+    <div class="r d2"><h2 class="h1">Angka yang Kita<br><em style="color:var(--ol2);font-style:normal;">Pertanggungjawabkan</em></h2></div>
+    <div class="r d3"><p class="sub">Target berbasis data kondisi akun saat ini — progres realistis selama 3 bulan aktivasi dengan 8 Reels + 6 Feed per bulan.</p></div>
+    <div class="r d4" style="margin-bottom:14px;">
+      <div class="ktbl">
+        <div class="khd"><div>Metrik</div><div>Baseline</div><div>Bulan 1</div><div>Bulan 3 (Target)</div></div>
+        <div class="kr"><div class="km">Followers Instagram</div><div class="kv">83.600</div><div class="kv">85.000 <span style="color:var(--gr);font-size:10px;">(+1.400)</span></div><div class="kv hi">87.000+</div></div>
+        <div class="kr"><div class="km">Engagement Rate</div><div class="kv">0.02%</div><div class="kv">0.03% <span style="color:var(--gr);font-size:10px;">(+50%)</span></div><div class="kv hi">0.05%</div></div>
+        <div class="kr"><div class="km">Average Views per Konten</div><div class="kv">2.238</div><div class="kv">3.300 <span style="color:var(--gr);font-size:10px;">(+47%)</span></div><div class="kv hi">5.500+</div></div>
+        <div class="kr"><div class="km">Average Engagement</div><div class="kv">16</div><div class="kv">24 <span style="color:var(--gr);font-size:10px;">(+50%)</span></div><div class="kv hi">36</div></div>
+        <div class="kr"><div class="km">TikTok Followers</div><div class="kv">485</div><div class="kv">200–500 (baru)</div><div class="kv hi">1.500–3.000</div></div>
+        <div class="kr"><div class="km">B2B Inquiry / bulan</div><div class="kv">0</div><div class="kv">1–2</div><div class="kv hi">5–8</div></div>
+      </div>
+    </div>
+    <div class="r d5 g3">
+      <div class="dkc">
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:6px;">Milestone Kualitatif</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:12px;color:rgba(255,255,255,.7);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08);">📹 Mini-documentary: 30K–70K views dalam 30 hari</li>
+          <li style="font-size:12px;color:rgba(255,255,255,.7);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08);">📰 2–3 media pick up (Solopos, Detik, IDN Times)</li>
+          <li style="font-size:12px;color:rgba(255,255,255,.7);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08);">🏺 Workshop bulan 2: 15 peserta → bulan 3: 30+</li>
+          <li style="font-size:12px;color:rgba(255,255,255,.7);padding:5px 0;">✅ Cancel rate Shopee: 50% → <5% dalam 30 hari</li>
+        </ul>
+      </div>
+      <div class="dkc" style="background:rgba(139,155,42,.1);border-color:rgba(139,155,42,.3);">
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:6px;">Forecast Ads (Budget Rp3.5jt/bln)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+          <div style="text-align:center;padding:10px;background:rgba(255,255,255,.05);border-radius:8px;"><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:white;">80–180</div><div style="font-size:10px;color:rgba(255,255,255,.45);">Order/bulan</div></div>
+          <div style="text-align:center;padding:10px;background:rgba(139,155,42,.12);border-radius:8px;"><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:white;">5x–11x</div><div style="font-size:10px;color:rgba(255,255,255,.55);">Overall ROAS</div></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.55);">Est. omzet dari ads: Rp30–70jt/bulan</div>
+      </div>
+      <div class="dkc">
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ol2);margin-bottom:6px;">B2B Pipeline</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;">
+          <div style="text-align:center;padding:8px;background:rgba(255,255,255,.05);border-radius:8px;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:white;">1–2</div><div style="font-size:9px;color:rgba(255,255,255,.45);">Inquiry B1</div></div>
+          <div style="text-align:center;padding:8px;background:rgba(255,255,255,.05);border-radius:8px;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:white;">3–5</div><div style="font-size:9px;color:rgba(255,255,255,.45);">Inquiry B2</div></div>
+          <div style="text-align:center;padding:8px;background:rgba(139,155,42,.15);border-radius:8px;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:white;">1–2</div><div style="font-size:9px;color:rgba(255,255,255,.55);">Deal B3</div></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.5;">Digital funnel lengkap untuk pertama kali: Landing Page + WA Business + IG Highlight B2B</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">15</div>
+</div>
+
+<!-- S16 LONG TERM + CLOSING -->
+<div class="slide" id="s16">
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">14 · Long-Term Vision</div></div>
+    <div class="r d2"><h2 class="h1">Batik Semar Menuju<br>Institusi Budaya</h2></div>
+    <div class="r d3 g3" style="margin-bottom:14px;">
+      <div class="yr" style="background:var(--olp);border:1px solid rgba(107,122,31,.25);">
+        <div class="yr-n" style="color:var(--fo);">Tahun 1</div>
+        <div class="yr-title" style="color:var(--fo);">Digital Foundation</div>
+        <ul class="yr"><li>Ekosistem digital aktif & konsisten</li><li>100K+ followers terkonsolidasi</li><li>Workshop tourism berjalan rutin</li><li>B2B digital pipeline aktif & menghasilkan</li><li>Semar Kids soft launch</li></ul>
+      </div>
+      <div class="yr" style="background:var(--fo);border:2px solid rgba(139,155,42,.35);">
+        <div class="yr-n" style="color:var(--ol2);">Tahun 2</div>
+        <div class="yr-title" style="color:white;">Heritage Experience</div>
+        <ul class="yr" style="border-color:rgba(255,255,255,.08);">
+          <li style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.07);">Galeri resmi sebagai destinasi wisata kota Solo</li>
+          <li style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.07);">Semar Kids full launch (batik kit + komik edukasi)</li>
+          <li style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.07);">Brand collaboration: <strong style="color:white;">Adrian Gan</strong> (44K, heritage) atau <strong style="color:white;">Rania Yamin</strong> (421K, Harper's Bazaar)</li>
+          <li style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.07);">Partnership ISI Surakarta + UNS Pariwisata</li>
+          <li style="color:rgba(255,255,255,.7);">Gallery Exhibition tematik tahunan</li>
+        </ul>
+      </div>
+      <div class="yr" style="background:var(--olp);border:1px solid rgba(107,122,31,.25);">
+        <div class="yr-n" style="color:var(--fo);">Tahun 3</div>
+        <div class="yr-title" style="color:var(--fo);">National Institution</div>
+        <ul class="yr"><li>Semar Kids masuk program edukasi sekolah</li><li>Buku komik batik diterbitkan secara fisik</li><li>Ekspansi B2B ke skala nasional</li><li>Koleksi kolaborasi tahunan dengan desainer lokal</li><li>Brand equity: institusi budaya batik Indonesia</li></ul>
+      </div>
+    </div>
+    <div class="r d4" style="background:rgba(46,58,18,.05);border:1px solid var(--bdr);border-radius:12px;padding:16px 20px;">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fo);margin-bottom:8px;">🧒 Semar Kids — Future Value</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+        <div><strong style="color:var(--ink);font-size:12px;display:block;margin-bottom:3px;">Batik Kit Anak</strong><div style="font-size:11.5px;color:var(--body);line-height:1.65;">MVP sudah proven saat COVID (diliput Detik.com). Relaunch dengan packaging baru, dua level usia.</div></div>
+        <div><strong style="color:var(--ink);font-size:12px;display:block;margin-bottom:3px;">Komik Edukasi Batik</strong><div style="font-size:11.5px;color:var(--body);line-height:1.65;">Mulai sebagai carousel IG gratis → test demand → e-book → buku fisik.</div></div>
+        <div><strong style="color:var(--ink);font-size:12px;display:block;margin-bottom:3px;">Workshop Anak</strong><div style="font-size:11.5px;color:var(--body);line-height:1.65;">Kelas membatik di galeri untuk SD/SMP + keluarga turis. Kategori yang sepenuhnya kosong di pasar Solo.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">16</div>
+</div>
+<!-- S17 CLOSING -->
+<div class="slide dk" id="s17">
+  <div style="position:absolute;inset:0;opacity:.03;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');background-size:200px;pointer-events:none;"></div>
+  <div style="position:absolute;right:-60px;bottom:-60px;width:360px;height:360px;border-radius:50%;background:rgba(139,155,42,.06);pointer-events:none;"></div>
+  <div class="abar"></div>
+  <div class="inner">
+    <div class="r d1"><div class="ey">15 · Next Steps</div></div>
+    <div class="r d2" style="margin-bottom:8px;">
+      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(32px,4.5vw,56px);font-weight:800;line-height:.93;letter-spacing:-2px;color:var(--wh);margin-bottom:14px;">Mari Kita Mulai.<br><em style="color:var(--ol2);font-style:normal;">Bersama.</em></h2>
+    </div>
+    <div class="r d3"><p style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.8;max-width:460px;margin-bottom:22px;">79 tahun cerita sudah menunggu untuk diceritakan. Tiga langkah sederhana untuk memulai.</p></div>
+    <div class="r d4 g3" style="margin-bottom:24px;">
+      <div class="ns"><div class="ns-n">1</div><div><div class="ns-t">Konfirmasi Proposal</div><div class="ns-d">Review dokumen ini, sampaikan pertanyaan atau penyesuaian yang dibutuhkan</div></div></div>
+      <div class="ns"><div class="ns-n">2</div><div><div class="ns-t">Grant Akses Digital</div><div class="ns-d">Akses Instagram via Meta Business Suite + info akun Shopee + TikTok</div></div></div>
+      <div class="ns"><div class="ns-n">3</div><div><div class="ns-t">Siapkan Aset Visual</div><div class="ns-d">Foto galeri, footage existing, Pak Ardyanto sebagai on-cam talent utama</div></div></div>
+    </div>
+    <div class="r d5" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;">
+      <div class="cc"><div class="cc-r">Agency</div><div class="cc-v">Custompedia</div></div>
+      <div class="cc"><div class="cc-r">Email</div><div class="cc-v">hello@custompedia.agency</div></div>
+      <div class="cc"><div class="cc-r">WA</div><div class="cc-v">0822-2617-1071</div></div>
+      <div class="cc"><div class="cc-r">Dokumen</div><div class="cc-v">Confidential · Mei 2026</div></div>
+    </div>
+    <div class="r d6" style="display:flex;align-items:center;gap:10px;">
+      <svg style="height:20px;flex-shrink:0" viewBox="330 240 440 420" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#f8bd17" d="M509.74,274.01h108.97v309.03h-108.97c-85.28,0-154.51-69.23-154.51-154.51h0c0-85.28,69.23-154.51,154.51-154.51h0Z"/>
+        <path fill="#0999cd" d="M747.75,503.13v.4c0,77.93-63.18,141.11-141.11,141.11h-38.92l-75.03,60.2.76-60.2h-.08v-62.45h125v-219.69c72.44,5.96,129.38,66.64,129.38,140.63h0Z"/>
+        <path fill="#007ec8" d="M618.37,362.5v219.69h-125v-220.17h113.27c3.95,0,7.86.16,11.73.48h0Z"/>
+      </svg>
+      <span style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:white;letter-spacing:1.5px;text-transform:uppercase;">CUSTOMPEDIA</span>
+      <span style="font-family:'Syne',sans-serif;font-size:11px;color:rgba(255,255,255,.25);margin-left:4px;">· Social Media Execution Strategy — Batik Semar · Confidential · © 2026</span>
+    </div>
+  </div>
+  <div class="snum">17</div>
+</div>
+
+</div><!-- end .deck -->
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('dots');
+const progressEl=document.getElementById('progress');
+const hintEl=document.getElementById('hint');
+const curEl=document.getElementById('curSlide');
+const totEl=document.getElementById('totSlide');
+totEl.textContent=slides.length;
+slides.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.title=`Slide ${i+1}`;
+  if(i===0)b.classList.add('active');
+  b.addEventListener('click',()=>go(i));
+  dotsEl.appendChild(b);
+});
+function go(i){slides[i].scrollIntoView({behavior:'smooth'});}
+let cur=0;
+slides.forEach(s=>new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.intersectionRatio>.5){
+      const i=Array.from(slides).indexOf(e.target);
+      cur=i;
+      dotsEl.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('active',j===i));
+      curEl.textContent=i+1;
+      progressEl.style.width=((i+1)/slides.length*100)+'%';
+      if(i>0)hintEl.style.opacity='0';
+      e.target.querySelectorAll('.r').forEach(el=>el.classList.add('in'));
+    }
+  });
+},{threshold:.5}).observe(s));
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(Math.min(cur+1,slides.length-1));}
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(Math.max(cur-1,0));}
+});
+</script>
+</body>
+</html>
